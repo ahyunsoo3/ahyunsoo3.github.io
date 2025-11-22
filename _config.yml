@@ -24,9 +24,10 @@ repository               : "ahyunsoo3/ahyunsoo3.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "RResearch interests : LLMs' hallucination, LLMs' interpretability."
+  name             : "HSL"
   pronouns         : # example: "she/her"  
-  bio              : "I'm passionate about AI and open-source tools..."
+  bio              : >
+                      "If you want to go fast, go alone. If you want to go far, go together.”
   location         : "South Korea"
   # employer         : "None"
   uri              : # URL
