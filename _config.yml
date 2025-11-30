@@ -23,9 +23,9 @@ repository               : "ahyunsoo3/ahyunsoo3.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "my_profile.jpg"
   name             : "HSL"
-  pronouns         : # example: "she/her"  
+  # pronouns         : "he/him"
   bio              : >
                       "If you want to go fast, go alone. If you want to go far, go together.”
   location         : "South Korea"
