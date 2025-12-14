@@ -99,3 +99,7 @@ Adding dropout to the hidden and embedding layers had minimal impact on performa
 
 [Code](https://www.kaggle.com/code/hyunsoolee1010/piidd-inftest)<br>
 [Review](https://www.kaggle.com/competitions/pii-detection-removal-from-educational-data/discussion/497181)
+
+
+<br><br><br><br><br>
+[Detect AI Generated Text]
