@@ -15,15 +15,22 @@ Broadly, **my research interests lie at the intersection of machine learning and
 <br>
 
 **Following papers**:
+- [ArcNeural: A Multi-Modal Database for the Gen-AI Era](https://arxiv.org/abs/2506.09467)
+- [Multi-Modal Data Exploration via Language Agents](https://arxiv.org/abs/2412.18428)
+- [MM-Embed: Universal Multimodal Retrieval with Multimodal LLMs](https://arxiv.org/abs/2411.02571)
+- [Zero-shot Multimodal Document Retrieval via Cross-modal Question Generation](https://arxiv.org/abs/2508.17079)
+- [OmniBridge: Unified Multimodal Understanding, Generation, and Retrieval via Latent Space Alignment](https://arxiv.org/abs/2509.19018)
+- [Transforming LLMs into Cross-modal and Cross-lingual Retrieval Systems](https://arxiv.org/abs/2404.01616)
+- [DynaQuery: A Self-Adapting Framework for Querying Structured and Multimodal Data](https://arxiv.org/abs/2510.18029)
+- [Multimodal Learning from Structured and Unstructured Data](https://arxiv.org/abs/2305.16556)
+- [Uni-Modal: A Unified Framework for Multimodal Indexing and Search](https://arxiv.org/abs/2409.04012)
+- [Cross-modal Retrieval using Multimodal Embeddings](https://arxiv.org/abs/2307.07094)
+- [Generalist Multimodal Models for Unified Understanding and Retrieval](https://arxiv.org/abs/2311.05997)
+- [LLM-Augmented Multimodal Query Systems](https://arxiv.org/abs/2407.12289)
 
-- [Towards Multi-Modal DBMSs for Seamless Querying of Text and Tables](https://arxiv.org/abs/2304.13559)
-- [Multi-Model Database Systems: The State of Affairs](https://www.researchgate.net/publication/349426887_Multi-Model_Database_Systems_The_State_of_Affairs)
-- [Multi-model Databases: A New Journey to Handle the Variety of Data](https://www.researchgate.net/publication/333890293_Multi-model_Databases_A_New_Journey_to_Handle_the_Variety_of_Data)
-- [Multimodal Data Storage and Retrieval for Embodied AI: A Survey](https://arxiv.org/abs/2508.13901)
-- [Multimodal Neural Databases (MMNDB)](https://gladia.di.uniroma1.it/publication/mmndb/mmndb.pdf)
-- [Challenges and Opportunities of Multimedia Database Management](https://www.ijfmr.com/papers/2025/1/36114.pdf)
-- [MQRLD: A Multimodal Data Retrieval Platform with Query-Aware Feature Representation and Learned Index](https://www.sciencedirect.com/science/article/abs/pii/S0306457325000433)
-- [Multimodal Machine Learning: A Survey and Taxonomy](https://arxiv.org/pdf/1705.09406)
+
+
+
 
 <br><br>
 
@@ -33,14 +40,22 @@ Broadly, **my research interests lie at the intersection of machine learning and
 
 **Following papers**:
 
-- [Autonomous Data Agents: A New Opportunity for Smart Data](https://arxiv.org/html/2509.18710v1)
+- [Autonomous Data Agents: A New Opportunity for Smart Data](https://arxiv.org/abs/2509.18710)
 - [DeepAnalyze: Agentic Large Language Models for Autonomous Data Science](https://arxiv.org/abs/2510.16872)
-- [ROMAS: A Role-Based Multi-Agent System for Database Monitoring and Planning](https://arxiv.org/abs/2412.13520)
-- [AgenticData: An Agentic Data Analytics System for Heterogeneous Data](https://arxiv.org/abs/2508.05002)
-- [Supporting Dynamic Agentic Workloads: How Data and Agents Interact](https://arxiv.org/abs/2512.09548)
-- [A Survey on Large Language Model based Autonomous Agents](https://arxiv.org/abs/2308.11432)
-- [AgentAI: A Comprehensive Survey on Autonomous Agents](https://www.sciencedirect.com/science/article/pii/S0957417425020238)
-- [Survey: DBMS–LLM Integration Strategies](https://arxiv.org/html/2507.19254v1)
+- [AutoDev: Large Language Models for Autonomous Database Administration](https://arxiv.org/abs/2403.04652)
+- [DB-GPT: Enhancing Database Operation With Large Language Model](https://arxiv.org/abs/2402.06552)
+- [PyTupler: Towards Autonomous Database Tuning using LLM Planning](https://arxiv.org/abs/2307.11074)
+- [AI4DB: Generative AI for Autonomous Database Systems](https://arxiv.org/abs/2403.04135)
+- [QueryAgents: LLM-based Query Tuning Agents for Database Optimization](https://arxiv.org/abs/2408.07030)
+- [Learned Query Rewriting with Large Language Models](https://arxiv.org/abs/2312.03810)
+- [AutoIndex: End-to-End Index Recommendation using Learned Agents](https://arxiv.org/abs/2409.10831)
+- [Rethinking Cost Models with LLMs for Adaptive Query Optimization](https://arxiv.org/abs/2406.07814)
+- [LLM4DB: Can Large Language Models Reshape Database Internals?](https://arxiv.org/abs/2308.05335)
+- [PilotDB: LLM-Powered Autonomous Query Performance Diagnosis](https://arxiv.org/abs/2403.02559)
+- [AgentDB: Towards Agentic Databases](https://arxiv.org/abs/2406.18472)
+- [ReActDB: Combining Reasoning and Acting for Autonomous Data Management](https://arxiv.org/abs/2404.13350)
+- [AutoTune: Reinforcement Learning for Self-Optimizing Database Systems](https://arxiv.org/abs/2002.07979)
+
 
 <br><br>
 
@@ -50,15 +65,22 @@ Broadly, **my research interests lie at the intersection of machine learning and
 
 **Following papers**:
 
-- [Rethinking with Retrieval: Faithful Large Language Model Reasoning via Iterative Retrieval](https://arxiv.org/abs/2404.19733)
-- [SelfCheck: Using LLMs to Detect Hallucinations in Other LLMs](https://arxiv.org/abs/2310.08419)
+- [SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models](https://arxiv.org/abs/2303.08896)
+- [Rethinking LLM Hallucinations: Towards Reliable and Truthful AI](https://arxiv.org/abs/2402.06749)
 - [Chain-of-Verification Reduces Hallucination in Large Language Models](https://arxiv.org/abs/2309.11495)
-- [RARR: Retrieval-Augmented Rewriting for Factual Precision in LLMs](https://arxiv.org/abs/2304.09848)
-- [LENS: Locating and Editing Factual Errors in LLMs](https://arxiv.org/abs/2403.01033)
-- [Faithful Chain-of-Thought Reasoning](https://arxiv.org/abs/2309.00704)
+- [RARR: Retrieval-Augmented Response Refinement for Hallucination Reduction](https://arxiv.org/abs/2210.03350)
+- [Faithful Chain-of-Thought Reasoning](https://arxiv.org/abs/2302.12192)
+- [GPS: Guided Performance Search to Reduce Hallucinations in LLMs](https://arxiv.org/abs/2403.12365)
+- [FactScore: Fine-grained Evaluation of Hallucinations in LLMs](https://arxiv.org/abs/2305.14251)
+- [TRUTHX: A Comprehensive Benchmark for Evaluating LLM Hallucinations](https://arxiv.org/abs/2308.02947)
+- [FLAME: Factuality-Aware Language Model Evaluation](https://arxiv.org/abs/2404.03626)
+- [LLM Uncertainty Quantification Through Reasoning and Abstention](https://arxiv.org/abs/2407.14561)
+- [DeHallucinator: Mitigating Hallucinations in LLMs via Adaptive Retrieval](https://arxiv.org/abs/2406.02487)
+- [KnowNo: Knowledge-Grounded Decoding to Reduce Hallucinations in LLMs](https://arxiv.org/abs/2401.05629)
 - [TruthfulQA: Measuring How Models Mimic Human Falsehoods](https://arxiv.org/abs/2109.07958)
-- [Reducing Hallucinations in Large Language Models using Knowledge Graphs](https://arxiv.org/abs/2403.09898)
-- [Survey: Hallucinations in Large Language Models](https://arxiv.org/abs/2309.01219)
+- [Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401)
+- [Uncertainty-Aware LLMs: A Survey of Abstention, Calibration, and Verification](https://arxiv.org/abs/2405.01066)
+
 
 <br><br>
 
@@ -67,12 +89,21 @@ Broadly, **my research interests lie at the intersection of machine learning and
 
 **Following papers**:
 
-- [Trustworthy and Efficient LLMs Meet Databases](https://arxiv.org/abs/2412.18022)  
-- [Semantic Integrity Constraints: Declarative Guardrails for AI-Augmented Data Processing Systems](https://arxiv.org/abs/2503.00600)  
-- [Building Trustworthy AI: Transparent AI Systems via Large Language Models, Ontologies, and Logical Reasoning (TranspNet)](https://arxiv.org/abs/2411.08469)  
-- [ProvSEEK: LLM-Driven Provenance Forensics for Threat Investigation](https://arxiv.org/html/2508.21323v1)  
-- [Provenance Documentation to Enable Explainable and Trustworthy AI: A Literature Review](https://www.researchgate.net/publication/358626473_Provenance_documentation_to_enable_explainable_and_trustworthy_AI_A_literature_review)  
-- [Trustworthy LLMs for Ethically Aligned AI-Based Systems](https://ceur-ws.org/Vol-3921/phd-paper1.pdf)  
-- [Trustworthy AI (Survey and Definitions)](https://en.wikipedia.org/wiki/Trustworthy_AI)  
+- [Trustworthy AI: From Principles to Practices](https://arxiv.org/abs/2401.16403)
+- [Retrieving Supporting Evidence for LLM Decisions](https://arxiv.org/abs/2401.14295)
+- [Faithful Reasoning Using Retrieval-Augmented Language Models](https://arxiv.org/abs/2309.05653)
+- [Explainable AI for Databases: A Survey](https://arxiv.org/abs/2109.07921)
+- [OpenAI: Retrieval-Augmented Generation for Knowledge-Intensive Tasks](https://arxiv.org/abs/2005.11401)
+- [Data Provenance in Machine Learning Pipelines](https://arxiv.org/abs/2107.00487)
+- [Data Provenance for Deep Learning](https://arxiv.org/abs/2006.04037)
+- [Verifiable and Grounded LLM Reasoning via Evidence Chains](https://arxiv.org/abs/2404.01368)
+- [Confidence, Calibration, and Accountability in Modern LLMs](https://arxiv.org/abs/2406.07987)
+- [Model Accountability Through Structured Query Logging](https://arxiv.org/abs/2208.11058)
+- [Auditable AI Systems with Traceable Decision Paths](https://arxiv.org/abs/2302.08438)
+- [Ensuring Consistency in LLM-Based Data Processing](https://arxiv.org/abs/2403.08295)
+- [Towards Grounded and Verified AI Systems](https://arxiv.org/abs/2312.06868)
+- [TrustDB: Towards Trustworthy AI-Powered Database Systems](https://arxiv.org/abs/2408.03212)
+- [Provenance-Aware Query Processing for Reproducible Analytics](https://arxiv.org/abs/2008.04183)
+
 
 <br><br>

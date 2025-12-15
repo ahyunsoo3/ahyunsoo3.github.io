@@ -12,35 +12,6 @@ redirect_from:
 ======
 Looking back, I’ve always disliked repetitive and redundant tasks, which led me to create automation tools in both my development and research work. One key example is [Kaggle's result](https://www.kaggle.com). -->
 
-[A Solo-Developed 2D Idle Game Using the MapleStory IP]
-======
-Built on MapleStory Worlds, this 2D idle RPG was developed entirely by me. The game has attracted 7,800+ players, demonstrating strong engagement within the MapleStory Worlds platform. 
-
-- It was also funded with ₩50,000,000 KRW (~$38,000 USD) by Nexon Korea.
-- [Play the game](https://maplestoryworlds.nexon.com/en/play/cb9b0af77d444856a150cd4c876e0e01/)
-
-
-Database Architecture Overview
-------
-**1. User Authentication**
-- When a player enters the world, the server verifies legitimacy.
-- Illegitimate users are automatically restricted from accessing the game for a predetermined duration.
-
-**2. Character Slot Structure**
-- Each account can have up to 10 characters.
-- These characters are stored using a structure similar to a table + list hybrid (not a true 2D list, but effectively functioning as one).
-
-**3. Character Access Flow**
-- When the player double-clicks a character slot, the system validates ownership and grants access to the chosen character.
-
-Key Feature: Union Ability System
-------
-The Union Ability system allows players to gain additional stat bonuses if the combined level of all their characters exceeds 1,000.
-- **How It Works?** : Each time a user enters the world, the server retrieves all character levels, computes the total combined level, and applies corresponding Union stat bonuses to the selected character if the threshold is met.
-
-<br><br><br><br><br>
-
-
 [AI Mathematical Olympiad]
 ======
 Employing innovative algorithms and sophisticated models to tackle Olympiad-level mathematical problems under predefined limitations.
@@ -67,8 +38,9 @@ If the first four loops produced the same answer, the problem was treated as sol
 
 
 <br><br><br><br><br>
- [Personal Identifiable Information Data Detection]
- ======
+
+[Personal Identifiable Information Data Detection]
+======
 This work focuses on identifying text that contains Personally Identifiable Information (PII), including names, addresses, and contact numbers, within specific documents, thereby contributing to the protection of sensitive personal data.
 
 Effective Methods
@@ -102,4 +74,31 @@ Adding dropout to the hidden and embedding layers had minimal impact on performa
 
 
 <br><br><br><br><br>
-[Detect AI Generated Text]
+
+[A Solo-Developed 2D Idle Game Using the MapleStory IP]
+======
+Built on MapleStory Worlds, this 2D idle RPG was developed entirely by me. The game has attracted 7,800+ players, demonstrating strong engagement within the MapleStory Worlds platform. 
+
+- It was also funded with ₩50,000,000 KRW (~$38,000 USD) by Nexon Korea.
+- [Play the game](https://maplestoryworlds.nexon.com/en/play/cb9b0af77d444856a150cd4c876e0e01/)
+
+
+Database Architecture Overview
+------
+**1. User Authentication**
+- When a player enters the world, the server verifies legitimacy.
+- Illegitimate users are automatically restricted from accessing the game for a predetermined duration.
+
+**2. Character Slot Structure**
+- Each account can have up to 10 characters.
+- These characters are stored using a structure similar to a table + list hybrid (not a true 2D list, but effectively functioning as one).
+
+**3. Character Access Flow**
+- When the player double-clicks a character slot, the system validates ownership and grants access to the chosen character.
+
+Key Feature: Union Ability System
+------
+The Union Ability system allows players to gain additional stat bonuses if the combined level of all their characters exceeds 1,000.
+- **How It Works?** : Each time a user enters the world, the server retrieves all character levels, computes the total combined level, and applies corresponding Union stat bonuses to the selected character if the threshold is met.
+
+<br><br><br><br><br>
