@@ -13,6 +13,3 @@ Broadly, **my research interests lie at the intersection of machine learning and
 **Following papers**:
 
 - X
-
-
-<br><br>
