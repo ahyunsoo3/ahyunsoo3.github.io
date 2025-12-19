@@ -15,7 +15,8 @@ Looking back, I’ve always disliked repetitive and redundant tasks, which led m
 Current
 ======
 ### Major
-
+-
+<br><br>
 
 ### Minor
 - [Reproduction Guide](https://github.com/ahyunsoo3/RepdGuide) Dec. 19, 2025 ~
