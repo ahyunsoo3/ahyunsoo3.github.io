@@ -15,12 +15,14 @@ Looking back, I’ve always disliked repetitive and redundant tasks, which led m
 Current
 ======
 ### Major
-- [LeetCode Problem-Solving](https://leetcode.com/u/ahyunsoo2/) Dec. 15, 2025 ~
-  - This activity aims to reinforce and consolidate previously acquired knowledge by solving one thousand problems by February.
+
 
 ### Minor
 - [Reproduction Guide](https://github.com/ahyunsoo3/RepdGuide) Dec. 19, 2025 ~
 - [Typo Checker](https://github.com/ahyunsoo3/TypoCheker) Dec. 19, 2025 ~
+- [LeetCode Problem-Solving](https://leetcode.com/u/ahyunsoo2/) Dec. 15, 2025 ~
+  - This activity aims to reinforce and consolidate previously acquired knowledge by solving one thousand problems by February.
+
 
 <br><br>
 
