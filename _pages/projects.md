@@ -15,7 +15,8 @@ Looking back, I’ve always disliked repetitive and redundant tasks, which led m
 Current
 ======
 ### Major
--
+- [Road to DB](https://github.com/ahyunsoo3/road-to-db) Dec. 20, 2025 ~
+  - No one can deny that a solid understanding of concepts, ideas, and insights is essential to becoming a well-rounded researcher and conducting independent research. This repository is designed for those who want to prepare themselves as database researchers but lack sufficient knowledge and foundational understanding.
 <br><br>
 
 ### Minor
