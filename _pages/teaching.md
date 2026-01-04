@@ -15,7 +15,7 @@ I contributed to communities like  Kaggle, GitHub, and Stack Overflow by sharing
 Personal collections
 ======
 1. [Kaggle](https://www.kaggle.com/hyunsoolee1010)
-- [Another Reference | Supplementary Materials](https://www.kaggle.com/competitions/ai-mathematical-olympiad-progress-prize-3/discussion/665831) 
+- [Another Reference: Supplementary Materials](https://www.kaggle.com/competitions/ai-mathematical-olympiad-progress-prize-3/discussion/665831) 
   - [Code](https://www.kaggle.com/code/hyunsoolee1010/aimo3-another-reference)
 - [Last Puzzle - Relabeling and Post Processing](https://www.kaggle.com/competitions/llm-detect-ai-generated-text/discussion/468363)
 - [Simple trick for tfvectorizer](https://www.kaggle.com/competitions/llm-detect-ai-generated-text/discussion/468908)
