@@ -15,8 +15,9 @@ Looking back, I’ve always disliked repetitive and redundant tasks, which led m
 Current
 ======
 ### Major
-- ...
+- [Machine Learning](https://github.com/ahyunsoo3/ML)
 <br><br>
+  - This project is aim to teach individuals who are interested in Machine Learning, covering related fields such as Natural Language Processing, Speech & Audio Processing, Computer Vision, etc.
 
 ### Minor
 - [LeetCode Problem-Solving](https://leetcode.com/u/ahyunsoo2/)
