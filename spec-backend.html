@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>03 Edge Functions · Spec · Hyunsoo Lee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="project.css" />
+    <link rel="stylesheet" href="spec.css" />
+  </head>
+  <body>
+
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Hyunsoo Lee home">
+        <span class="brand-mark">HL</span>
+        <span class="brand-name">Hyunsoo Lee</span>
+      </a>
+      <nav class="page-tabs" aria-label="Primary navigation">
+        <a class="page-tab" href="index.html">About</a>
+        <a class="page-tab" href="project.html">Build</a>
+        <a class="page-tab" href="ai.html">AI Engine</a>
+        <a class="page-tab" href="growth.html">Marketing</a>
+        <a class="page-tab active" href="spec.html">Blueprint</a>
+        <a class="page-tab" href="index.html#contact">Contact</a>
+      </nav>
+      <div class="language-tabs" role="group" aria-label="Language selector">
+        <button class="language-tab" type="button" data-lang-button="en">EN</button>
+        <button class="language-tab" type="button" data-lang-button="ko">KR</button>
+      </div>
+    </header>
+
+    <button class="ssb-open-btn" id="ssb-open-btn" aria-label="Open contents sidebar" aria-expanded="false">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      Contents
+    </button>
+    <div class="ssb-overlay" id="ssb-overlay"></div>
+
+    <aside class="spec-sidebar" id="spec-sidebar" aria-label="Spec navigation">
+      <div class="ssb-header">
+        <a class="ssb-brand" href="spec.html">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Spec Docs
+        </a>
+        <button class="ssb-collapse-btn" id="ssb-collapse-btn" aria-label="Collapse sidebar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+      </div>
+      <nav class="ssb-nav" aria-label="Spec pages">
+        <a class="ssb-overview-link" href="spec.html">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Overview
+        </a>
+        <div class="ssb-group" data-group="arch"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-arch"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">01</span><span class="ssb-group-label">System Architecture</span></button><ul class="ssb-items" id="ssb-arch"><li><a class="ssb-link" href="spec-arch.html" data-page="system-arch">Full-stack topology</a></li><li><a class="ssb-link" href="spec-arch.html" data-page="system-arch">Layer specification</a></li></ul></div>
+        <div class="ssb-group" data-group="modules"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-modules"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">02</span><span class="ssb-group-label">Flutter Modules</span></button><ul class="ssb-items" id="ssb-modules"><li><a class="ssb-link" href="spec-modules.html" data-page="module-map">14 feature modules</a></li><li><a class="ssb-link" href="spec-modules.html" data-page="module-map">Module specification</a></li></ul></div>
+        <div class="ssb-group" data-group="backend"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-backend"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">03</span><span class="ssb-group-label">Edge Functions</span></button><ul class="ssb-items" id="ssb-backend"><li><a class="ssb-link" href="spec-backend.html" data-page="backend-fns">9 Deno functions</a></li><li><a class="ssb-link" href="spec-backend.html" data-page="backend-fns">Function specification</a></li></ul></div>
+        <div class="ssb-group" data-group="ai"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-ai"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">04</span><span class="ssb-group-label">AI Pipeline</span></button><ul class="ssb-items" id="ssb-ai"><li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Call flow</a></li><li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Provider specification</a></li><li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Credit &amp; retry logic</a></li></ul></div>
+        <div class="ssb-group" data-group="billing"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-billing"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">05</span><span class="ssb-group-label">Billing Architecture</span></button><ul class="ssb-items" id="ssb-billing"><li><a class="ssb-link" href="spec-billing.html" data-page="billing">Billing flow</a></li><li><a class="ssb-link" href="spec-billing.html" data-page="billing">Plan tiers</a></li><li><a class="ssb-link" href="spec-billing.html" data-page="billing">Store packs</a></li></ul></div>
+        <div class="ssb-group" data-group="database"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-database"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">06</span><span class="ssb-group-label">Database Schema</span></button><ul class="ssb-items" id="ssb-database"><li><a class="ssb-link" href="spec-db.html" data-page="database">Table groups</a></li><li><a class="ssb-link" href="spec-db.html" data-page="database">Key table spec</a></li></ul></div>
+        <div class="ssb-group" data-group="packages"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-packages"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">07</span><span class="ssb-group-label">Shared Packages</span></button><ul class="ssb-items" id="ssb-packages"><li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_ui</a></li><li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_network</a></li><li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_billing</a></li></ul></div>
+      </nav>
+    </aside>
+
+    <main class="spec-page-main">
+      <div class="container spec-page-inner">
+
+        <nav class="spec-breadcrumb" aria-label="Breadcrumb">
+          <a href="spec.html">Spec</a>
+          <span>/</span>
+          <span>03 Edge Functions</span>
+        </nav>
+
+        <header class="spec-page-hd">
+          <span class="spec-page-num">03</span>
+          <h1 class="spec-page-title">Edge Functions</h1>
+          <p class="spec-page-desc">
+            9 Deno TypeScript edge functions deployed on Supabase. 5 handle billing webhooks
+            and purchase verification. 4 are API helpers for AI and content processing.
+            All functions share a common <code>_shared/</code> library for JWT auth and error handling.
+          </p>
+        </header>
+
+        <div class="spec-stat-row">
+          <div class="spec-stat-box"><span class="spec-stat-num">9</span><span class="spec-stat-label">Functions</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">5</span><span class="spec-stat-label">Billing</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">4</span><span class="spec-stat-label">AI / API</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">3</span><span class="spec-stat-label">Shared libs</span></div>
+        </div>
+
+        <nav class="spec-toc" aria-label="On this page">
+          <span class="spec-toc-label">On this page</span>
+          <ul>
+            <li><a href="#function-tree">Function directory</a></li>
+            <li><a href="#fn-cards">Function cards</a></li>
+            <li><a href="#function-specification">Function specification table</a></li>
+            <li><a href="#shared-library">Shared library reference</a></li>
+            <li><a href="#error-handling">Error handling</a></li>
+          </ul>
+        </nav>
+
+        <section class="spec-section-block" id="function-tree">
+          <h2 class="spec-section-h">Function directory</h2>
+          <div class="spec-tree-wrap">
+            <pre class="spec-tree"><code>supabase/functions/
+├── _shared/
+│   ├── auth.ts          JWT verification + user extraction
+│   ├── errors.ts        Typed error responses
+│   └── cors.ts          CORS headers
+│
+├── billing/
+│   ├── verify-apple/    App Store receipt + server notification
+│   ├── verify-google/   Google Play purchase token
+│   ├── verify-lemonsqueezy/  Lemon Squeezy webhook
+│   ├── grant-credits/   Credit allocation after verified purchase
+│   └── restore-purchase/ Cross-device subscription restore
+│
+└── api/
+    ├── tts-gemini/      Text-to-speech via Gemini
+    ├── stt-deepgram/    Speech-to-text via Deepgram Nova-3
+    ├── evaluate-writing/ GPT-4o writing feedback
+    └── generate-study-plan/ Gemini weekly plan generation</code></pre>
+          </div>
+        </section>
+
+        <!-- Function cards -->
+        <section class="spec-section-block" id="fn-cards">
+          <h2 class="spec-section-h">Function cards</h2>
+          <p class="spec-section-p">Detailed breakdown of each edge function's purpose, inputs, and side effects.</p>
+          <div class="spec-fn-grid">
+
+            <div class="spec-fn-card">
+              <div class="spec-fn-id">B1 · Billing</div>
+              <div class="spec-fn-name">verify-apple</div>
+              <div class="spec-fn-desc">Validates an App Store receipt or server notification by calling Apple's <code>/verifyReceipt</code> API (legacy) or App Store Server API (StoreKit 2). Inserts a confirmed subscription row and grants monthly credits.</div>
+              <div class="spec-fn-meta">
+                <span class="spec-tag spec-tag--accent">POST</span>
+                <span class="spec-tag">JWT required</span>
+                <span class="spec-tag spec-tag--amber">INSERT subscriptions</span>
+                <span class="spec-tag spec-tag--green">Idempotent via nonce</span>
+              </div>
+            </div>
+
+            <div class="spec-fn-card">
+              <div class="spec-fn-id">B2 · Billing</div>
+              <div class="spec-fn-name">verify-google</div>
+              <div class="spec-fn-desc">Verifies a Google Play purchase token using the Google Play Developer API. Checks <code>purchaseState === 0</code> (purchased) and <code>acknowledgementState === 1</code>. Auto-acknowledges if needed.</div>
+              <div class="spec-fn-meta">
+                <span class="spec-tag spec-tag--accent">POST</span>
+                <span class="spec-tag">JWT required</span>
+                <span class="spec-tag spec-tag--amber">INSERT subscriptions</span>
+                <span class="spec-tag spec-tag--green">Idempotent via nonce</span>
+              </div>
+            </div>
+
+            <div class="spec-fn-card">
+              <div class="spec-fn-id">B3 · Billing</div>
+              <div class="spec-fn-name">verify-lemonsqueezy</div>
+              <div class="spec-fn-desc">Processes Lemon Squeezy webhooks (<code>order_created</code>, <code>subscription_created</code>). Verifies HMAC-SHA256 signature using the signing secret. No JWT required — authentication is the webhook signature.</div>
+              <div class="spec-fn-meta">
+                <span class="spec-tag spec-tag--accent">POST</span>
+                <span class="spec-tag spec-tag--ai">Webhook sig</span>
+                <span class="spec-tag spec-tag--amber">INSERT subscriptions</span>
+              </div>
+            </div>
+
+            <div class="spec-fn-card">
+              <div class="spec-fn-id">B4 · Billing</div>
+              <div class="spec-fn-name">grant-credits</div>
+              <div class="spec-fn-desc">Awards one-time credit pack credits to <code>user_credits.balance</code>. Called after <code>verify-apple</code> or <code>verify-google</code> confirms a one-time purchase (not a subscription). Uses billing nonce to prevent double-grants.</div>
+              <div class="spec-fn-meta">
+                <span class="spec-tag spec-tag--accent">POST</span>
+                <span class="spec-tag">JWT required</span>
+                <span class="spec-tag spec-tag--amber">UPDATE user_credits</span>
+                <span class="spec-tag spec-tag--green">Nonce-protected</span>
+              </div>
+            </div>
+
+            <div class="spec-fn-card">
+              <div class="spec-fn-id">B5 · Billing</div>
+              <div class="spec-fn-name">restore-purchase</div>
+              <div class="spec-fn-desc">Cross-device subscription restore. Re-queries App Store / Google Play with the latest receipt/token, checks <code>expiry &gt; now()</code>, and upserts the subscription row. Called when user reinstalls or signs in on a new device.</div>
+              <div class="spec-fn-meta">
+                <span class="spec-tag spec-tag--accent">POST</span>
+                <span class="spec-tag">JWT required</span>
+                <span class="spec-tag spec-tag--amber">UPSERT subscriptions</span>
+              </div>
+            </div>
+
+            <div class="spec-fn-card">
+              <div class="spec-fn-id">A1 · AI</div>
+              <div class="spec-fn-name">tts-gemini</div>
+              <div class="spec-fn-desc">Converts practice question prompts to natural-sounding audio via Gemini 2.5 Pro TTS. Returns base64-encoded MP3. Credit check and deduction handled server-side. Audio cached in Supabase Storage for 24h.</div>
+              <div class="spec-fn-meta">
+                <span class="spec-tag spec-tag--accent">POST</span>
+                <span class="spec-tag spec-tag--ai">Gemini 2.5 Pro</span>
+                <span class="spec-tag spec-tag--green">Credit: 2/call</span>
+                <span class="spec-tag">Returns: MP3 base64</span>
+              </div>
+            </div>
+
+            <div class="spec-fn-card">
+              <div class="spec-fn-id">A2 · AI</div>
+              <div class="spec-fn-name">stt-deepgram</div>
+              <div class="spec-fn-desc">Transcribes user speech (WAV or WebM) via Deepgram Nova-3 with language detection and confidence scoring. Transcript returned with word-level timestamps for pronunciation analysis.</div>
+              <div class="spec-fn-meta">
+                <span class="spec-tag spec-tag--accent">POST</span>
+                <span class="spec-tag spec-tag--ai">Deepgram Nova-3</span>
+                <span class="spec-tag spec-tag--green">Credit: 3/call</span>
+                <span class="spec-tag">Returns: transcript + timestamps</span>
+              </div>
+            </div>
+
+            <div class="spec-fn-card">
+              <div class="spec-fn-id">A3 · AI</div>
+              <div class="spec-fn-name">evaluate-writing</div>
+              <div class="spec-fn-desc">Sends essay + task prompt to ChatGPT-4o with structured output mode. Returns JSON rubric scored on the iBT 0–30 scale: Task Achievement, Coherence &amp; Cohesion, Lexical Resource, Grammatical Range &amp; Accuracy.</div>
+              <div class="spec-fn-meta">
+                <span class="spec-tag spec-tag--accent">POST</span>
+                <span class="spec-tag spec-tag--ai">GPT-4o JSON</span>
+                <span class="spec-tag spec-tag--green">Credit: 5/call</span>
+                <span class="spec-tag">Returns: rubric JSON</span>
+              </div>
+            </div>
+
+            <div class="spec-fn-card">
+              <div class="spec-fn-id">A4 · AI</div>
+              <div class="spec-fn-name">generate-study-plan</div>
+              <div class="spec-fn-desc">Takes user's score history, weak section analysis, target date, and available study hours. Sends to Gemini 2.5 Pro in JSON mode to produce a structured weekly schedule (daily tasks with estimated durations).</div>
+              <div class="spec-fn-meta">
+                <span class="spec-tag spec-tag--accent">POST</span>
+                <span class="spec-tag spec-tag--ai">Gemini JSON mode</span>
+                <span class="spec-tag spec-tag--green">Credit: 3/gen</span>
+                <span class="spec-tag">Returns: weekly plan JSON</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="spec-section-block" id="function-specification">
+          <h2 class="spec-section-h">Function specification</h2>
+          <div class="spec-table-wrap">
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Function</th>
+                  <th>Method</th>
+                  <th>Auth Required</th>
+                  <th>Calls</th>
+                  <th>Side Effects</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>B1</td><td>verify-apple</td><td>POST</td><td>JWT</td><td>App Store API</td><td>INSERT subscriptions</td></tr>
+                <tr><td>B2</td><td>verify-google</td><td>POST</td><td>JWT</td><td>Play API</td><td>INSERT subscriptions</td></tr>
+                <tr><td>B3</td><td>verify-lemonsqueezy</td><td>POST</td><td>Webhook sig</td><td>—</td><td>INSERT subscriptions</td></tr>
+                <tr><td>B4</td><td>grant-credits</td><td>POST</td><td>JWT</td><td>—</td><td>UPDATE user_credits</td></tr>
+                <tr><td>B5</td><td>restore-purchase</td><td>POST</td><td>JWT</td><td>App Store / Play</td><td>UPSERT subscriptions</td></tr>
+                <tr><td>A1</td><td>tts-gemini</td><td>POST</td><td>JWT + credit check</td><td>Gemini 2.5 Pro</td><td>INSERT practice_history</td></tr>
+                <tr><td>A2</td><td>stt-deepgram</td><td>POST</td><td>JWT + credit check</td><td>Deepgram Nova-3</td><td>INSERT practice_history</td></tr>
+                <tr><td>A3</td><td>evaluate-writing</td><td>POST</td><td>JWT + credit check</td><td>ChatGPT-4o</td><td>INSERT practice_history</td></tr>
+                <tr><td>A4</td><td>generate-study-plan</td><td>POST</td><td>JWT</td><td>Gemini 2.5 Pro</td><td>INSERT study_plans</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Shared library reference -->
+        <section class="spec-section-block" id="shared-library">
+          <h2 class="spec-section-h">Shared library reference</h2>
+          <p class="spec-section-p">
+            The <code>_shared/</code> directory contains utilities imported by every edge function.
+            This keeps authentication, CORS handling, and error formatting consistent across all 9 functions.
+          </p>
+
+          <div class="spec-code-wrap">
+            <div class="spec-code-label"><span class="spec-code-dot"></span>_shared/auth.ts — JWT verification</div>
+            <div class="spec-tree-wrap">
+              <pre class="spec-tree"><code>import { createClient } from '@supabase/supabase-js'
+
+// Called at the top of every edge function handler
+export async function verifyJwt(req: Request): Promise&lt;{ userId: string }&gt; {
+  const auth = req.headers.get('Authorization')
+  if (!auth?.startsWith('Bearer ')) throw new AuthError('Missing token')
+
+  const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+    global: { headers: { Authorization: auth } },
+  })
+  const { data: { user }, error } = await supabase.auth.getUser()
+  if (error || !user) throw new AuthError('Invalid or expired token')
+
+  return { userId: user.id }
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="spec-code-wrap">
+            <div class="spec-code-label"><span class="spec-code-dot"></span>_shared/errors.ts — Typed error responses</div>
+            <div class="spec-tree-wrap">
+              <pre class="spec-tree"><code>export class AuthError    extends EdgeError { status = 401 }
+export class PaymentError extends EdgeError { status = 402 }
+export class NotFound     extends EdgeError { status = 404 }
+export class ServerError  extends EdgeError { status = 500 }
+
+// In every function's catch block:
+} catch (err) {
+  if (err instanceof EdgeError) {
+    return new Response(JSON.stringify({ error: err.message }), {
+      status: err.status,
+      headers: { 'Content-Type': 'application/json', ...corsHeaders },
+    })
+  }
+  // Unexpected errors → 500
+  return new Response(JSON.stringify({ error: 'Internal error' }), { status: 500 })
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="spec-detail-grid">
+            <div class="spec-detail-card">
+              <div class="spec-detail-title"><span class="spec-detail-dot"></span>auth.ts exports</div>
+              <div class="spec-detail-body">
+                <ul class="spec-detail-list">
+                  <li><code>verifyJwt(req)</code> → <code>{ userId }</code> or throws <code>AuthError</code></li>
+                  <li><code>getServiceClient()</code> → service-role Supabase client for privileged writes</li>
+                  <li><code>getUserCredits(userId)</code> → current credit balance</li>
+                  <li><code>deductCredits(userId, amount)</code> → atomic deduction</li>
+                </ul>
+              </div>
+            </div>
+            <div class="spec-detail-card">
+              <div class="spec-detail-title"><span class="spec-detail-dot"></span>cors.ts exports</div>
+              <div class="spec-detail-body">
+                <ul class="spec-detail-list">
+                  <li><code>corsHeaders</code> — standard CORS headers object</li>
+                  <li><code>handleOptions(req)</code> — responds to <code>OPTIONS</code> preflight immediately</li>
+                  <li>All functions call <code>handleOptions</code> before any auth check</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Error handling -->
+        <section class="spec-section-block" id="error-handling">
+          <h2 class="spec-section-h">Error handling</h2>
+          <p class="spec-section-p">
+            All edge functions return structured JSON errors with consistent HTTP status codes.
+            The Flutter <code>core_network</code> layer maps these to typed <code>NetworkException</code> subclasses.
+          </p>
+          <div class="spec-table-wrap">
+            <table class="spec-table">
+              <thead>
+                <tr><th>HTTP</th><th>Error class</th><th>Trigger</th><th>Flutter handling</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>400</td><td>BadRequestError</td><td>Missing required fields, invalid payload</td><td>Show validation message to user</td></tr>
+                <tr><td>401</td><td>AuthError</td><td>Missing / expired / invalid JWT</td><td>Silent token refresh → retry; if refresh fails → sign-out</td></tr>
+                <tr><td>402</td><td>PaymentError</td><td>Insufficient AI credits</td><td>Navigate to billing screen with upgrade prompt</td></tr>
+                <tr><td>404</td><td>NotFoundError</td><td>Resource not found (question, session)</td><td>Show "not found" state UI</td></tr>
+                <tr><td>409</td><td>ConflictError</td><td>Duplicate nonce (replay attack attempt)</td><td>Silently ignore — purchase already processed</td></tr>
+                <tr><td>422</td><td>ProviderError</td><td>AI provider returned invalid response</td><td>Trigger retry with backoff</td></tr>
+                <tr><td>500</td><td>ServerError</td><td>Unexpected exception in edge function</td><td>Show generic error with retry button</td></tr>
+                <tr><td>503</td><td>RetryExhausted</td><td>All 10 retry attempts failed</td><td>Show "service unavailable" with try-later message</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="spec-callout spec-callout--note">
+            <div class="spec-callout-icon">N</div>
+            <div class="spec-callout-body">
+              <span class="spec-callout-title">Credits are never deducted on failure</span>
+              Credit deduction (<code>UPDATE user_credits</code>) only occurs after the AI provider returns a successful response. If the provider fails after all retries, no credits are deducted and <code>503</code> is returned to the client.
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-page-nav" aria-label="Page navigation">
+          <a class="spn-prev" href="spec-modules.html">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            02 Flutter Modules
+          </a>
+          <a class="spn-next" href="spec-ai.html">
+            04 AI Pipeline
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </nav>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span class="footer-copy">© 2025 Hyunsoo Lee · Missroot TOEFL</span>
+        <nav class="footer-links">
+          <a href="index.html">Intro</a><a href="project.html">Tech</a><a href="ai.html">AI</a><a href="growth.html">Growth</a><a href="spec.html">Spec</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="language.js"></script>
+    <script src="spec-nav.js"></script>
+  </body>
+</html>

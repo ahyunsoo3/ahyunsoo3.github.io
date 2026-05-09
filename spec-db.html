@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>06 Database Schema · Spec · Hyunsoo Lee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="project.css" />
+    <link rel="stylesheet" href="spec.css" />
+  </head>
+  <body>
+
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Hyunsoo Lee home">
+        <span class="brand-mark">HL</span>
+        <span class="brand-name">Hyunsoo Lee</span>
+      </a>
+      <nav class="page-tabs" aria-label="Primary navigation">
+        <a class="page-tab" href="index.html">About</a>
+        <a class="page-tab" href="project.html">Build</a>
+        <a class="page-tab" href="ai.html">AI Engine</a>
+        <a class="page-tab" href="growth.html">Marketing</a>
+        <a class="page-tab active" href="spec.html">Blueprint</a>
+        <a class="page-tab" href="index.html#contact">Contact</a>
+      </nav>
+      <div class="language-tabs" role="group" aria-label="Language selector">
+        <button class="language-tab" type="button" data-lang-button="en">EN</button>
+        <button class="language-tab" type="button" data-lang-button="ko">KR</button>
+      </div>
+    </header>
+
+    <button class="ssb-open-btn" id="ssb-open-btn" aria-label="Open contents sidebar" aria-expanded="false">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      Contents
+    </button>
+    <div class="ssb-overlay" id="ssb-overlay"></div>
+
+    <aside class="spec-sidebar" id="spec-sidebar" aria-label="Spec navigation">
+      <div class="ssb-header">
+        <a class="ssb-brand" href="spec.html">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Spec Docs
+        </a>
+        <button class="ssb-collapse-btn" id="ssb-collapse-btn" aria-label="Collapse sidebar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+      </div>
+      <nav class="ssb-nav" aria-label="Spec pages">
+        <a class="ssb-overview-link" href="spec.html">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Overview
+        </a>
+        <div class="ssb-group" data-group="arch"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-arch"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">01</span><span class="ssb-group-label">System Architecture</span></button><ul class="ssb-items" id="ssb-arch"><li><a class="ssb-link" href="spec-arch.html" data-page="system-arch">Full-stack topology</a></li><li><a class="ssb-link" href="spec-arch.html" data-page="system-arch">Layer specification</a></li></ul></div>
+        <div class="ssb-group" data-group="modules"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-modules"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">02</span><span class="ssb-group-label">Flutter Modules</span></button><ul class="ssb-items" id="ssb-modules"><li><a class="ssb-link" href="spec-modules.html" data-page="module-map">14 feature modules</a></li><li><a class="ssb-link" href="spec-modules.html" data-page="module-map">Module specification</a></li></ul></div>
+        <div class="ssb-group" data-group="backend"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-backend"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">03</span><span class="ssb-group-label">Edge Functions</span></button><ul class="ssb-items" id="ssb-backend"><li><a class="ssb-link" href="spec-backend.html" data-page="backend-fns">9 Deno functions</a></li><li><a class="ssb-link" href="spec-backend.html" data-page="backend-fns">Function specification</a></li></ul></div>
+        <div class="ssb-group" data-group="ai"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-ai"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">04</span><span class="ssb-group-label">AI Pipeline</span></button><ul class="ssb-items" id="ssb-ai"><li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Call flow</a></li><li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Provider specification</a></li><li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Credit &amp; retry logic</a></li></ul></div>
+        <div class="ssb-group" data-group="billing"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-billing"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">05</span><span class="ssb-group-label">Billing Architecture</span></button><ul class="ssb-items" id="ssb-billing"><li><a class="ssb-link" href="spec-billing.html" data-page="billing">Billing flow</a></li><li><a class="ssb-link" href="spec-billing.html" data-page="billing">Plan tiers</a></li><li><a class="ssb-link" href="spec-billing.html" data-page="billing">Store packs</a></li></ul></div>
+        <div class="ssb-group" data-group="database"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-database"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">06</span><span class="ssb-group-label">Database Schema</span></button><ul class="ssb-items" id="ssb-database"><li><a class="ssb-link" href="spec-db.html" data-page="database">Table groups</a></li><li><a class="ssb-link" href="spec-db.html" data-page="database">Key table spec</a></li></ul></div>
+        <div class="ssb-group" data-group="packages"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-packages"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">07</span><span class="ssb-group-label">Shared Packages</span></button><ul class="ssb-items" id="ssb-packages"><li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_ui</a></li><li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_network</a></li><li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_billing</a></li></ul></div>
+      </nav>
+    </aside>
+
+    <main class="spec-page-main">
+      <div class="container spec-page-inner">
+
+        <nav class="spec-breadcrumb" aria-label="Breadcrumb">
+          <a href="spec.html">Spec</a>
+          <span>/</span>
+          <span>06 Database Schema</span>
+        </nav>
+
+        <header class="spec-page-hd">
+          <span class="spec-page-num">06</span>
+          <h1 class="spec-page-title">Database Schema</h1>
+          <p class="spec-page-desc">
+            PostgreSQL database hosted on Supabase. Every table is protected by Row-Level Security
+            (RLS) policies. No service-role key is ever exposed to the client.
+          </p>
+        </header>
+
+        <div class="spec-stat-row">
+          <div class="spec-stat-box"><span class="spec-stat-num">12</span><span class="spec-stat-label">Tables</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">100%</span><span class="spec-stat-label">RLS enabled</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">5</span><span class="spec-stat-label">Table groups</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">0</span><span class="spec-stat-label">Client service keys</span></div>
+        </div>
+
+        <nav class="spec-toc" aria-label="On this page">
+          <span class="spec-toc-label">On this page</span>
+          <ul>
+            <li><a href="#table-groups">Table groups</a></li>
+            <li><a href="#key-table-spec">Key table spec</a></li>
+            <li><a href="#sql-schema">SQL schema examples</a></li>
+            <li><a href="#rls-policies">RLS policy examples</a></li>
+            <li><a href="#table-relationships">Table relationships</a></li>
+            <li><a href="#data-lifecycle">Data lifecycle</a></li>
+          </ul>
+        </nav>
+
+        <section class="spec-section-block" id="table-groups">
+          <h2 class="spec-section-h">Table groups</h2>
+          <div class="spec-tree-wrap">
+            <pre class="spec-tree"><code>PostgreSQL (Supabase)
+│
+├── Identity
+│   ├── auth.users            (managed by Supabase Auth)
+│   └── user_profiles         id, display_name, avatar_url, goal_score, target_date
+│
+├── Practice
+│   ├── practice_history      id, user_id, module, type, score, ai_feedback, created_at
+│   ├── mock_test_results     id, user_id, reading, listening, speaking, writing, total
+│   ├── ai_tutor_sessions     id, user_id, session_log JSONB, duration_s, created_at
+│   └── vocabulary_progress   id, user_id, word_id, easiness, interval, next_review
+│
+├── Planning
+│   └── study_plans           id, user_id, week_start, plan JSONB, generated_at
+│
+├── Billing
+│   ├── subscriptions         id, user_id, plan, platform, expiry, receipt_data
+│   ├── user_credits          id (= user_id), balance, lifetime_used, updated_at
+│   └── billing_nonces        id, user_id, nonce, used, created_at  (idempotency)
+│
+└── Content  (read-only for clients)
+    ├── questions              id, section, difficulty, content JSONB
+    ├── passages               id, title, body, source, difficulty
+    └── vocabulary_words       id, word, definitions JSONB, frequency_rank</code></pre>
+          </div>
+        </section>
+
+        <section class="spec-section-block" id="key-table-spec">
+          <h2 class="spec-section-h">Key table spec</h2>
+          <div class="spec-table-wrap">
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th>Table</th>
+                  <th>Primary Key</th>
+                  <th>RLS policy</th>
+                  <th>Notable columns</th>
+                  <th>Indexes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>user_profiles</td>
+                  <td>id (FK → auth.users)</td>
+                  <td>user = auth.uid()</td>
+                  <td>goal_score, target_date</td>
+                  <td>PK</td>
+                </tr>
+                <tr>
+                  <td>practice_history</td>
+                  <td>UUID</td>
+                  <td>user_id = auth.uid()</td>
+                  <td>module, type, score, ai_feedback</td>
+                  <td>(user_id, created_at DESC)</td>
+                </tr>
+                <tr>
+                  <td>mock_test_results</td>
+                  <td>UUID</td>
+                  <td>user_id = auth.uid()</td>
+                  <td>reading, listening, speaking, writing, total</td>
+                  <td>(user_id, created_at DESC)</td>
+                </tr>
+                <tr>
+                  <td>subscriptions</td>
+                  <td>UUID</td>
+                  <td>user_id = auth.uid()</td>
+                  <td>plan, platform, expiry</td>
+                  <td>(user_id, expiry)</td>
+                </tr>
+                <tr>
+                  <td>user_credits</td>
+                  <td>user_id (FK)</td>
+                  <td>id = auth.uid()</td>
+                  <td>balance, lifetime_used</td>
+                  <td>PK</td>
+                </tr>
+                <tr>
+                  <td>billing_nonces</td>
+                  <td>UUID</td>
+                  <td>service role only</td>
+                  <td>nonce (unique), used</td>
+                  <td>(nonce UNIQUE)</td>
+                </tr>
+                <tr>
+                  <td>questions</td>
+                  <td>UUID</td>
+                  <td>SELECT for all auth users</td>
+                  <td>section, difficulty, content JSONB</td>
+                  <td>(section, difficulty)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SQL schema examples -->
+        <section class="spec-section-block" id="sql-schema">
+          <h2 class="spec-section-h">SQL schema examples</h2>
+          <p class="spec-section-p">
+            Condensed DDL for the most important tables. JSONB columns are used wherever
+            structured data needs flexibility without a full schema migration.
+          </p>
+
+          <div class="spec-code-wrap">
+            <div class="spec-code-label"><span class="spec-code-dot"></span>practice_history — core session table</div>
+            <div class="spec-tree-wrap">
+              <pre class="spec-tree"><code>CREATE TABLE practice_history (
+  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id     UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  module      TEXT NOT NULL,          -- 'speaking' | 'writing' | 'listening' | 'reading'
+  type        TEXT NOT NULL,          -- 'practice' | 'evaluation' | 'ai_feedback'
+  score       NUMERIC(5,2),           -- 0–30 iBT scale (nullable for non-scored sessions)
+  ai_feedback JSONB,                  -- full AI rubric or transcript JSON
+  duration_s  INTEGER,                -- session length in seconds
+  created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX idx_practice_history_user_created
+  ON practice_history (user_id, created_at DESC);</code></pre>
+            </div>
+          </div>
+
+          <div class="spec-code-wrap">
+            <div class="spec-code-label"><span class="spec-code-dot"></span>user_credits — credit balance tracking</div>
+            <div class="spec-tree-wrap">
+              <pre class="spec-tree"><code>CREATE TABLE user_credits (
+  id             UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+  balance        INTEGER NOT NULL DEFAULT 30 CHECK (balance >= 0),
+  lifetime_used  INTEGER NOT NULL DEFAULT 0,
+  updated_at     TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- Trigger: update updated_at on every change
+CREATE TRIGGER set_user_credits_updated_at
+  BEFORE UPDATE ON user_credits
+  FOR EACH ROW EXECUTE FUNCTION moddatetime();</code></pre>
+            </div>
+          </div>
+
+          <div class="spec-code-wrap">
+            <div class="spec-code-label"><span class="spec-code-dot"></span>billing_nonces — idempotency table</div>
+            <div class="spec-tree-wrap">
+              <pre class="spec-tree"><code>CREATE TABLE billing_nonces (
+  id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id    UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  nonce      TEXT NOT NULL,
+  used       BOOLEAN NOT NULL DEFAULT false,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE UNIQUE INDEX idx_billing_nonces_nonce ON billing_nonces (nonce);
+
+-- Auto-cleanup: nonces older than 72h are deleted by a cron job
+CREATE INDEX idx_billing_nonces_created ON billing_nonces (created_at);</code></pre>
+            </div>
+          </div>
+
+          <div class="spec-code-wrap">
+            <div class="spec-code-label"><span class="spec-code-dot"></span>vocabulary_progress — SM-2 spaced repetition</div>
+            <div class="spec-tree-wrap">
+              <pre class="spec-tree"><code>CREATE TABLE vocabulary_progress (
+  id           UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id      UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  word_id      UUID NOT NULL REFERENCES vocabulary_words(id),
+  easiness     NUMERIC(4,2) NOT NULL DEFAULT 2.5,  -- SM-2 easiness factor
+  interval     INTEGER NOT NULL DEFAULT 1,          -- days until next review
+  repetitions  INTEGER NOT NULL DEFAULT 0,          -- consecutive correct answers
+  next_review  DATE NOT NULL DEFAULT CURRENT_DATE,
+  UNIQUE (user_id, word_id)
+);</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- RLS policies -->
+        <section class="spec-section-block" id="rls-policies">
+          <h2 class="spec-section-h">RLS policy examples</h2>
+          <p class="spec-section-p">
+            Every user-facing table uses a standard <code>auth.uid()</code> policy pattern.
+            Content tables allow read access to all authenticated users but no writes from the client.
+          </p>
+
+          <div class="spec-code-wrap">
+            <div class="spec-code-label"><span class="spec-code-dot"></span>Standard user-scoped RLS (practice_history)</div>
+            <div class="spec-tree-wrap">
+              <pre class="spec-tree"><code>-- Enable RLS on the table
+ALTER TABLE practice_history ENABLE ROW LEVEL SECURITY;
+
+-- SELECT: users can only see their own rows
+CREATE POLICY "Users can view own practice history"
+  ON practice_history FOR SELECT
+  USING (auth.uid() = user_id);
+
+-- INSERT: users can only insert rows for themselves
+CREATE POLICY "Users can insert own practice history"
+  ON practice_history FOR INSERT
+  WITH CHECK (auth.uid() = user_id);
+
+-- No UPDATE or DELETE from client — sessions are immutable once created</code></pre>
+            </div>
+          </div>
+
+          <div class="spec-code-wrap">
+            <div class="spec-code-label"><span class="spec-code-dot"></span>Content table — read-only for authenticated users</div>
+            <div class="spec-tree-wrap">
+              <pre class="spec-tree"><code>ALTER TABLE questions ENABLE ROW LEVEL SECURITY;
+
+-- All authenticated users can read questions (no user_id filter)
+CREATE POLICY "Authenticated users can read questions"
+  ON questions FOR SELECT
+  USING (auth.role() = 'authenticated');
+
+-- No INSERT, UPDATE, or DELETE — content is managed via admin dashboard only</code></pre>
+            </div>
+          </div>
+
+          <div class="spec-code-wrap">
+            <div class="spec-code-label"><span class="spec-code-dot"></span>billing_nonces — service role only</div>
+            <div class="spec-tree-wrap">
+              <pre class="spec-tree"><code>ALTER TABLE billing_nonces ENABLE ROW LEVEL SECURITY;
+
+-- NO policies defined → default deny for all client roles
+-- Only the service-role key (used inside edge functions) can read/write this table
+
+-- This ensures no client can check or manipulate nonces directly</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Table relationships -->
+        <section class="spec-section-block" id="table-relationships">
+          <h2 class="spec-section-h">Table relationships</h2>
+          <p class="spec-section-p">
+            All user-facing tables have a foreign key to <code>auth.users(id)</code> with
+            <code>ON DELETE CASCADE</code> — deleting a user removes all their data automatically.
+          </p>
+          <div class="spec-rel-list">
+            <div class="spec-rel-row">
+              <span class="spec-rel-from">auth.users</span>
+              <span class="spec-rel-connector">1 → N</span>
+              <span class="spec-rel-to">user_profiles</span>
+              <span class="spec-rel-note">ON DELETE CASCADE</span>
+            </div>
+            <div class="spec-rel-row">
+              <span class="spec-rel-from">auth.users</span>
+              <span class="spec-rel-connector">1 → N</span>
+              <span class="spec-rel-to">practice_history</span>
+              <span class="spec-rel-note">ON DELETE CASCADE</span>
+            </div>
+            <div class="spec-rel-row">
+              <span class="spec-rel-from">auth.users</span>
+              <span class="spec-rel-connector">1 → N</span>
+              <span class="spec-rel-to">mock_test_results</span>
+              <span class="spec-rel-note">ON DELETE CASCADE</span>
+            </div>
+            <div class="spec-rel-row">
+              <span class="spec-rel-from">auth.users</span>
+              <span class="spec-rel-connector">1 → 1</span>
+              <span class="spec-rel-to">user_credits</span>
+              <span class="spec-rel-note">PK = user_id; ON DELETE CASCADE</span>
+            </div>
+            <div class="spec-rel-row">
+              <span class="spec-rel-from">auth.users</span>
+              <span class="spec-rel-connector">1 → N</span>
+              <span class="spec-rel-to">subscriptions</span>
+              <span class="spec-rel-note">ON DELETE CASCADE</span>
+            </div>
+            <div class="spec-rel-row">
+              <span class="spec-rel-from">auth.users</span>
+              <span class="spec-rel-connector">1 → N</span>
+              <span class="spec-rel-to">vocabulary_progress</span>
+              <span class="spec-rel-note">ON DELETE CASCADE · UNIQUE (user_id, word_id)</span>
+            </div>
+            <div class="spec-rel-row">
+              <span class="spec-rel-from">vocabulary_words</span>
+              <span class="spec-rel-connector">1 → N</span>
+              <span class="spec-rel-to">vocabulary_progress</span>
+              <span class="spec-rel-note">word_id FK</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Data lifecycle -->
+        <section class="spec-section-block" id="data-lifecycle">
+          <h2 class="spec-section-h">Data lifecycle</h2>
+
+          <div class="spec-detail-grid">
+            <div class="spec-detail-card">
+              <div class="spec-detail-title"><span class="spec-detail-dot"></span>Data retained indefinitely</div>
+              <div class="spec-detail-body">
+                <ul class="spec-detail-list">
+                  <li><code>practice_history</code> — all past sessions kept for analytics</li>
+                  <li><code>mock_test_results</code> — kept for score trend charts</li>
+                  <li><code>subscriptions</code> — kept for audit trail even after expiry</li>
+                  <li><code>vocabulary_progress</code> — SM-2 state must persist for the algorithm</li>
+                </ul>
+              </div>
+            </div>
+            <div class="spec-detail-card">
+              <div class="spec-detail-title"><span class="spec-detail-dot"></span>Auto-cleaned data</div>
+              <div class="spec-detail-body">
+                <ul class="spec-detail-list">
+                  <li><code>billing_nonces</code> — deleted after 72 hours via pg_cron</li>
+                  <li><code>ai_tutor_sessions</code> — optionally pruned after 90 days (configurable)</li>
+                  <li>Supabase Storage audio files — signed URL cache expires in 24 hours</li>
+                </ul>
+              </div>
+            </div>
+            <div class="spec-detail-card">
+              <div class="spec-detail-title"><span class="spec-detail-dot"></span>User-deleted data</div>
+              <div class="spec-detail-body">
+                <ul class="spec-detail-list">
+                  <li>Account deletion cascades to all user-owned tables</li>
+                  <li>Supabase Storage bucket objects are deleted via a database trigger</li>
+                  <li>Auth data (email, provider tokens) is deleted by Supabase Auth</li>
+                </ul>
+              </div>
+            </div>
+            <div class="spec-detail-card">
+              <div class="spec-detail-title"><span class="spec-detail-dot"></span>Content data</div>
+              <div class="spec-detail-body">
+                <ul class="spec-detail-list">
+                  <li><code>questions</code>, <code>passages</code>, <code>vocabulary_words</code> are managed via admin tooling only</li>
+                  <li>New questions are added via Python scripts → CSV → Supabase bulk import</li>
+                  <li>No client can modify content tables — enforced by RLS</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-page-nav" aria-label="Page navigation">
+          <a class="spn-prev" href="spec-billing.html">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            05 Billing Architecture
+          </a>
+          <a class="spn-next" href="spec-packages.html">
+            07 Shared Packages
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </nav>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span class="footer-copy">© 2025 Hyunsoo Lee · Missroot TOEFL</span>
+        <nav class="footer-links">
+          <a href="index.html">Intro</a><a href="project.html">Tech</a><a href="ai.html">AI</a><a href="growth.html">Growth</a><a href="spec.html">Spec</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="language.js"></script>
+    <script src="spec-nav.js"></script>
+  </body>
+</html>

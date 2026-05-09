@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>05 Billing Architecture · Spec · Hyunsoo Lee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="project.css" />
+    <link rel="stylesheet" href="spec.css" />
+  </head>
+  <body>
+
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Hyunsoo Lee home">
+        <span class="brand-mark">HL</span>
+        <span class="brand-name">Hyunsoo Lee</span>
+      </a>
+      <nav class="page-tabs" aria-label="Primary navigation">
+        <a class="page-tab" href="index.html">About</a>
+        <a class="page-tab" href="project.html">Build</a>
+        <a class="page-tab" href="ai.html">AI Engine</a>
+        <a class="page-tab" href="growth.html">Marketing</a>
+        <a class="page-tab active" href="spec.html">Blueprint</a>
+        <a class="page-tab" href="index.html#contact">Contact</a>
+      </nav>
+      <div class="language-tabs" role="group" aria-label="Language selector">
+        <button class="language-tab" type="button" data-lang-button="en">EN</button>
+        <button class="language-tab" type="button" data-lang-button="ko">KR</button>
+      </div>
+    </header>
+
+    <button class="ssb-open-btn" id="ssb-open-btn" aria-label="Open contents sidebar" aria-expanded="false">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      Contents
+    </button>
+    <div class="ssb-overlay" id="ssb-overlay"></div>
+
+    <aside class="spec-sidebar" id="spec-sidebar" aria-label="Spec navigation">
+      <div class="ssb-header">
+        <a class="ssb-brand" href="spec.html">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Spec Docs
+        </a>
+        <button class="ssb-collapse-btn" id="ssb-collapse-btn" aria-label="Collapse sidebar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+      </div>
+      <nav class="ssb-nav" aria-label="Spec pages">
+        <a class="ssb-overview-link" href="spec.html">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Overview
+        </a>
+        <div class="ssb-group" data-group="arch"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-arch"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">01</span><span class="ssb-group-label">System Architecture</span></button><ul class="ssb-items" id="ssb-arch"><li><a class="ssb-link" href="spec-arch.html" data-page="system-arch">Full-stack topology</a></li><li><a class="ssb-link" href="spec-arch.html" data-page="system-arch">Layer specification</a></li></ul></div>
+        <div class="ssb-group" data-group="modules"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-modules"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">02</span><span class="ssb-group-label">Flutter Modules</span></button><ul class="ssb-items" id="ssb-modules"><li><a class="ssb-link" href="spec-modules.html" data-page="module-map">14 feature modules</a></li><li><a class="ssb-link" href="spec-modules.html" data-page="module-map">Module specification</a></li></ul></div>
+        <div class="ssb-group" data-group="backend"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-backend"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">03</span><span class="ssb-group-label">Edge Functions</span></button><ul class="ssb-items" id="ssb-backend"><li><a class="ssb-link" href="spec-backend.html" data-page="backend-fns">9 Deno functions</a></li><li><a class="ssb-link" href="spec-backend.html" data-page="backend-fns">Function specification</a></li></ul></div>
+        <div class="ssb-group" data-group="ai"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-ai"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">04</span><span class="ssb-group-label">AI Pipeline</span></button><ul class="ssb-items" id="ssb-ai"><li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Call flow</a></li><li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Provider specification</a></li><li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Credit &amp; retry logic</a></li></ul></div>
+        <div class="ssb-group" data-group="billing"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-billing"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">05</span><span class="ssb-group-label">Billing Architecture</span></button><ul class="ssb-items" id="ssb-billing"><li><a class="ssb-link" href="spec-billing.html" data-page="billing">Billing flow</a></li><li><a class="ssb-link" href="spec-billing.html" data-page="billing">Plan tiers</a></li><li><a class="ssb-link" href="spec-billing.html" data-page="billing">Store packs</a></li></ul></div>
+        <div class="ssb-group" data-group="database"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-database"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">06</span><span class="ssb-group-label">Database Schema</span></button><ul class="ssb-items" id="ssb-database"><li><a class="ssb-link" href="spec-db.html" data-page="database">Table groups</a></li><li><a class="ssb-link" href="spec-db.html" data-page="database">Key table spec</a></li></ul></div>
+        <div class="ssb-group" data-group="packages"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-packages"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">07</span><span class="ssb-group-label">Shared Packages</span></button><ul class="ssb-items" id="ssb-packages"><li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_ui</a></li><li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_network</a></li><li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_billing</a></li></ul></div>
+      </nav>
+    </aside>
+
+    <main class="spec-page-main">
+      <div class="container spec-page-inner">
+
+        <nav class="spec-breadcrumb" aria-label="Breadcrumb">
+          <a href="spec.html">Spec</a>
+          <span>/</span>
+          <span>05 Billing Architecture</span>
+        </nav>
+
+        <header class="spec-page-hd">
+          <span class="spec-page-num">05</span>
+          <h1 class="spec-page-title">Billing Architecture</h1>
+          <p class="spec-page-desc">
+            Three billing platforms (App Store, Google Play, Lemon Squeezy) unified
+            behind a single <code>core_billing</code> abstraction layer. Purchases are
+            server-verified before credits are granted.
+          </p>
+        </header>
+
+        <div class="spec-stat-row">
+          <div class="spec-stat-box"><span class="spec-stat-num">3</span><span class="spec-stat-label">Billing Platforms</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">4</span><span class="spec-stat-label">Plan Tiers</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">4</span><span class="spec-stat-label">Credit Packs</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">100%</span><span class="spec-stat-label">Server-verified</span></div>
+        </div>
+
+        <nav class="spec-toc" aria-label="On this page">
+          <span class="spec-toc-label">On this page</span>
+          <ul>
+            <li><a href="#billing-flow">Billing flow</a></li>
+            <li><a href="#purchase-steps">Purchase flow steps</a></li>
+            <li><a href="#plan-cards">Plan comparison</a></li>
+            <li><a href="#plan-tiers">Plan tiers table</a></li>
+            <li><a href="#store-packs">Credit add-on packs</a></li>
+            <li><a href="#idempotency">Anti-fraud &amp; idempotency</a></li>
+          </ul>
+        </nav>
+
+        <section class="spec-section-block" id="billing-flow">
+          <h2 class="spec-section-h">Billing flow</h2>
+          <div class="spec-tree-wrap">
+            <pre class="spec-tree"><code>User taps "Subscribe"
+└── Flutter: core_billing.purchaseSubscription(plan)
+    │
+    ├── Platform: App Store IAP  /  Google Play Billing  /  Lemon Squeezy
+    │
+    └── Platform confirms → receipt/token returned to app
+        │
+        └── POST /functions/v1/verify-{platform}
+            ├── Edge Fn: call platform receipt server
+            ├── Platform: OK → subscription confirmed
+            │
+            ├── DB: INSERT subscriptions  (user_id, plan, expiry)
+            ├── DB: UPDATE user_credits   (monthly allowance)
+            └── Response 200 → Flutter updates UI</code></pre>
+          </div>
+        </section>
+
+        <!-- Purchase flow steps -->
+        <section class="spec-section-block" id="purchase-steps">
+          <h2 class="spec-section-h">Purchase flow steps</h2>
+          <p class="spec-section-p">
+            Every purchase follows a server-verification round-trip before any credits are granted.
+            The Flutter client handles the store UI, but all financial logic lives server-side.
+          </p>
+          <div class="spec-flow">
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">1</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">Fetch products</div>
+                <div class="spec-flow-desc"><code>BillingService.getProducts()</code> queries the active store (App Store or Google Play) for available SKUs. Product details (name, price, description) are displayed in the billing screen.</div>
+              </div>
+            </div>
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">2</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">User initiates purchase</div>
+                <div class="spec-flow-desc">User taps "Subscribe" or "Buy pack". <code>core_billing</code> calls the native store API. The platform presents its native payment sheet — the app has no access to payment details.</div>
+              </div>
+            </div>
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">3</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">Platform confirms &amp; returns receipt</div>
+                <div class="spec-flow-desc">The store processes payment and returns a purchase receipt (App Store) or purchase token (Google Play) to the app. At this point, the purchase is pending — no credits have been granted yet.</div>
+              </div>
+            </div>
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">4</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">Edge function verifies receipt</div>
+                <div class="spec-flow-desc">App sends receipt + user JWT to <code>POST /functions/v1/verify-{platform}</code>. The edge function calls the platform's server API to confirm validity. This prevents receipt spoofing — the receipt is never trusted at face value.</div>
+              </div>
+            </div>
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">5</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">Nonce checked for idempotency</div>
+                <div class="spec-flow-desc">Before inserting, the edge function checks <code>billing_nonces</code> for a matching nonce. If found (already processed), it returns the existing result without double-granting. This handles network retries and replay attacks.</div>
+              </div>
+            </div>
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">6</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">Subscription inserted &amp; credits granted</div>
+                <div class="spec-flow-desc"><code>INSERT INTO subscriptions</code> and <code>UPDATE user_credits</code> happen atomically. The nonce is marked <code>used = true</code>. Monthly credit allowance is set according to the plan tier.</div>
+              </div>
+            </div>
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">7</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">UI updated</div>
+                <div class="spec-flow-desc">Edge function returns <code>200 OK</code>. The billing module's Riverpod notifier invalidates the plan cache, the app navigates to the confirmation screen, and the new credit balance is reflected immediately.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Plan comparison cards -->
+        <section class="spec-section-block" id="plan-cards">
+          <h2 class="spec-section-h">Plan comparison</h2>
+          <p class="spec-section-p">Visual overview of what each plan tier includes.</p>
+          <div class="spec-plan-grid">
+
+            <div class="spec-plan-card">
+              <div class="spec-plan-name">Free</div>
+              <div class="spec-plan-price">$0<span> / mo</span></div>
+              <ul class="spec-plan-features">
+                <li><span class="chk">✓</span> 30 AI credits / month</li>
+                <li><span class="chk">✓</span> 1 mock test / month</li>
+                <li><span class="chk">✓</span> Basic analytics</li>
+                <li><span class="chk">✓</span> All skill practice</li>
+                <li><span class="dash">–</span> AI Tutor</li>
+                <li><span class="dash">–</span> Score export</li>
+                <li><span class="dash">–</span> Priority support</li>
+              </ul>
+            </div>
+
+            <div class="spec-plan-card">
+              <div class="spec-plan-name">Plus</div>
+              <div class="spec-plan-price"><sup>$</sup>9.99<span> / mo</span></div>
+              <ul class="spec-plan-features">
+                <li><span class="chk">✓</span> 200 AI credits / month</li>
+                <li><span class="chk">✓</span> 5 mock tests / month</li>
+                <li><span class="chk">✓</span> Full analytics</li>
+                <li><span class="chk">✓</span> All skill practice</li>
+                <li><span class="chk">✓</span> AI Tutor (limited)</li>
+                <li><span class="dash">–</span> Score export</li>
+                <li><span class="dash">–</span> Priority support</li>
+              </ul>
+            </div>
+
+            <div class="spec-plan-card spec-plan-card--highlight">
+              <div class="spec-plan-name">Pro</div>
+              <div class="spec-plan-price"><sup>$</sup>19.99<span> / mo</span></div>
+              <ul class="spec-plan-features">
+                <li><span class="chk">✓</span> 600 AI credits / month</li>
+                <li><span class="chk">✓</span> Unlimited mock tests</li>
+                <li><span class="chk">✓</span> Full analytics + export</li>
+                <li><span class="chk">✓</span> All skill practice</li>
+                <li><span class="chk">✓</span> Full AI Tutor</li>
+                <li><span class="chk">✓</span> Score PDF export</li>
+                <li><span class="dash">–</span> Priority support</li>
+              </ul>
+            </div>
+
+            <div class="spec-plan-card">
+              <div class="spec-plan-name">Hyper</div>
+              <div class="spec-plan-price"><sup>$</sup>49.99<span> / mo</span></div>
+              <ul class="spec-plan-features">
+                <li><span class="chk">✓</span> Unlimited AI credits</li>
+                <li><span class="chk">✓</span> Unlimited mock tests</li>
+                <li><span class="chk">✓</span> Full analytics + export</li>
+                <li><span class="chk">✓</span> All skill practice</li>
+                <li><span class="chk">✓</span> Priority AI Tutor</li>
+                <li><span class="chk">✓</span> Score PDF export</li>
+                <li><span class="chk">✓</span> Priority support</li>
+              </ul>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="spec-section-block" id="plan-tiers">
+          <h2 class="spec-section-h">Plan tiers</h2>
+          <div class="spec-table-wrap">
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th>Plan</th>
+                  <th>Price / mo</th>
+                  <th>AI credits / mo</th>
+                  <th>Mock tests / mo</th>
+                  <th>AI Tutor</th>
+                  <th>Analytics</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Free</td><td>$0</td><td>30</td><td>1</td><td>—</td><td>Basic</td></tr>
+                <tr><td>Plus</td><td>$9.99</td><td>200</td><td>5</td><td>Limited</td><td>Full</td></tr>
+                <tr><td>Pro</td><td>$19.99</td><td>600</td><td>Unlimited</td><td>Full</td><td>Full + export</td></tr>
+                <tr><td>Hyper</td><td>$49.99</td><td>Unlimited</td><td>Unlimited</td><td>Priority</td><td>Full + export</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="spec-section-block" id="store-packs">
+          <h2 class="spec-section-h">Credit add-on packs</h2>
+          <p class="spec-section-p">
+            One-time purchase packs are available on all stores. Credits never expire.
+          </p>
+          <div class="spec-table-wrap">
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th>Pack</th>
+                  <th>Credits</th>
+                  <th>Price</th>
+                  <th>Apple SKU</th>
+                  <th>Play SKU</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Starter</td><td>50</td><td>$1.99</td><td>credits_50</td><td>credits_50</td></tr>
+                <tr><td>Standard</td><td>200</td><td>$4.99</td><td>credits_200</td><td>credits_200</td></tr>
+                <tr><td>Pro</td><td>600</td><td>$9.99</td><td>credits_600</td><td>credits_600</td></tr>
+                <tr><td>Mega</td><td>2000</td><td>$24.99</td><td>credits_2000</td><td>credits_2000</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Anti-fraud & idempotency -->
+        <section class="spec-section-block" id="idempotency">
+          <h2 class="spec-section-h">Anti-fraud &amp; idempotency</h2>
+          <p class="spec-section-p">
+            The billing system must handle network failures, retries, and malicious replay attempts
+            without ever double-charging or double-crediting a user.
+          </p>
+
+          <div class="spec-callout spec-callout--note">
+            <div class="spec-callout-icon">N</div>
+            <div class="spec-callout-body">
+              <span class="spec-callout-title">billing_nonces table</span>
+              Every purchase verification request includes a client-generated nonce (UUID). Before processing, the edge function checks <code>SELECT 1 FROM billing_nonces WHERE nonce = $nonce AND used = true</code>. If found, the function returns the cached successful result without re-processing. The nonces table has a <code>UNIQUE</code> constraint on the nonce column and is only accessible via the service role — clients cannot read or modify it.
+            </div>
+          </div>
+
+          <div class="spec-detail-grid">
+            <div class="spec-detail-card">
+              <div class="spec-detail-title"><span class="spec-detail-dot"></span>Replay attack prevention</div>
+              <div class="spec-detail-body">
+                <ul class="spec-detail-list">
+                  <li>Receipt nonces are single-use: once a nonce is marked <code>used = true</code>, any subsequent request with the same nonce returns the original result</li>
+                  <li>Nonces expire after 72 hours — old receipts cannot be replayed indefinitely</li>
+                  <li>Lemon Squeezy webhooks use HMAC-SHA256 signature verification instead of nonces</li>
+                </ul>
+              </div>
+            </div>
+            <div class="spec-detail-card">
+              <div class="spec-detail-title"><span class="spec-detail-dot"></span>Double-credit prevention</div>
+              <div class="spec-detail-body">
+                <ul class="spec-detail-list">
+                  <li>Credit grant and subscription insert are wrapped in a PostgreSQL transaction — partial writes are impossible</li>
+                  <li><code>subscriptions.expiry</code> is checked before granting renewal credits — no credits if existing subscription is still active</li>
+                  <li><code>grant-credits</code> function is called only after the billing function confirms the transaction is new</li>
+                </ul>
+              </div>
+            </div>
+            <div class="spec-detail-card">
+              <div class="spec-detail-title"><span class="spec-detail-dot"></span>Cross-device restore</div>
+              <div class="spec-detail-body">
+                <ul class="spec-detail-list">
+                  <li><code>restore-purchase</code> uses <code>UPSERT</code> on subscription primary key — safe to call multiple times</li>
+                  <li>Credits are only topped up if balance is below the plan's monthly allowance</li>
+                  <li>Restore flow is triggered automatically on first launch after sign-in on a new device</li>
+                </ul>
+              </div>
+            </div>
+            <div class="spec-detail-card">
+              <div class="spec-detail-title"><span class="spec-detail-dot"></span>Platform-specific notes</div>
+              <div class="spec-detail-body">
+                <ul class="spec-detail-list">
+                  <li><strong>App Store:</strong> Uses App Store Server Notifications (v2) for real-time subscription status updates</li>
+                  <li><strong>Google Play:</strong> Developer Notifications via Pub/Sub for renewal and cancellation events</li>
+                  <li><strong>Lemon Squeezy:</strong> Webhook-based; no mobile SDK required (desktop / web only)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-page-nav" aria-label="Page navigation">
+          <a class="spn-prev" href="spec-ai.html">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            04 AI Pipeline
+          </a>
+          <a class="spn-next" href="spec-db.html">
+            06 Database Schema
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </nav>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span class="footer-copy">© 2025 Hyunsoo Lee · Missroot TOEFL</span>
+        <nav class="footer-links">
+          <a href="index.html">Intro</a><a href="project.html">Tech</a><a href="ai.html">AI</a><a href="growth.html">Growth</a><a href="spec.html">Spec</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="language.js"></script>
+    <script src="spec-nav.js"></script>
+  </body>
+</html>

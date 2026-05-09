@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>01 System Architecture · Spec · Hyunsoo Lee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="project.css" />
+    <link rel="stylesheet" href="spec.css" />
+  </head>
+  <body>
+
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Hyunsoo Lee home">
+        <span class="brand-mark">HL</span>
+        <span class="brand-name">Hyunsoo Lee</span>
+      </a>
+      <nav class="page-tabs" aria-label="Primary navigation">
+        <a class="page-tab" href="index.html">About</a>
+        <a class="page-tab" href="project.html">Build</a>
+        <a class="page-tab" href="ai.html">AI Engine</a>
+        <a class="page-tab" href="growth.html">Marketing</a>
+        <a class="page-tab active" href="spec.html">Blueprint</a>
+        <a class="page-tab" href="index.html#contact">Contact</a>
+      </nav>
+      <div class="language-tabs" role="group" aria-label="Language selector">
+        <button class="language-tab" type="button" data-lang-button="en">EN</button>
+        <button class="language-tab" type="button" data-lang-button="ko">KR</button>
+      </div>
+    </header>
+
+    <button class="ssb-open-btn" id="ssb-open-btn" aria-label="Open contents sidebar" aria-expanded="false">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      Contents
+    </button>
+    <div class="ssb-overlay" id="ssb-overlay"></div>
+
+    <aside class="spec-sidebar" id="spec-sidebar" aria-label="Spec navigation">
+      <div class="ssb-header">
+        <a class="ssb-brand" href="spec.html">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Spec Docs
+        </a>
+        <button class="ssb-collapse-btn" id="ssb-collapse-btn" aria-label="Collapse sidebar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+      </div>
+      <nav class="ssb-nav" aria-label="Spec pages">
+        <a class="ssb-overview-link" href="spec.html">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Overview
+        </a>
+        <div class="ssb-group" data-group="arch">
+          <button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-arch">
+            <svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="ssb-group-num">01</span>
+            <span class="ssb-group-label">System Architecture</span>
+          </button>
+          <ul class="ssb-items" id="ssb-arch">
+            <li><a class="ssb-link" href="spec-arch.html" data-page="system-arch">Full-stack topology</a></li>
+            <li><a class="ssb-link" href="spec-arch.html" data-page="system-arch">Layer specification</a></li>
+          </ul>
+        </div>
+        <div class="ssb-group" data-group="modules">
+          <button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-modules">
+            <svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="ssb-group-num">02</span>
+            <span class="ssb-group-label">Flutter Modules</span>
+          </button>
+          <ul class="ssb-items" id="ssb-modules">
+            <li><a class="ssb-link" href="spec-modules.html" data-page="module-map">14 feature modules</a></li>
+            <li><a class="ssb-link" href="spec-modules.html" data-page="module-map">Module specification</a></li>
+          </ul>
+        </div>
+        <div class="ssb-group" data-group="backend">
+          <button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-backend">
+            <svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="ssb-group-num">03</span>
+            <span class="ssb-group-label">Edge Functions</span>
+          </button>
+          <ul class="ssb-items" id="ssb-backend">
+            <li><a class="ssb-link" href="spec-backend.html" data-page="backend-fns">9 Deno functions</a></li>
+            <li><a class="ssb-link" href="spec-backend.html" data-page="backend-fns">Function specification</a></li>
+          </ul>
+        </div>
+        <div class="ssb-group" data-group="ai">
+          <button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-ai">
+            <svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="ssb-group-num">04</span>
+            <span class="ssb-group-label">AI Pipeline</span>
+          </button>
+          <ul class="ssb-items" id="ssb-ai">
+            <li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Call flow</a></li>
+            <li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Provider specification</a></li>
+            <li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Credit &amp; retry logic</a></li>
+          </ul>
+        </div>
+        <div class="ssb-group" data-group="billing">
+          <button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-billing">
+            <svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="ssb-group-num">05</span>
+            <span class="ssb-group-label">Billing Architecture</span>
+          </button>
+          <ul class="ssb-items" id="ssb-billing">
+            <li><a class="ssb-link" href="spec-billing.html" data-page="billing">Billing flow</a></li>
+            <li><a class="ssb-link" href="spec-billing.html" data-page="billing">Plan tiers</a></li>
+            <li><a class="ssb-link" href="spec-billing.html" data-page="billing">Store packs</a></li>
+          </ul>
+        </div>
+        <div class="ssb-group" data-group="database">
+          <button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-database">
+            <svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="ssb-group-num">06</span>
+            <span class="ssb-group-label">Database Schema</span>
+          </button>
+          <ul class="ssb-items" id="ssb-database">
+            <li><a class="ssb-link" href="spec-db.html" data-page="database">Table groups</a></li>
+            <li><a class="ssb-link" href="spec-db.html" data-page="database">Key table spec</a></li>
+          </ul>
+        </div>
+        <div class="ssb-group" data-group="packages">
+          <button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-packages">
+            <svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="ssb-group-num">07</span>
+            <span class="ssb-group-label">Shared Packages</span>
+          </button>
+          <ul class="ssb-items" id="ssb-packages">
+            <li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_ui</a></li>
+            <li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_network</a></li>
+            <li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_billing</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="spec-page-main">
+      <div class="container spec-page-inner">
+
+        <nav class="spec-breadcrumb" aria-label="Breadcrumb">
+          <a href="spec.html">Spec</a>
+          <span aria-hidden="true">/</span>
+          <span>01 System Architecture</span>
+        </nav>
+
+        <header class="spec-page-hd">
+          <span class="spec-page-num">01</span>
+          <h1 class="spec-page-title">System Architecture</h1>
+          <p class="spec-page-desc">
+            Full-stack topology of Missroot TOEFL — how the Flutter client, Supabase backend,
+            AI providers, billing platforms, and content pipeline connect to each other.
+          </p>
+        </header>
+
+        <div class="spec-stat-row">
+          <div class="spec-stat-box"><span class="spec-stat-num">8</span><span class="spec-stat-label">Layers</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">4</span><span class="spec-stat-label">AI Providers</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">3</span><span class="spec-stat-label">Billing Platforms</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">9</span><span class="spec-stat-label">Edge Functions</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">0</span><span class="spec-stat-label">Client API Keys</span></div>
+        </div>
+
+        <nav class="spec-toc" aria-label="On this page">
+          <span class="spec-toc-label">On this page</span>
+          <ul>
+            <li><a href="#full-stack-topology">Full-stack topology</a></li>
+            <li><a href="#layer-diagram">Architecture layers</a></li>
+            <li><a href="#layer-specification">Layer specification</a></li>
+            <li><a href="#request-flow">Request flow walkthrough</a></li>
+            <li><a href="#security-model">Security model</a></li>
+            <li><a href="#design-decisions">Design decisions</a></li>
+          </ul>
+        </nav>
+
+        <!-- Full-stack topology tree -->
+        <section class="spec-section-block" id="full-stack-topology">
+          <h2 class="spec-section-h">Full-stack topology</h2>
+          <p class="spec-section-p">
+            The Flutter client is the only user-facing artifact. Every external call
+            routes through Supabase (auth, DB, storage, edge functions) or directly
+            to a third-party API. AI responses are guarded by a credit gate inside
+            the edge function layer.
+          </p>
+          <div class="spec-tree-wrap">
+            <pre class="spec-tree"><code>Missroot TOEFL
+├── Flutter Client
+│   ├── Feature modules (×14)
+│   ├── core_ui  ·  core_network  ·  core_billing
+│   └── GoRouter + Riverpod + Material 3
+│
+├── Supabase (self-hosted / cloud)
+│   ├── Auth  (magic-link · Google · Apple)
+│   ├── PostgreSQL  (RLS policies)
+│   ├── Storage  (audio assets)
+│   └── Edge Functions (Deno ×9)
+│       ├── Billing helpers ×5
+│       └── API helpers ×4
+│
+├── AI Providers
+│   ├── Google Gemini 2.5 Pro  (TTS, feedback, chat)
+│   ├── Deepgram Nova-3  (STT)
+│   ├── Inworld AI  (NPC conversation)
+│   └── OpenAI ChatGPT-4o  (writing evaluation)
+│
+├── Billing Platforms
+│   ├── Apple App Store (In-App Purchase)
+│   ├── Google Play Billing
+│   └── Lemon Squeezy (web / desktop)
+│
+└── Content Pipeline
+    ├── Python scripts  (question bank generation)
+    ├── Supabase Storage  (static media)
+    └── Admin dashboard (WIP)</code></pre>
+          </div>
+        </section>
+
+        <!-- Architecture layer diagram -->
+        <section class="spec-section-block" id="layer-diagram">
+          <h2 class="spec-section-h">Architecture layers</h2>
+          <p class="spec-section-p">
+            Eight distinct horizontal layers — each owns a single responsibility and communicates only
+            through explicit API boundaries. No direct database access from the client; all data flows
+            through the edge function or Supabase SDK.
+          </p>
+          <div class="spec-layer-stack">
+            <div class="spec-layer-row">
+              <div class="spec-layer-badge">L1</div>
+              <div class="spec-layer-info">
+                <span class="spec-layer-tech">UI — Flutter / Dart</span>
+                <span class="spec-layer-role">Screens, widgets, animations. Material 3 tokens + custom design system from <code>core_ui</code>.</span>
+                <span class="spec-tag spec-tag--accent">Flutter</span>
+              </div>
+            </div>
+            <div class="spec-layer-row">
+              <div class="spec-layer-badge">L2</div>
+              <div class="spec-layer-info">
+                <span class="spec-layer-tech">State — Riverpod 2</span>
+                <span class="spec-layer-role">Async state management, dependency injection. <code>AsyncNotifier</code> / <code>StreamProvider</code> per module.</span>
+                <span class="spec-tag spec-tag--accent">Riverpod</span>
+              </div>
+            </div>
+            <div class="spec-layer-row">
+              <div class="spec-layer-badge">L3</div>
+              <div class="spec-layer-info">
+                <span class="spec-layer-tech">Navigation — GoRouter 14</span>
+                <span class="spec-layer-role">Deep links, nested shell routes. Each feature module registers its routes into the root shell.</span>
+                <span class="spec-tag spec-tag--accent">GoRouter</span>
+              </div>
+            </div>
+            <div class="spec-layer-row">
+              <div class="spec-layer-badge">L4</div>
+              <div class="spec-layer-info">
+                <span class="spec-layer-tech">Network — Dio + core_network</span>
+                <span class="spec-layer-role">HTTP client, retry, token-refresh interceptor. Typed <code>NetworkException</code> hierarchy maps HTTP codes.</span>
+                <span class="spec-tag spec-tag--accent">Dio</span>
+              </div>
+            </div>
+            <div class="spec-layer-row">
+              <div class="spec-layer-badge">L5</div>
+              <div class="spec-layer-info">
+                <span class="spec-layer-tech">API Gateway — Supabase Edge Fn</span>
+                <span class="spec-layer-role">JWT-verified Deno functions handle billing webhooks, AI proxying, and credit gating. Keys never reach the client.</span>
+                <span class="spec-tag spec-tag--green">Deno</span>
+              </div>
+            </div>
+            <div class="spec-layer-row">
+              <div class="spec-layer-badge">L6</div>
+              <div class="spec-layer-info">
+                <span class="spec-layer-tech">Database — PostgreSQL / RLS</span>
+                <span class="spec-layer-role">All 12 user-facing tables enforce Row-Level Security. <code>auth.uid()</code> scopes every read/write to the requesting user.</span>
+                <span class="spec-tag spec-tag--green">RLS</span>
+              </div>
+            </div>
+            <div class="spec-layer-row">
+              <div class="spec-layer-badge">L7</div>
+              <div class="spec-layer-info">
+                <span class="spec-layer-tech">Storage — Supabase Storage</span>
+                <span class="spec-layer-role">Audio assets (speaking recordings), images, PDF exports. Bucket policies restrict per content type.</span>
+                <span class="spec-tag spec-tag--amber">S3-compatible</span>
+              </div>
+            </div>
+            <div class="spec-layer-row">
+              <div class="spec-layer-badge">L8</div>
+              <div class="spec-layer-info">
+                <span class="spec-layer-tech">Auth — Supabase Auth</span>
+                <span class="spec-layer-role">Identity, session management, short-lived JWTs. Magic-link email + OAuth (Google, Apple). No password storage.</span>
+                <span class="spec-tag spec-tag--ai">JWT</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Layer specification table -->
+        <section class="spec-section-block" id="layer-specification">
+          <h2 class="spec-section-h">Layer specification</h2>
+          <p class="spec-section-p">
+            Each horizontal layer owns a distinct responsibility. Cross-layer calls
+            are explicit API boundaries — there is no direct DB access from the client.
+          </p>
+          <div class="spec-table-wrap">
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Layer</th>
+                  <th>Technology</th>
+                  <th>Responsibility</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>L1</td>
+                  <td>UI</td>
+                  <td>Flutter / Dart</td>
+                  <td>Screens, widgets, animations</td>
+                  <td>Material 3, custom design system</td>
+                </tr>
+                <tr>
+                  <td>L2</td>
+                  <td>State</td>
+                  <td>Riverpod 2</td>
+                  <td>Async state, dependency injection</td>
+                  <td>AsyncNotifier + Ref</td>
+                </tr>
+                <tr>
+                  <td>L3</td>
+                  <td>Navigation</td>
+                  <td>GoRouter 14</td>
+                  <td>Deep links, nested shells</td>
+                  <td>Shell routes per module</td>
+                </tr>
+                <tr>
+                  <td>L4</td>
+                  <td>Network</td>
+                  <td>Dio + core_network</td>
+                  <td>HTTP, retry, error mapping</td>
+                  <td>Interceptor-based auth refresh</td>
+                </tr>
+                <tr>
+                  <td>L5</td>
+                  <td>API Gateway</td>
+                  <td>Supabase Edge Fn</td>
+                  <td>Billing webhooks, AI proxy</td>
+                  <td>Deno TypeScript, JWT-verified</td>
+                </tr>
+                <tr>
+                  <td>L6</td>
+                  <td>Database</td>
+                  <td>PostgreSQL / RLS</td>
+                  <td>Persistent data, security</td>
+                  <td>Row-Level Security on every table</td>
+                </tr>
+                <tr>
+                  <td>L7</td>
+                  <td>Storage</td>
+                  <td>Supabase Storage</td>
+                  <td>Audio, images, exports</td>
+                  <td>Bucket policies per content type</td>
+                </tr>
+                <tr>
+                  <td>L8</td>
+                  <td>Auth</td>
+                  <td>Supabase Auth</td>
+                  <td>Identity, sessions, JWT</td>
+                  <td>Magic-link + OAuth (Google, Apple)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Request flow walkthrough -->
+        <section class="spec-section-block" id="request-flow">
+          <h2 class="spec-section-h">Request flow walkthrough</h2>
+          <p class="spec-section-p">
+            Every AI-powered action follows the same security pipeline. The Flutter client is the
+            only user-facing artifact — no credentials are stored on device.
+          </p>
+          <div class="spec-flow">
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">1</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">User triggers action</div>
+                <div class="spec-flow-desc">User taps a UI element (e.g. "Evaluate my essay"). A Riverpod <code>AsyncNotifier</code> method is called. L1 → L2.</div>
+              </div>
+            </div>
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">2</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">Network request dispatched</div>
+                <div class="spec-flow-desc"><code>core_network</code> Dio client sends a <code>POST</code> to the Supabase Edge Function URL. The JWT from Supabase Auth is attached by the <code>AuthInterceptor</code>. L4 → L5.</div>
+              </div>
+            </div>
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">3</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">Edge function: identity + credit check</div>
+                <div class="spec-flow-desc">Deno function verifies the JWT via <code>_shared/auth.ts</code>, extracts <code>user_id</code>, then queries <code>user_credits.balance</code>. Insufficient balance returns <code>402</code>. L5 → L6.</div>
+              </div>
+            </div>
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">4</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">Upstream AI provider called</div>
+                <div class="spec-flow-desc">The edge function calls the AI provider (Gemini, Deepgram, ChatGPT-4o, or Inworld) using server-side API keys. Up to 10 retries with exponential backoff. L5 → external.</div>
+              </div>
+            </div>
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">5</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">Credits deducted, history written</div>
+                <div class="spec-flow-desc">On success: <code>UPDATE user_credits</code> (deduct), <code>INSERT practice_history</code> (log session). Both writes happen in a single transaction. L5 → L6.</div>
+              </div>
+            </div>
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">6</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">Response delivered to client</div>
+                <div class="spec-flow-desc">Edge function returns structured JSON. The Riverpod notifier updates state, Flutter rebuilds the UI. L5 → L4 → L2 → L1.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Security model -->
+        <section class="spec-section-block" id="security-model">
+          <h2 class="spec-section-h">Security model</h2>
+          <p class="spec-section-p">
+            Security is layered — each concern is addressed at the most appropriate layer, with no single
+            point of failure.
+          </p>
+
+          <div class="spec-callout spec-callout--note">
+            <div class="spec-callout-icon">N</div>
+            <div class="spec-callout-body">
+              <span class="spec-callout-title">No client API keys</span>
+              All AI provider keys (Gemini, Deepgram, Inworld, OpenAI) and billing secrets (App Store shared secret, Google service account, Lemon Squeezy signing key) are stored exclusively in Supabase Edge Function environment secrets. The Flutter client never holds or transmits a third-party API key.
+            </div>
+          </div>
+
+          <div class="spec-detail-grid">
+            <div class="spec-detail-card">
+              <div class="spec-detail-title"><span class="spec-detail-dot"></span>Authentication</div>
+              <div class="spec-detail-body">
+                <ul class="spec-detail-list">
+                  <li>Short-lived JWTs issued by Supabase Auth, automatically refreshed by <code>AuthInterceptor</code></li>
+                  <li>Magic-link + OAuth (Google, Apple) — no password storage</li>
+                  <li>Every edge function call requires a valid JWT before processing</li>
+                </ul>
+              </div>
+            </div>
+            <div class="spec-detail-card">
+              <div class="spec-detail-title"><span class="spec-detail-dot"></span>Database security</div>
+              <div class="spec-detail-body">
+                <ul class="spec-detail-list">
+                  <li>Row-Level Security enabled on every table</li>
+                  <li>All policies use <code>auth.uid()</code> — users can only read/write their own rows</li>
+                  <li>Content tables (questions, passages) are <code>SELECT</code>-only for authenticated users</li>
+                  <li>Billing nonces table is service-role only (no direct client access)</li>
+                </ul>
+              </div>
+            </div>
+            <div class="spec-detail-card">
+              <div class="spec-detail-title"><span class="spec-detail-dot"></span>Billing anti-fraud</div>
+              <div class="spec-detail-body">
+                <ul class="spec-detail-list">
+                  <li>Every purchase receipt is server-verified with the issuing platform</li>
+                  <li><code>billing_nonces</code> table prevents replay attacks and double-credit grants</li>
+                  <li>Credit grants only execute after platform API confirms validity</li>
+                </ul>
+              </div>
+            </div>
+            <div class="spec-detail-card">
+              <div class="spec-detail-title"><span class="spec-detail-dot"></span>Storage security</div>
+              <div class="spec-detail-body">
+                <ul class="spec-detail-list">
+                  <li>Supabase Storage bucket policies restrict access by user and content type</li>
+                  <li>Signed URLs used for temporary audio asset access</li>
+                  <li>User-uploaded audio (speaking practice) is scoped to the uploading user</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Design decisions -->
+        <section class="spec-section-block" id="design-decisions">
+          <h2 class="spec-section-h">Design decisions</h2>
+
+          <div class="spec-callout spec-callout--decision">
+            <div class="spec-callout-icon">D</div>
+            <div class="spec-callout-body">
+              <span class="spec-callout-title">Why Supabase?</span>
+              Supabase provides auth, database (PostgreSQL), storage, and serverless compute in one platform. This eliminates the need to wire together separate services, reduces vendor count, and gives strong RLS guarantees out of the box. Edge Functions (Deno) run on the same network as the database, minimising latency for credit-check + AI-call sequences.
+            </div>
+          </div>
+
+          <div class="spec-callout spec-callout--decision">
+            <div class="spec-callout-icon">D</div>
+            <div class="spec-callout-body">
+              <span class="spec-callout-title">Why Flutter?</span>
+              A single Dart codebase targets iOS, Android, and web from one source tree. The 14-module architecture means TOEFL, SAT, IELTS, and GRE variants share the same <code>core_ui</code>, <code>core_network</code>, and <code>core_billing</code> packages — only feature modules differ per app.
+            </div>
+          </div>
+
+          <div class="spec-callout spec-callout--tip">
+            <div class="spec-callout-icon">T</div>
+            <div class="spec-callout-body">
+              <span class="spec-callout-title">Modular by design</span>
+              Each feature module is independently testable and deployable. Riverpod providers are the only cross-module communication channel — direct class imports between modules are prohibited. This makes it safe to add or refactor a module without risking regressions in others.
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-page-nav" aria-label="Page navigation">
+          <span class="spn-prev spn-disabled"></span>
+          <a class="spn-next" href="spec-modules.html">
+            02 Flutter Modules
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </nav>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span class="footer-copy">© 2025 Hyunsoo Lee · Missroot TOEFL</span>
+        <nav class="footer-links">
+          <a href="index.html">Intro</a><a href="project.html">Tech</a><a href="ai.html">AI</a><a href="growth.html">Growth</a><a href="spec.html">Spec</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="language.js"></script>
+    <script src="spec-nav.js"></script>
+  </body>
+</html>

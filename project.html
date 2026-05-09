@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Technical deep-dive: Missroot TOEFL architecture, feature modules, Supabase edge functions, AI scoring, billing, and content pipeline." />
+    <meta name="description" content="Technical deep-dive: Missroot TOEFL architecture, feature modules, Supabase edge functions, AI scoring, tap dictionary, billing, and content pipeline." />
     <title>Missroot TOEFL – Technical Deep Dive · Hyunsoo Lee</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,10 +19,11 @@
         <span class="brand-name">Hyunsoo Lee</span>
       </a>
       <nav class="page-tabs" aria-label="Primary navigation">
-        <a class="page-tab" href="index.html">Intro</a>
-        <a class="page-tab active" href="project.html">Tech</a>
-        <a class="page-tab" href="ai.html">AI</a>
-        <a class="page-tab" href="growth.html">Growth</a>
+        <a class="page-tab" href="index.html">About</a>
+        <a class="page-tab active" href="project.html">Build</a>
+        <a class="page-tab" href="ai.html">AI Engine</a>
+        <a class="page-tab" href="growth.html">Marketing</a>
+        <a class="page-tab" href="spec.html">Blueprint</a>
         <a class="page-tab" href="index.html#contact">Contact</a>
       </nav>
       <div class="language-tabs" role="group" aria-label="Language selector">
@@ -71,6 +72,14 @@
               <div class="stat-row">
                 <span class="stat-num">3</span>
                 <span class="stat-label">Shared packages</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-num stat-num--wide">98,235</span>
+                <span class="stat-label">Lines of code</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-num">601</span>
+                <span class="stat-label">Unique function names</span>
               </div>
             </div>
           </div>
@@ -652,7 +661,7 @@ scripts/
       <section id="ai" class="section alt-section">
         <div class="container">
           <p class="eyebrow">AI integration</p>
-          <h2 class="section-title">AI scoring, speech recognition, and tutor</h2>
+          <h2 class="section-title">AI scoring, speech recognition, content generation, and tap dictionary</h2>
 
           <div class="ai-grid">
             <div class="ai-card">
@@ -713,6 +722,24 @@ scripts/
               <div class="proof-tags">
                 <span class="proof-tag">Structured output prompting</span>
                 <span class="proof-tag">Schema-driven generation</span>
+              </div>
+            </div>
+
+            <div class="ai-card">
+              <div class="ai-card-header">
+                <span class="ai-icon chatgpt-icon">C</span>
+                <div>
+                  <h3>ChatGPT tap dictionary</h3>
+                  <span class="module-path">OpenAiTapDictionaryClient</span>
+                </div>
+              </div>
+              <p>Tapping a word in Reading sends the selection and nearby sentence context to ChatGPT through the same credit-checked path as other AI features.
+              The model returns a short gloss—sense, register, and a minimal example—appropriate for TOEFL-level study.
+              Responses can be cached per passage to reduce repeat latency and cost; usage is logged with input/output tokens like Gemini and Deepgram calls.</p>
+              <div class="proof-tags">
+                <span class="proof-tag">Context-aware definitions</span>
+                <span class="proof-tag">Credit-gated requests</span>
+                <span class="proof-tag">Usage logging</span>
               </div>
             </div>
           </div>
@@ -916,7 +943,7 @@ scripts/
           <div class="pitch-text">
             <p class="eyebrow light">Interested in working together?</p>
             <h2>This is the level of engineering I bring to a team.</h2>
-            <p>Full-stack mobile, AI integration, backend serverless, and product ownership. Korea-based or remote.</p>
+            <p>I bring hands-on full-stack mobile engineering, practical AI integration, serverless backend architecture, and end-to-end product ownership from planning to launch and iteration. Available for Korea-based and remote teams.</p>
           </div>
           <div class="cta-group">
             <a class="button-big" href="mailto:ahyunsoo3@gmail.com">Get in touch

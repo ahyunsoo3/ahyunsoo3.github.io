@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>02 Flutter Modules · Spec · Hyunsoo Lee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="project.css" />
+    <link rel="stylesheet" href="spec.css" />
+  </head>
+  <body>
+
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Hyunsoo Lee home">
+        <span class="brand-mark">HL</span>
+        <span class="brand-name">Hyunsoo Lee</span>
+      </a>
+      <nav class="page-tabs" aria-label="Primary navigation">
+        <a class="page-tab" href="index.html">About</a>
+        <a class="page-tab" href="project.html">Build</a>
+        <a class="page-tab" href="ai.html">AI Engine</a>
+        <a class="page-tab" href="growth.html">Marketing</a>
+        <a class="page-tab active" href="spec.html">Blueprint</a>
+        <a class="page-tab" href="index.html#contact">Contact</a>
+      </nav>
+      <div class="language-tabs" role="group" aria-label="Language selector">
+        <button class="language-tab" type="button" data-lang-button="en">EN</button>
+        <button class="language-tab" type="button" data-lang-button="ko">KR</button>
+      </div>
+    </header>
+
+    <button class="ssb-open-btn" id="ssb-open-btn" aria-label="Open contents sidebar" aria-expanded="false">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      Contents
+    </button>
+    <div class="ssb-overlay" id="ssb-overlay"></div>
+
+    <aside class="spec-sidebar" id="spec-sidebar" aria-label="Spec navigation">
+      <div class="ssb-header">
+        <a class="ssb-brand" href="spec.html">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Spec Docs
+        </a>
+        <button class="ssb-collapse-btn" id="ssb-collapse-btn" aria-label="Collapse sidebar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+      </div>
+      <nav class="ssb-nav" aria-label="Spec pages">
+        <a class="ssb-overview-link" href="spec.html">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Overview
+        </a>
+        <div class="ssb-group" data-group="arch">
+          <button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-arch">
+            <svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="ssb-group-num">01</span><span class="ssb-group-label">System Architecture</span>
+          </button>
+          <ul class="ssb-items" id="ssb-arch">
+            <li><a class="ssb-link" href="spec-arch.html" data-page="system-arch">Full-stack topology</a></li>
+            <li><a class="ssb-link" href="spec-arch.html" data-page="system-arch">Layer specification</a></li>
+          </ul>
+        </div>
+        <div class="ssb-group" data-group="modules">
+          <button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-modules">
+            <svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="ssb-group-num">02</span><span class="ssb-group-label">Flutter Modules</span>
+          </button>
+          <ul class="ssb-items" id="ssb-modules">
+            <li><a class="ssb-link" href="spec-modules.html" data-page="module-map">14 feature modules</a></li>
+            <li><a class="ssb-link" href="spec-modules.html" data-page="module-map">Module specification</a></li>
+          </ul>
+        </div>
+        <div class="ssb-group" data-group="backend">
+          <button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-backend">
+            <svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="ssb-group-num">03</span><span class="ssb-group-label">Edge Functions</span>
+          </button>
+          <ul class="ssb-items" id="ssb-backend">
+            <li><a class="ssb-link" href="spec-backend.html" data-page="backend-fns">9 Deno functions</a></li>
+            <li><a class="ssb-link" href="spec-backend.html" data-page="backend-fns">Function specification</a></li>
+          </ul>
+        </div>
+        <div class="ssb-group" data-group="ai">
+          <button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-ai">
+            <svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="ssb-group-num">04</span><span class="ssb-group-label">AI Pipeline</span>
+          </button>
+          <ul class="ssb-items" id="ssb-ai">
+            <li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Call flow</a></li>
+            <li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Provider specification</a></li>
+            <li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Credit &amp; retry logic</a></li>
+          </ul>
+        </div>
+        <div class="ssb-group" data-group="billing">
+          <button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-billing">
+            <svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="ssb-group-num">05</span><span class="ssb-group-label">Billing Architecture</span>
+          </button>
+          <ul class="ssb-items" id="ssb-billing">
+            <li><a class="ssb-link" href="spec-billing.html" data-page="billing">Billing flow</a></li>
+            <li><a class="ssb-link" href="spec-billing.html" data-page="billing">Plan tiers</a></li>
+            <li><a class="ssb-link" href="spec-billing.html" data-page="billing">Store packs</a></li>
+          </ul>
+        </div>
+        <div class="ssb-group" data-group="database">
+          <button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-database">
+            <svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="ssb-group-num">06</span><span class="ssb-group-label">Database Schema</span>
+          </button>
+          <ul class="ssb-items" id="ssb-database">
+            <li><a class="ssb-link" href="spec-db.html" data-page="database">Table groups</a></li>
+            <li><a class="ssb-link" href="spec-db.html" data-page="database">Key table spec</a></li>
+          </ul>
+        </div>
+        <div class="ssb-group" data-group="packages">
+          <button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-packages">
+            <svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            <span class="ssb-group-num">07</span><span class="ssb-group-label">Shared Packages</span>
+          </button>
+          <ul class="ssb-items" id="ssb-packages">
+            <li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_ui</a></li>
+            <li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_network</a></li>
+            <li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_billing</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="spec-page-main">
+      <div class="container spec-page-inner">
+
+        <nav class="spec-breadcrumb" aria-label="Breadcrumb">
+          <a href="spec.html">Spec</a>
+          <span aria-hidden="true">/</span>
+          <span>02 Flutter Modules</span>
+        </nav>
+
+        <header class="spec-page-hd">
+          <span class="spec-page-num">02</span>
+          <h1 class="spec-page-title">Flutter Modules</h1>
+          <p class="spec-page-desc">
+            The client codebase is split into 14 independent feature modules and 3 shared packages,
+            following a clean feature-first architecture. Each module owns its routes, state, and repository.
+          </p>
+        </header>
+
+        <div class="spec-stat-row">
+          <div class="spec-stat-box"><span class="spec-stat-num">14</span><span class="spec-stat-label">Feature Modules</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">3</span><span class="spec-stat-label">Shared Packages</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">4</span><span class="spec-stat-label">AI-powered</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">98k+</span><span class="spec-stat-label">Lines of Dart</span></div>
+        </div>
+
+        <nav class="spec-toc" aria-label="On this page">
+          <span class="spec-toc-label">On this page</span>
+          <ul>
+            <li><a href="#module-tree">Module directory</a></li>
+            <li><a href="#module-cards">Module deep-dive</a></li>
+            <li><a href="#module-specification">Module specification table</a></li>
+            <li><a href="#architecture-rules">Architecture rules</a></li>
+            <li><a href="#routing-structure">Routing structure</a></li>
+          </ul>
+        </nav>
+
+        <section class="spec-section-block" id="module-tree">
+          <h2 class="spec-section-h">14 feature modules</h2>
+          <p class="spec-section-p">
+            Each feature module has its own <code>lib/</code> tree and registers routes
+            into the root GoRouter shell. Cross-module calls go through Riverpod providers
+            — never direct class imports.
+          </p>
+          <div class="spec-tree-wrap">
+            <pre class="spec-tree"><code>lib/
+├── core/
+│   ├── core_ui/          (design system)
+│   ├── core_network/     (Dio + interceptors)
+│   └── core_billing/     (IAP abstraction)
+│
+└── features/
+    ├── auth/             01 · Sign-in / magic-link / OAuth
+    ├── onboarding/       02 · Goal setup, diagnostic test
+    ├── home/             03 · Dashboard, streak, quick actions
+    ├── speaking/         04 · AI Speaking practice (Deepgram)
+    ├── writing/          05 · AI Writing evaluation (ChatGPT-4o)
+    ├── listening/        06 · Audio comprehension exercises
+    ├── reading/          07 · Passage + question bank
+    ├── vocabulary/       08 · Adaptive flashcards
+    ├── mock_test/        09 · Full-length TOEFL simulation
+    ├── ai_tutor/         10 · NPC conversation (Inworld)
+    ├── analytics/        11 · Score trends, weak-point radar
+    ├── study_plan/       12 · AI-generated weekly schedule
+    ├── settings/         13 · Profile, notifications, theme
+    └── billing/          14 · Subscription + IAP flows</code></pre>
+          </div>
+        </section>
+
+        <!-- Module deep-dive cards -->
+        <section class="spec-section-block" id="module-cards">
+          <h2 class="spec-section-h">Module deep-dive</h2>
+          <p class="spec-section-p">Key implementation details for each of the 14 feature modules.</p>
+          <div class="spec-module-grid">
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">01</div>
+              <div class="spec-module-name">auth</div>
+              <div class="spec-module-desc">Magic-link email, Google OAuth, and Apple Sign-In. Listens to Supabase Auth state stream — automatically navigates to onboarding on first login or home on subsequent logins.</div>
+              <div class="spec-module-tags"><span class="spec-tag spec-tag--accent">AsyncNotifier</span><span class="spec-tag">Supabase Auth</span><span class="spec-tag spec-tag--green">OAuth</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">02</div>
+              <div class="spec-module-name">onboarding</div>
+              <div class="spec-module-desc">Multi-step flow: language goals, target score, exam date, skill self-assessment, and diagnostic mini-test (20 questions). Result seeds the initial study plan.</div>
+              <div class="spec-module-tags"><span class="spec-tag">StateNotifier</span><span class="spec-tag spec-tag--amber">Writes: user_profiles</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">03</div>
+              <div class="spec-module-name">home</div>
+              <div class="spec-module-desc">Dashboard with daily streak counter, quick-access skill tiles, weekly progress ring, and upcoming study plan items. Realtime streak updates via Supabase Realtime stream.</div>
+              <div class="spec-module-tags"><span class="spec-tag">StreamProvider</span><span class="spec-tag spec-tag--amber">Writes: streaks</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">04</div>
+              <div class="spec-module-name">speaking</div>
+              <div class="spec-module-desc">AI speaking practice: records user audio (WAV/WebM), streams to Deepgram Nova-3 for transcription, sends transcript + question to Gemini for detailed iBT-rubric feedback. Displays IELTS-style pronunciation score.</div>
+              <div class="spec-module-tags"><span class="spec-tag spec-tag--ai">Deepgram STT</span><span class="spec-tag spec-tag--ai">Gemini TTS</span><span class="spec-tag spec-tag--green">Credit: 5/session</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">05</div>
+              <div class="spec-module-name">writing</div>
+              <div class="spec-module-desc">Integrated writing and independent writing tasks. Essay submitted to <code>evaluate-writing</code> edge function (ChatGPT-4o), returns structured JSON rubric: Task Achievement, Coherence, Lexical Resource, Grammar (0–30 scale each).</div>
+              <div class="spec-module-tags"><span class="spec-tag spec-tag--ai">GPT-4o</span><span class="spec-tag spec-tag--green">Credit: 5/eval</span><span class="spec-tag">JSON rubric</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">06</div>
+              <div class="spec-module-name">listening</div>
+              <div class="spec-module-desc">Audio comprehension exercises served from Supabase Storage. Covers conversations, academic lectures, and campus announcements. Supports note-taking overlay. Progress auto-saved per question.</div>
+              <div class="spec-module-tags"><span class="spec-tag">StateNotifier</span><span class="spec-tag">Supabase Storage</span><span class="spec-tag spec-tag--amber">Writes: practice_history</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">07</div>
+              <div class="spec-module-name">reading</div>
+              <div class="spec-module-desc">Academic passage bank with 6 question types (factual info, inference, vocabulary, sentence insertion, prose summary, fill-in-table). Paginated from Supabase with difficulty filtering.</div>
+              <div class="spec-module-tags"><span class="spec-tag">FutureProvider</span><span class="spec-tag">Passage bank</span><span class="spec-tag spec-tag--amber">Writes: practice_history</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">08</div>
+              <div class="spec-module-name">vocabulary</div>
+              <div class="spec-module-desc">SM-2 spaced-repetition algorithm: each word card tracks <em>easiness factor</em>, <em>interval</em>, and <em>next review</em> date. Session presents due cards first, then new words from frequency-ranked vocabulary list.</div>
+              <div class="spec-module-tags"><span class="spec-tag">StateNotifier</span><span class="spec-tag spec-tag--green">SM-2 algorithm</span><span class="spec-tag spec-tag--amber">Writes: vocabulary_progress</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">09</div>
+              <div class="spec-module-name">mock_test</div>
+              <div class="spec-module-desc">Full-length TOEFL iBT simulation (Reading 54–72 min + Listening 41–57 min + Speaking 17 min + Writing 50 min). Timer, break handling, and full AI grading for speaking and writing sections.</div>
+              <div class="spec-module-tags"><span class="spec-tag spec-tag--ai">Gemini + Deepgram</span><span class="spec-tag spec-tag--green">Credit: 20+/test</span><span class="spec-tag spec-tag--amber">Writes: mock_test_results</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">10</div>
+              <div class="spec-module-name">ai_tutor</div>
+              <div class="spec-module-desc">Conversational NPC powered by Inworld AI. Tutor personas have distinct personalities and respond with emotional cues. Users practice TOEFL-style academic discussions. Session logs stored as JSONB.</div>
+              <div class="spec-module-tags"><span class="spec-tag spec-tag--ai">Inworld AI</span><span class="spec-tag spec-tag--green">Credit: 1/turn</span><span class="spec-tag spec-tag--amber">Writes: ai_tutor_sessions</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">11</div>
+              <div class="spec-module-name">analytics</div>
+              <div class="spec-module-desc">Score trend charts (section-by-section over time), weak-point radar chart (6 skills), streak calendar heatmap, and practice frequency breakdown. Read-only — aggregates from <code>practice_history</code> and <code>mock_test_results</code>.</div>
+              <div class="spec-module-tags"><span class="spec-tag">FutureProvider</span><span class="spec-tag spec-tag--green">Read-only</span><span class="spec-tag">fl_chart</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">12</div>
+              <div class="spec-module-name">study_plan</div>
+              <div class="spec-module-desc">Sends user's score history, weak points, and target date to <code>generate-study-plan</code> edge function (Gemini JSON mode). Returns a structured weekly schedule. Users can regenerate or manually adjust daily items.</div>
+              <div class="spec-module-tags"><span class="spec-tag spec-tag--ai">Gemini JSON</span><span class="spec-tag spec-tag--green">Credit: 3/gen</span><span class="spec-tag spec-tag--amber">Writes: study_plans</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">13</div>
+              <div class="spec-module-name">settings</div>
+              <div class="spec-module-desc">Profile editing (display name, avatar, goal score, target date), notification preferences, theme toggle (light/dark/system), app version info, and account deletion flow.</div>
+              <div class="spec-module-tags"><span class="spec-tag">StateNotifier</span><span class="spec-tag spec-tag--amber">Writes: user_profiles</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">14</div>
+              <div class="spec-module-name">billing</div>
+              <div class="spec-module-desc">Subscription plans (Free / Plus / Pro / Hyper) and one-time credit packs via App Store, Google Play, or Lemon Squeezy. Uses <code>core_billing</code> abstraction — platform differences are fully hidden from this module.</div>
+              <div class="spec-module-tags"><span class="spec-tag spec-tag--accent">core_billing</span><span class="spec-tag">App Store</span><span class="spec-tag">Google Play</span><span class="spec-tag">Lemon Squeezy</span></div>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="spec-section-block" id="module-specification">
+          <h2 class="spec-section-h">Module specification</h2>
+          <p class="spec-section-p">
+            Each row shows the module's primary state provider type, key external dependencies,
+            and the data that persists to Supabase.
+          </p>
+          <div class="spec-table-wrap">
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Module</th>
+                  <th>State Provider</th>
+                  <th>External Dep</th>
+                  <th>Persists To</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>01</td><td>auth</td><td>AsyncNotifier</td><td>Supabase Auth</td><td>auth.users</td></tr>
+                <tr><td>02</td><td>onboarding</td><td>StateNotifier</td><td>—</td><td>user_profiles</td></tr>
+                <tr><td>03</td><td>home</td><td>StreamProvider</td><td>—</td><td>streaks</td></tr>
+                <tr><td>04</td><td>speaking</td><td>AsyncNotifier</td><td>Deepgram, Gemini</td><td>practice_history</td></tr>
+                <tr><td>05</td><td>writing</td><td>AsyncNotifier</td><td>ChatGPT-4o</td><td>practice_history</td></tr>
+                <tr><td>06</td><td>listening</td><td>StateNotifier</td><td>Supabase Storage</td><td>practice_history</td></tr>
+                <tr><td>07</td><td>reading</td><td>FutureProvider</td><td>—</td><td>practice_history</td></tr>
+                <tr><td>08</td><td>vocabulary</td><td>StateNotifier</td><td>—</td><td>vocabulary_progress</td></tr>
+                <tr><td>09</td><td>mock_test</td><td>AsyncNotifier</td><td>Gemini, Deepgram</td><td>mock_test_results</td></tr>
+                <tr><td>10</td><td>ai_tutor</td><td>AsyncNotifier</td><td>Inworld AI</td><td>ai_tutor_sessions</td></tr>
+                <tr><td>11</td><td>analytics</td><td>FutureProvider</td><td>—</td><td>— (read-only)</td></tr>
+                <tr><td>12</td><td>study_plan</td><td>AsyncNotifier</td><td>Gemini</td><td>study_plans</td></tr>
+                <tr><td>13</td><td>settings</td><td>StateNotifier</td><td>—</td><td>user_profiles</td></tr>
+                <tr><td>14</td><td>billing</td><td>AsyncNotifier</td><td>App Store, Play, LS</td><td>subscriptions</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Architecture rules -->
+        <section class="spec-section-block" id="architecture-rules">
+          <h2 class="spec-section-h">Architecture rules</h2>
+
+          <div class="spec-callout spec-callout--warn">
+            <div class="spec-callout-icon">!</div>
+            <div class="spec-callout-body">
+              <span class="spec-callout-title">No direct cross-module imports</span>
+              Feature modules must never import classes directly from other feature modules. All cross-module communication goes through Riverpod providers. This is enforced by <code>analysis_options.yaml</code> linting rules and checked in CI.
+            </div>
+          </div>
+
+          <div class="spec-callout spec-callout--tip">
+            <div class="spec-callout-icon">T</div>
+            <div class="spec-callout-body">
+              <span class="spec-callout-title">Repository pattern everywhere</span>
+              Every module has a <code>*Repository</code> class that owns all Supabase calls. Riverpod <code>AsyncNotifier</code>s call only the repository — never the Supabase client directly. This makes testing straightforward: mock the repository, test the notifier.
+            </div>
+          </div>
+
+          <div class="spec-callout spec-callout--note">
+            <div class="spec-callout-icon">N</div>
+            <div class="spec-callout-body">
+              <span class="spec-callout-title">Shared packages, not shared modules</span>
+              Common UI components, network infrastructure, and billing logic live in <code>core_ui</code>, <code>core_network</code>, and <code>core_billing</code> packages — not inside any feature module. A feature module should be removable without breaking any other module.
+            </div>
+          </div>
+        </section>
+
+        <!-- Routing structure -->
+        <section class="spec-section-block" id="routing-structure">
+          <h2 class="spec-section-h">Routing structure</h2>
+          <p class="spec-section-p">
+            GoRouter 14 with nested shell routes. The root <code>ShellRoute</code> owns the bottom navigation bar.
+            Each feature module registers its routes into the shell using a <code>GoRoute</code> extension method.
+          </p>
+          <div class="spec-code-wrap">
+            <div class="spec-code-label"><span class="spec-code-dot"></span>GoRouter shell structure (Dart)</div>
+            <div class="spec-tree-wrap">
+              <pre class="spec-tree"><code>GoRouter(
+  routes: [
+    ShellRoute(                  // bottom nav shell
+      builder: (ctx, state, child) => HomeShell(child: child),
+      routes: [
+        ...AuthRoutes.routes,        // /login, /magic-link
+        ...HomeRoutes.routes,        // /home
+        ...SpeakingRoutes.routes,    // /speaking, /speaking/:sessionId
+        ...WritingRoutes.routes,     // /writing, /writing/:taskId
+        ...ListeningRoutes.routes,   // /listening, /listening/:exerciseId
+        ...ReadingRoutes.routes,     // /reading, /reading/:passageId
+        ...VocabRoutes.routes,       // /vocabulary
+        ...MockTestRoutes.routes,    // /mock-test, /mock-test/:testId
+        ...AiTutorRoutes.routes,     // /ai-tutor, /ai-tutor/:sessionId
+        ...AnalyticsRoutes.routes,   // /analytics
+        ...StudyPlanRoutes.routes,   // /study-plan
+        ...SettingsRoutes.routes,    // /settings, /settings/profile
+        ...BillingRoutes.routes,     // /billing, /billing/plans
+      ],
+    ),
+  ],
+)</code></pre>
+            </div>
+          </div>
+
+          <div class="spec-callout spec-callout--tip">
+            <div class="spec-callout-icon">T</div>
+            <div class="spec-callout-body">
+              <span class="spec-callout-title">Deep link ready</span>
+              Every route has a named path, enabling deep links from push notifications (e.g. <code>/speaking/session-123</code> opens a specific practice session directly). GoRouter handles the auth redirect automatically — unauthenticated deep links redirect to <code>/login</code> then resume the original destination after sign-in.
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-page-nav" aria-label="Page navigation">
+          <a class="spn-prev" href="spec-arch.html">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            01 System Architecture
+          </a>
+          <a class="spn-next" href="spec-backend.html">
+            03 Edge Functions
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </nav>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span class="footer-copy">© 2025 Hyunsoo Lee · Missroot TOEFL</span>
+        <nav class="footer-links">
+          <a href="index.html">Intro</a><a href="project.html">Tech</a><a href="ai.html">AI</a><a href="growth.html">Growth</a><a href="spec.html">Spec</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="language.js"></script>
+    <script src="spec-nav.js"></script>
+  </body>
+</html>

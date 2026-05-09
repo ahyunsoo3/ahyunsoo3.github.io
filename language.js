@@ -1,11 +1,12 @@
 (() => {
   const KO = {
-    // Header page tabs
-    "Intro":   "Intro",
-    "Tech":    "Tech",
-    "AI":      "AI",
-    "Growth":  "Growth",
-    "Contact": "Contact",
+    // Header page tabs (keep English in KR mode)
+    "About":      "About",
+    "Build":      "Build",
+    "AI Engine":  "AI Engine",
+    "Marketing":  "Marketing",
+    "Blueprint":  "Blueprint",
+    "Contact":    "Contact",
 
     // Hero
     "Live on iOS & Android":  "iOS & Android 출시 중",
@@ -128,7 +129,7 @@
     "What I am looking for": "제가 찾는 역할",
     "A senior role where shipping a real product matters.": "실제 제품 출시가 중요한 시니어 역할.",
     "Mobile engineering, AI product integration, backend systems, or full-stack ownership — anywhere in Korea or remote.":
-      "모바일 엔지니어링, AI 제품 통합, 백엔드 시스템, 또는 풀스택 제품 소유 — 국내 또는 원격 근무.",
+      "모바일 엔지니어링, AI 제품 통합, 백엔드 시스템, 풀스택 제품 오너십까지 폭넓게 기여할 수 있으며 국내 근무와 원격 협업 모두 가능합니다.",
     "Get in touch": "연락하기",
     "Let's talk.": "이야기 나눠요.",
     "Email": "이메일",
@@ -231,12 +232,13 @@
 })();
 (() => {
   const KO = {
-    /* Header page tabs */
-    "Intro":   "Intro",
-    "Tech":    "Tech",
-    "AI":      "AI",
-    "Growth":  "Growth",
-    "Contact": "Contact",
+    /* Header page tabs (keep English in KR mode) */
+    "About":      "About",
+    "Build":      "Build",
+    "AI Engine":  "AI Engine",
+    "Marketing":  "Marketing",
+    "Blueprint":  "Blueprint",
+    "Contact":    "Contact",
 
     /* Back link */
     "Back to portfolio": "포트폴리오로 돌아가기",
@@ -329,7 +331,11 @@
 
     /* AI */
     "AI integration": "AI 기술 통합 상세",
-    "AI scoring, speech recognition, and tutor": "AI 채점, 음성 인식 및 튜터 시스템",
+    "AI scoring, speech recognition, content generation, and tap dictionary":
+      "AI 채점, 음성 인식, 콘텐츠 생성 및 탭 사전",
+    "ChatGPT tap dictionary": "ChatGPT 탭 사전",
+    "Context-aware definitions": "문맥 기반 정의",
+    "Credit-gated requests": "크레딧 게이트 요청",
     "Gemini AI scoring": "Gemini AI 자동 채점",
     "Deepgram speech recognition": "Deepgram 음성 전사(STT)",
     "Content generation": "콘텐츠 자동 생성",
@@ -380,15 +386,16 @@
     /* CTA */
     "Interested in working together?": "협업에 관심이 있으신가요?",
     "This is the level of engineering I bring to a team.": "제가 팀에 기여할 수 있는 기술적 수준입니다.",
-    "Full-stack mobile, AI integration, backend serverless, and product ownership. Korea-based or remote.":
-      "풀스택 모바일, AI 통합, 서버리스 백엔드 및 제품 총괄 역량을 갖추고 있습니다. (국내/원격 모두 가능)",
+    "I bring hands-on full-stack mobile engineering, practical AI integration, serverless backend architecture, and end-to-end product ownership from planning to launch and iteration. Available for Korea-based and remote teams.":
+      "풀스택 모바일 엔지니어링을 중심으로 실무형 AI 통합, Serverless Backend Architecture, 기획부터 출시와 개선까지 이어지는 End-to-End Product Ownership 역량을 갖추고 있습니다. 국내 팀은 물론 Remote 기반 협업도 가능합니다.",
     "Get in touch": "연락하기",
     "Back to portfolio": "포트폴리오로 돌아가기",
 
     /* AI page essentials */
     "AI-native products": "AI 기반 제품 설계",
-    "Gemini scores user writing and speaking. Deepgram transcribes speech in real time. Inworld TTS voices every listening exercise. A credit wallet controls cost at every layer. This is what AI looks like when it's the product, not a feature.":
-      "AI를 단순한 기능이 아닌 제품의 핵심으로 활용합니다. Gemini의 채점, Deepgram의 음성 인식, TTS 음원 생성 및 비용 제어를 위한 크레딧 시스템까지 통합적으로 관리합니다.",
+    "Gemini scores user writing and speaking. Deepgram transcribes speech in real time. Inworld TTS voices every listening exercise. ChatGPT powers the tap dictionary for instant, in-context definitions. A credit wallet controls cost at every layer. This is what AI looks like when it's the product, not a feature.":
+      "AI를 단순한 기능이 아닌 제품의 핵심으로 활용합니다. Gemini 채점, Deepgram 음성 인식, Inworld TTS 청취 음원, 탭 사전을 통한 ChatGPT 기반 문맥 속 즉시 정의, 그리고 모든 계층에서 비용을 관리하는 크레딧 지갑까지 하나의 제품으로 묶었습니다.",
+    "Tap dictionary": "탭 사전",
     "AI providers integrated": "통합된 AI 제공업체",
     "AI-powered task types": "AI 기반 학습 유형",
     "Retry logic on scoring": "채점 실패 재시도 로직",

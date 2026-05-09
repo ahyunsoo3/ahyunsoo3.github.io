@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="How Hyunsoo Lee uses Gemini, Deepgram, and Inworld TTS in a production AI app — scoring, generation, speech recognition, cost control." />
+    <meta name="description" content="How Hyunsoo Lee uses Gemini, Deepgram, Inworld TTS, and ChatGPT in a production AI app — scoring, generation, speech recognition, tap dictionary, cost control." />
     <title>AI Integration · Hyunsoo Lee</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,10 +20,11 @@
         <span class="brand-name">Hyunsoo Lee</span>
       </a>
       <nav class="page-tabs" aria-label="Primary navigation">
-        <a class="page-tab" href="index.html">Intro</a>
-        <a class="page-tab" href="project.html">Tech</a>
-        <a class="page-tab active" href="ai.html">AI</a>
-        <a class="page-tab" href="growth.html">Growth</a>
+        <a class="page-tab" href="index.html">About</a>
+        <a class="page-tab" href="project.html">Build</a>
+        <a class="page-tab active" href="ai.html">AI Engine</a>
+        <a class="page-tab" href="growth.html">Marketing</a>
+        <a class="page-tab" href="spec.html">Blueprint</a>
         <a class="page-tab" href="index.html#contact">Contact</a>
       </nav>
       <div class="language-tabs" role="group" aria-label="Language selector">
@@ -42,7 +43,8 @@
             <h1 class="ai-h1">AI-native products</h1>
             <p class="ai-hero-sub">
               Gemini scores user writing and speaking. Deepgram transcribes speech in real time.
-              Inworld TTS voices every listening exercise. A credit wallet controls cost at every layer.
+              Inworld TTS voices every listening exercise. ChatGPT powers the tap dictionary for instant, in-context definitions.
+              A credit wallet controls cost at every layer.
               This is what AI looks like when it's the product, not a feature.
             </p>
             <div class="ai-model-chips">
@@ -50,6 +52,7 @@
               <span class="ai-chip chip-gemini">Gemini 3.1 Pro</span>
               <span class="ai-chip chip-deepgram">Deepgram Nova-3</span>
               <span class="ai-chip chip-inworld">Inworld TTS</span>
+              <span class="ai-chip chip-chatgpt">ChatGPT</span>
             </div>
           </div>
           <div class="ai-hero-diagram" aria-hidden="true">
@@ -66,12 +69,16 @@
                 <span>Gemini<br>Generate</span>
               </div>
               <div class="aihd-node aihd-n3">
-                <span class="aihd-icon">D</span>
+                <span class="aihd-icon aihd-icon-deepgram">D</span>
                 <span>Deepgram<br>STT</span>
               </div>
               <div class="aihd-node aihd-n4">
-                <span class="aihd-icon">♪</span>
+                <span class="aihd-icon aihd-icon-inworld">♪</span>
                 <span>Inworld<br>TTS</span>
+              </div>
+              <div class="aihd-node aihd-n5">
+                <span class="aihd-icon aihd-icon-chatgpt">C</span>
+                <span>ChatGPT<br>Tap dictionary</span>
               </div>
             </div>
           </div>
@@ -82,7 +89,7 @@
       <section class="ai-summary-strip">
         <div class="container ai-summary-inner">
           <div class="ai-summary-item">
-            <span class="as-val">4</span>
+            <span class="as-val">5</span>
             <span class="as-label">AI providers integrated</span>
           </div>
           <div class="as-div"></div>
@@ -99,6 +106,11 @@
           <div class="ai-summary-item">
             <span class="as-val">2</span>
             <span class="as-label">Gemini model tiers</span>
+          </div>
+          <div class="as-div"></div>
+          <div class="ai-summary-item">
+            <span class="as-val">Cache</span>
+            <span class="as-label">Per-passage tap dictionary</span>
           </div>
           <div class="as-div"></div>
           <div class="ai-summary-item">
@@ -471,8 +483,129 @@
         </div>
       </section>
 
+      <!-- ─── CHATGPT TAP DICTIONARY ────────────────────────────────────── -->
+      <section id="dictionary" class="section">
+        <div class="container">
+          <p class="eyebrow">ChatGPT tap dictionary</p>
+          <h2 class="section-title">Instant in-context definitions, cached per passage</h2>
+          <p class="section-sub">
+            Tapping a word in Reading sends the selected word and nearby sentence context to ChatGPT.
+            The result is cached against the passage context, so repeated taps can reuse the same
+            gloss instead of paying for another upstream API call.
+          </p>
+
+          <div class="dict-flow">
+            <div class="dflow-step dflow-tap">
+              <div class="dflow-icon">Tap</div>
+              <strong>User taps a word</strong>
+              <p>Reading view captures the selected word, nearby sentence context, and the passage identifier.</p>
+            </div>
+            <div class="dflow-arrow" aria-hidden="true">→</div>
+            <div class="dflow-step dflow-cache">
+              <div class="dflow-icon">Key</div>
+              <strong>Cache lookup</strong>
+              <p>The app checks whether this passage already has a gloss for the same word and context.</p>
+              <code class="dflow-key">key = passage + word + context</code>
+            </div>
+            <div class="dflow-arrow" aria-hidden="true">→</div>
+            <div class="dflow-branch">
+              <div class="dflow-result dflow-hit">
+                <span class="dflow-tag dflow-tag-hit">CACHE HIT</span>
+                <p>Return the saved gloss immediately. No repeat OpenAI request for the same passage context.</p>
+              </div>
+              <div class="dflow-result dflow-miss">
+                <span class="dflow-tag dflow-tag-miss">CACHE MISS</span>
+                <p>Use the credit-checked path, call ChatGPT, log token usage, then save the response for reuse.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="dict-arch">
+            <h3 class="subsection-title">Cache-first lookup design</h3>
+            <div class="dict-arch-grid">
+              <div class="darch-card">
+                <span class="darch-tier">01</span>
+                <h4>Context-aware selection</h4>
+                <p>The lookup is not just the raw word. It includes the selected word plus nearby sentence context, so the model can return the right sense and register.</p>
+                <ul class="darch-bullets">
+                  <li>Handles ambiguous words by using surrounding text.</li>
+                  <li>Keeps the definition appropriate for TOEFL study.</li>
+                  <li>Returns a short gloss, register note, and minimal example.</li>
+                </ul>
+              </div>
+              <div class="darch-card darch-card-l2">
+                <span class="darch-tier darch-tier-l2">02</span>
+                <h4>Per-passage cache</h4>
+                <p>Responses can be cached per passage, so repeat taps on the same reading content reuse the saved definition instead of calling ChatGPT again.</p>
+                <ul class="darch-bullets">
+                  <li>Reduces repeated latency while reading.</li>
+                  <li>Reduces avoidable upstream API calls.</li>
+                  <li>Keeps repeated lookup behavior predictable for users.</li>
+                </ul>
+              </div>
+              <div class="darch-card darch-card-l3">
+                <span class="darch-tier darch-tier-l3">03</span>
+                <h4>Credit-checked ChatGPT call</h4>
+                <p>If the cache cannot answer, <code>OpenAiTapDictionaryClient</code> uses the same credit-checked AI path as the rest of the product.</p>
+                <ul class="darch-bullets">
+                  <li>Only misses need a new upstream AI request.</li>
+                  <li>Input and output token usage are logged.</li>
+                  <li>The new response becomes the cached answer for repeat taps.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="dict-impact-grid">
+            <div class="dict-key-card">
+              <h4>Why the cache key includes context</h4>
+              <pre class="dict-code"><span class="dc-c">// pseudo-Dart</span>
+String <span class="dc-f">cacheKey</span>(String word, String passageId, String sentence) {
+  final context = <span class="dc-f">nearbySentenceContext</span>(sentence, around: word);
+  return <span class="dc-f">sha1</span>([
+    word.<span class="dc-f">toLowerCase</span>(),
+    passageId,
+    context,
+  ].<span class="dc-f">join</span>(<span class="dc-s">'|'</span>));
+}</pre>
+              <p>Including sentence context prevents incorrect reuse across senses. <code>"bank"</code> in finance and <code>"bank"</code> beside a river should not share the same cached gloss.</p>
+            </div>
+            <div class="dict-stats-card">
+              <h4>What the cache protects</h4>
+              <div class="dstat-row">
+                <span class="dstat-val">Cost</span>
+                <span class="dstat-label">repeat taps do not need repeat upstream API calls</span>
+              </div>
+              <div class="dstat-divider"></div>
+              <div class="dstat-row">
+                <span class="dstat-val">Latency</span>
+                <span class="dstat-label">cached definitions can render without another model round trip</span>
+              </div>
+              <div class="dstat-divider"></div>
+              <div class="dstat-row">
+                <span class="dstat-val">Context</span>
+                <span class="dstat-label">same word in a different sentence can still get a different gloss</span>
+              </div>
+              <div class="dstat-divider"></div>
+              <div class="dstat-row">
+                <span class="dstat-val">Logging</span>
+                <span class="dstat-label">new ChatGPT calls still report token usage for cost analysis</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dict-proof">
+            <span class="proof-tag">Per-passage cache</span>
+            <span class="proof-tag">Context-aware cache key</span>
+            <span class="proof-tag">Credit-checked misses</span>
+            <span class="proof-tag">Reduced repeat API calls</span>
+            <span class="proof-tag">Token usage logged</span>
+          </div>
+        </div>
+      </section>
+
       <!-- ─── CREDIT SYSTEM ─────────────────────────────────────────────── -->
-      <section id="credits" class="section">
+      <section id="credits" class="section alt-section">
         <div class="container">
           <p class="eyebrow">Credit &amp; quota system</p>
           <h2 class="section-title">AI usage without cost surprises</h2>

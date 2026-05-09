@@ -1,11 +1,12 @@
 (() => {
     const KO = {
-      /* Header page tabs */
-      "Intro":   "Intro",
-      "Tech":    "Tech",
-      "AI":      "AI",
-      "Growth":  "Growth",
-      "Contact": "Contact",
+      /* Header page tabs (keep English in KR mode) */
+      "About":      "About",
+      "Build":      "Build",
+      "AI Engine":  "AI Engine",
+      "Marketing":  "Marketing",
+      "Blueprint":  "Blueprint",
+      "Contact":    "Contact",
   
       /* Back link */
       "Back to portfolio": "포트폴리오로 돌아가기",
@@ -19,6 +20,8 @@
       "Supabase edge functions": "Supabase 에지 함수",
       "TOEFL task types":        "토플 문제 유형",
       "Shared packages":         "공유 패키지 구조",
+      "Lines of code": "코드 라인 수",
+      "Unique function names": "고유 함수 이름",
   
       /* Repo map */
       "Repository structure":      "저장소 구조",
@@ -98,7 +101,11 @@
   
       /* AI */
       "AI integration": "AI 기술 통합 상세",
-      "AI scoring, speech recognition, and tutor": "AI 채점, 음성 인식 및 튜터 시스템",
+      "AI scoring, speech recognition, content generation, and tap dictionary":
+        "AI 채점, 음성 인식, 콘텐츠 생성 및 탭 사전",
+      "ChatGPT tap dictionary": "ChatGPT 탭 사전",
+      "Context-aware definitions": "문맥 기반 정의",
+      "Credit-gated requests": "크레딧 게이트 요청",
       "Gemini AI scoring": "Gemini AI 자동 채점",
       "Deepgram speech recognition": "Deepgram 음성 전사(STT)",
       "Content generation": "콘텐츠 자동 생성",
@@ -149,15 +156,16 @@
       /* CTA */
       "Interested in working together?": "협업에 관심이 있으신가요?",
       "This is the level of engineering I bring to a team.": "제가 팀에 기여할 수 있는 기술적 수준입니다.",
-      "Full-stack mobile, AI integration, backend serverless, and product ownership. Korea-based or remote.":
-        "풀스택 모바일, AI 통합, 서버리스 백엔드 및 제품 총괄 역량을 갖추고 있습니다. (국내/원격 모두 가능)",
+      "I bring hands-on full-stack mobile engineering, practical AI integration, serverless backend architecture, and end-to-end product ownership from planning to launch and iteration. Available for Korea-based and remote teams.":
+        "풀스택 모바일 엔지니어링을 중심으로 실무형 AI 통합, Serverless Backend Architecture, 기획부터 출시와 개선까지 이어지는 End-to-End Product Ownership 역량을 갖추고 있습니다. 국내 팀은 물론 Remote 기반 협업도 가능합니다.",
       "Get in touch": "연락하기",
       "Back to portfolio": "포트폴리오로 돌아가기",
   
       /* AI page essentials */
       "AI-native products": "AI 기반 제품 설계",
-      "Gemini scores user writing and speaking. Deepgram transcribes speech in real time. Inworld TTS voices every listening exercise. A credit wallet controls cost at every layer. This is what AI looks like when it's the product, not a feature.":
-        "AI를 단순한 기능이 아닌 제품의 핵심으로 활용합니다. Gemini의 채점, Deepgram의 음성 인식, TTS 음원 생성 및 비용 제어를 위한 크레딧 시스템까지 통합적으로 관리합니다.",
+      "Gemini scores user writing and speaking. Deepgram transcribes speech in real time. Inworld TTS voices every listening exercise. ChatGPT powers the tap dictionary for instant, in-context definitions. A credit wallet controls cost at every layer. This is what AI looks like when it's the product, not a feature.":
+        "AI를 단순한 기능이 아닌 제품의 핵심으로 활용합니다. Gemini 채점, Deepgram 음성 인식, Inworld TTS 청취 음원, 탭 사전을 통한 ChatGPT 기반 문맥 속 즉시 정의, 그리고 모든 계층에서 비용을 관리하는 크레딧 지갑까지 하나의 제품으로 묶었습니다.",
+      "Tap dictionary": "탭 사전",
       "AI providers integrated": "통합된 AI 제공업체",
       "AI-powered task types": "AI 기반 학습 유형",
       "Retry logic on scoring": "채점 실패 재시도 로직",
@@ -185,6 +193,71 @@
       "Token budgets. Retry logic. Multi-tier model routing. Credit wallets. Cost logging. This is what responsible AI integration looks like when real users and real money are involved.":
         "토큰 예산, 재시도 로직, 모델 라우팅, 결제 지갑 연동 등 실제 유저와 비용이 발생하는 환경에서 책임감 있는 AI 통합의 표준을 제시합니다.",
       "See full tech deep-dive": "기술 상세 분석 전체 보기",
+
+      /* AI page – Tap dictionary cache section */
+      "Per-passage tap dictionary": "지문 단위 탭 사전",
+      "Cache": "캐시",
+      "Instant in-context definitions, cached per passage": "문맥 기반 즉시 정의, 지문 단위 캐싱",
+      "Tapping a word in Reading sends the selected word and nearby sentence context to ChatGPT. The result is cached against the passage context, so repeated taps can reuse the same gloss instead of paying for another upstream API call.":
+        "Reading에서 단어를 탭하면 선택된 단어와 주변 문장 문맥을 ChatGPT로 보냅니다. 결과는 지문 문맥 기준으로 캐시되어, 반복 탭 시 추가 API 호출 없이 같은 정의를 재사용할 수 있습니다.",
+      "Tap": "탭",
+      "Key": "키",
+      "CACHE HIT": "캐시 적중",
+      "CACHE MISS": "캐시 미스",
+      "Reading view captures the selected word, nearby sentence context, and the passage identifier.":
+        "Reading 화면은 선택된 단어, 주변 문장 문맥, 지문 식별자를 함께 캡처합니다.",
+      "The app checks whether this passage already has a gloss for the same word and context.":
+        "앱은 해당 지문에 같은 단어와 문맥에 대한 정의가 이미 있는지 먼저 확인합니다.",
+      "Return the saved gloss immediately. No repeat OpenAI request for the same passage context.":
+        "저장된 정의를 즉시 반환합니다. 같은 지문 문맥에 대해 OpenAI 요청을 반복하지 않습니다.",
+      "Use the credit-checked path, call ChatGPT, log token usage, then save the response for reuse.":
+        "크레딧 확인 경로를 거쳐 ChatGPT를 호출하고, 토큰 사용량을 기록한 뒤 응답을 재사용할 수 있도록 저장합니다.",
+      "User taps a word": "사용자 단어 탭",
+      "Cache lookup": "캐시 조회",
+      "Cache-first lookup design": "캐시 우선 조회 설계",
+      "Context-aware selection": "문맥 기반 단어 선택",
+      "Per-passage cache": "지문 단위 캐시",
+      "Credit-checked ChatGPT call": "크레딧 확인 후 ChatGPT 호출",
+      "The lookup is not just the raw word. It includes the selected word plus nearby sentence context, so the model can return the right sense and register.":
+        "조회 기준은 단어 자체에 그치지 않습니다. 선택된 단어와 주변 문장 문맥을 함께 보내 모델이 정확한 의미와 어감을 반환할 수 있게 합니다.",
+      "Handles ambiguous words by using surrounding text.":
+        "주변 텍스트를 활용해 중의적인 단어를 처리합니다.",
+      "Keeps the definition appropriate for TOEFL study.":
+        "TOEFL 학습에 맞는 정의를 유지합니다.",
+      "Returns a short gloss, register note, and minimal example.":
+        "짧은 정의, 어감 설명, 최소 예문을 반환합니다.",
+      "Responses can be cached per passage, so repeat taps on the same reading content reuse the saved definition instead of calling ChatGPT again.":
+        "응답은 지문 단위로 캐시할 수 있어, 같은 Reading 콘텐츠에서 반복 탭하면 ChatGPT를 다시 호출하지 않고 저장된 정의를 재사용합니다.",
+      "Reduces repeated latency while reading.":
+        "Reading 중 반복 지연 시간을 줄입니다.",
+      "Reduces avoidable upstream API calls.":
+        "피할 수 있는 상위 API 호출을 줄입니다.",
+      "Keeps repeated lookup behavior predictable for users.":
+        "사용자가 반복 조회 시 예측 가능한 동작을 경험하게 합니다.",
+      "If the cache cannot answer, OpenAiTapDictionaryClient uses the same credit-checked AI path as the rest of the product.":
+        "캐시가 응답할 수 없으면 OpenAiTapDictionaryClient가 제품의 다른 AI 기능과 동일한 크레딧 확인 경로를 사용합니다.",
+      "Only misses need a new upstream AI request.":
+        "캐시 미스일 때만 새 AI 요청이 필요합니다.",
+      "Input and output token usage are logged.":
+        "입력 및 출력 토큰 사용량을 기록합니다.",
+      "The new response becomes the cached answer for repeat taps.":
+        "새 응답은 반복 탭을 위한 캐시된 답변이 됩니다.",
+      "Why the cache key includes context": "캐시 키에 문맥을 포함하는 이유",
+      "What the cache protects": "캐시가 보호하는 것",
+      "Including sentence context prevents incorrect reuse across senses. \"bank\" in finance and \"bank\" beside a river should not share the same cached gloss.":
+        "문장 문맥을 포함하면 의미가 다른 단어의 잘못된 재사용을 막을 수 있습니다. 금융 문맥의 \"bank\"와 강가의 \"bank\"는 같은 캐시 정의를 공유하면 안 됩니다.",
+      "Cost": "비용",
+      "Latency": "지연 시간",
+      "Context": "문맥",
+      "Logging": "로깅",
+      "repeat taps do not need repeat upstream API calls": "반복 탭에 반복 API 호출이 필요하지 않습니다",
+      "cached definitions can render without another model round trip": "캐시된 정의는 추가 모델 왕복 없이 표시할 수 있습니다",
+      "same word in a different sentence can still get a different gloss": "같은 단어라도 다른 문장에서는 다른 정의를 받을 수 있습니다",
+      "new ChatGPT calls still report token usage for cost analysis": "새 ChatGPT 호출은 비용 분석을 위해 토큰 사용량을 기록합니다",
+      "Context-aware cache key": "문맥 인지 캐시 키",
+      "Credit-checked misses": "캐시 미스 시 크레딧 확인",
+      "Reduced repeat API calls": "반복 API 호출 감소",
+      "Token usage logged": "토큰 사용량 로깅",
   
       /* Growth page essentials */
       "Growth & marketing": "성장 및 마케팅 전략",
@@ -225,21 +298,21 @@
     project: {
       en: {
         title:       "Missroot TOEFL – Technical Deep Dive · Hyunsoo Lee",
-        description: "Technical deep-dive: Missroot TOEFL architecture, feature modules, Supabase edge functions, AI scoring, billing, and content pipeline.",
+        description: "Technical deep-dive: Missroot TOEFL architecture, feature modules, Supabase edge functions, AI scoring, tap dictionary, billing, and content pipeline.",
       },
       ko: {
         title:       "Missroot TOEFL – 기술 상세 분석 · 이현수",
-        description: "Missroot TOEFL 아키텍처, 기능 모듈, Supabase 에지 함수, AI 채점, 결제, 콘텐츠 파이프라인 기술 상세 분석.",
+        description: "Missroot TOEFL 아키텍처, 기능 모듈, Supabase 에지 함수, AI 채점, 탭 사전, 결제, 콘텐츠 파이프라인 기술 상세 분석.",
       },
     },
     ai: {
       en: {
         title:       "AI Integration · Hyunsoo Lee",
-        description: "How Hyunsoo Lee uses Gemini, Deepgram, and Inworld TTS in a production AI app — scoring, generation, speech recognition, cost control.",
+        description: "How Hyunsoo Lee uses Gemini, Deepgram, Inworld TTS, and ChatGPT in a production AI app — scoring, generation, speech recognition, tap dictionary, cost control.",
       },
       ko: {
         title:       "AI 통합 · 이현수",
-        description: "Gemini, Deepgram, Inworld TTS를 프로덕션 AI 앱에서 활용하는 방식: 채점, 생성, 음성 인식, 비용 제어.",
+        description: "Gemini, Deepgram, Inworld TTS, ChatGPT를 프로덕션 AI 앱에서 활용하는 방식: 채점, 생성, 음성 인식, 탭 사전, 비용 제어.",
       },
     },
     growth: {

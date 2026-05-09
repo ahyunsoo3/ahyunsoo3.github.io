@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>04 AI Pipeline · Spec · Hyunsoo Lee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="project.css" />
+    <link rel="stylesheet" href="spec.css" />
+  </head>
+  <body>
+
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Hyunsoo Lee home">
+        <span class="brand-mark">HL</span>
+        <span class="brand-name">Hyunsoo Lee</span>
+      </a>
+      <nav class="page-tabs" aria-label="Primary navigation">
+        <a class="page-tab" href="index.html">About</a>
+        <a class="page-tab" href="project.html">Build</a>
+        <a class="page-tab" href="ai.html">AI Engine</a>
+        <a class="page-tab" href="growth.html">Marketing</a>
+        <a class="page-tab active" href="spec.html">Blueprint</a>
+        <a class="page-tab" href="index.html#contact">Contact</a>
+      </nav>
+      <div class="language-tabs" role="group" aria-label="Language selector">
+        <button class="language-tab" type="button" data-lang-button="en">EN</button>
+        <button class="language-tab" type="button" data-lang-button="ko">KR</button>
+      </div>
+    </header>
+
+    <button class="ssb-open-btn" id="ssb-open-btn" aria-label="Open contents sidebar" aria-expanded="false">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      Contents
+    </button>
+    <div class="ssb-overlay" id="ssb-overlay"></div>
+
+    <aside class="spec-sidebar" id="spec-sidebar" aria-label="Spec navigation">
+      <div class="ssb-header">
+        <a class="ssb-brand" href="spec.html">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Spec Docs
+        </a>
+        <button class="ssb-collapse-btn" id="ssb-collapse-btn" aria-label="Collapse sidebar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+      </div>
+      <nav class="ssb-nav" aria-label="Spec pages">
+        <a class="ssb-overview-link" href="spec.html">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Overview
+        </a>
+        <div class="ssb-group" data-group="arch"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-arch"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">01</span><span class="ssb-group-label">System Architecture</span></button><ul class="ssb-items" id="ssb-arch"><li><a class="ssb-link" href="spec-arch.html" data-page="system-arch">Full-stack topology</a></li><li><a class="ssb-link" href="spec-arch.html" data-page="system-arch">Layer specification</a></li></ul></div>
+        <div class="ssb-group" data-group="modules"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-modules"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">02</span><span class="ssb-group-label">Flutter Modules</span></button><ul class="ssb-items" id="ssb-modules"><li><a class="ssb-link" href="spec-modules.html" data-page="module-map">14 feature modules</a></li><li><a class="ssb-link" href="spec-modules.html" data-page="module-map">Module specification</a></li></ul></div>
+        <div class="ssb-group" data-group="backend"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-backend"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">03</span><span class="ssb-group-label">Edge Functions</span></button><ul class="ssb-items" id="ssb-backend"><li><a class="ssb-link" href="spec-backend.html" data-page="backend-fns">9 Deno functions</a></li><li><a class="ssb-link" href="spec-backend.html" data-page="backend-fns">Function specification</a></li></ul></div>
+        <div class="ssb-group" data-group="ai"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-ai"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">04</span><span class="ssb-group-label">AI Pipeline</span></button><ul class="ssb-items" id="ssb-ai"><li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Call flow</a></li><li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Provider specification</a></li><li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Credit &amp; retry logic</a></li></ul></div>
+        <div class="ssb-group" data-group="billing"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-billing"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">05</span><span class="ssb-group-label">Billing Architecture</span></button><ul class="ssb-items" id="ssb-billing"><li><a class="ssb-link" href="spec-billing.html" data-page="billing">Billing flow</a></li><li><a class="ssb-link" href="spec-billing.html" data-page="billing">Plan tiers</a></li><li><a class="ssb-link" href="spec-billing.html" data-page="billing">Store packs</a></li></ul></div>
+        <div class="ssb-group" data-group="database"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-database"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">06</span><span class="ssb-group-label">Database Schema</span></button><ul class="ssb-items" id="ssb-database"><li><a class="ssb-link" href="spec-db.html" data-page="database">Table groups</a></li><li><a class="ssb-link" href="spec-db.html" data-page="database">Key table spec</a></li></ul></div>
+        <div class="ssb-group" data-group="packages"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-packages"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">07</span><span class="ssb-group-label">Shared Packages</span></button><ul class="ssb-items" id="ssb-packages"><li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_ui</a></li><li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_network</a></li><li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_billing</a></li></ul></div>
+      </nav>
+    </aside>
+
+    <main class="spec-page-main">
+      <div class="container spec-page-inner">
+
+        <nav class="spec-breadcrumb" aria-label="Breadcrumb">
+          <a href="spec.html">Spec</a>
+          <span>/</span>
+          <span>04 AI Pipeline</span>
+        </nav>
+
+        <header class="spec-page-hd">
+          <span class="spec-page-num">04</span>
+          <h1 class="spec-page-title">AI Pipeline</h1>
+          <p class="spec-page-desc">
+            Four AI providers handle speech, text, evaluation, and conversation. All AI calls
+            go through an edge function credit gate — the client never holds an API key.
+            Requests are retried up to 10× with exponential backoff.
+          </p>
+        </header>
+
+        <div class="spec-stat-row">
+          <div class="spec-stat-box"><span class="spec-stat-num">4</span><span class="spec-stat-label">AI Providers</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">10×</span><span class="spec-stat-label">Max Retries</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">0</span><span class="spec-stat-label">Client-side keys</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">402</span><span class="spec-stat-label">On no credits</span></div>
+        </div>
+
+        <nav class="spec-toc" aria-label="On this page">
+          <span class="spec-toc-label">On this page</span>
+          <ul>
+            <li><a href="#call-flow">AI call flow diagram</a></li>
+            <li><a href="#ai-call-steps">Step-by-step walkthrough</a></li>
+            <li><a href="#provider-specification">Provider specification</a></li>
+            <li><a href="#prompt-design">Prompt design</a></li>
+            <li><a href="#credit-retry">Credit &amp; retry logic</a></li>
+            <li><a href="#fallback-behavior">Fallback behavior</a></li>
+          </ul>
+        </nav>
+
+        <section class="spec-section-block" id="call-flow">
+          <h2 class="spec-section-h">AI call flow</h2>
+          <p class="spec-section-p">
+            The Flutter client sends a JWT-authenticated POST to the relevant edge function.
+            The edge function checks the user's credit balance, calls the upstream AI provider,
+            deducts credits on success, and returns the result. Provider failures trigger retry.
+          </p>
+          <div class="spec-tree-wrap">
+            <pre class="spec-tree"><code>Flutter Client
+└── POST /functions/v1/{ai-fn}  (JWT + payload)
+    │
+    ├── _shared/auth.ts → verify JWT
+    ├── DB: SELECT user_credits WHERE user_id = $uid
+    │       └─ insufficient? → 402 Payment Required
+    │
+    ├── Call upstream provider  (retry ×10, expo backoff)
+    │   ├── tts-gemini       → Gemini 2.5 Pro TTS
+    │   ├── stt-deepgram     → Deepgram Nova-3 STT
+    │   ├── evaluate-writing → ChatGPT-4o (structured output)
+    │   └── generate-study-plan → Gemini 2.5 Pro (JSON mode)
+    │
+    ├── DB: UPDATE user_credits  (deduct on success)
+    ├── DB: INSERT practice_history
+    └── Response → Flutter Client</code></pre>
+          </div>
+        </section>
+
+        <!-- Step-by-step walkthrough -->
+        <section class="spec-section-block" id="ai-call-steps">
+          <h2 class="spec-section-h">Step-by-step walkthrough</h2>
+          <p class="spec-section-p">
+            Every AI request follows this exact pipeline. The credit gate and retry logic are
+            encapsulated inside the edge function — the Flutter client sees only success or a typed error.
+          </p>
+          <div class="spec-flow">
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">1</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">Client sends authenticated POST</div>
+                <div class="spec-flow-desc">Flutter's <code>core_network</code> Dio client sends <code>POST /functions/v1/{fn-name}</code> with the user's JWT in the <code>Authorization</code> header and the payload (text / audio / prompt) in the body. Timeout: 30s.</div>
+              </div>
+            </div>
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">2</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">JWT verified</div>
+                <div class="spec-flow-desc"><code>_shared/auth.ts · verifyJwt(req)</code> calls Supabase Auth to validate the token and extract <code>user_id</code>. Invalid or expired tokens return <code>401 Unauthorized</code> immediately — no DB queries executed.</div>
+              </div>
+            </div>
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">3</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">Credit balance checked</div>
+                <div class="spec-flow-desc"><code>SELECT balance FROM user_credits WHERE id = $uid</code>. If <code>balance &lt; required_cost</code>, the function returns <code>402 Payment Required</code> with the current balance and the cost in the response body. No AI call is made.</div>
+              </div>
+            </div>
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">4</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">Upstream provider called (with retry)</div>
+                <div class="spec-flow-desc">The edge function calls the AI provider with exponential backoff. Attempt 1 at 0s, attempt 2 at 1s, attempt 3 at 2s, …, up to the plan's max retry count (3–10). Provider-specific errors (rate limit, timeout) trigger retry; malformed input errors do not.</div>
+              </div>
+            </div>
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">5</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">Credits deducted (on success only)</div>
+                <div class="spec-flow-desc"><code>UPDATE user_credits SET balance = balance - $cost WHERE id = $uid</code>. This only executes after a successful provider response. If the provider fails after all retries, the user is never charged. Deduction and history insert happen in a single database transaction.</div>
+              </div>
+            </div>
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">6</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">Session logged</div>
+                <div class="spec-flow-desc"><code>INSERT INTO practice_history (user_id, module, type, score, ai_feedback)</code>. The AI response is stored as structured JSON in <code>ai_feedback</code>, enabling the analytics module to display historical scores without re-calling the AI.</div>
+              </div>
+            </div>
+            <div class="spec-flow-step">
+              <div class="spec-flow-num">7</div>
+              <div class="spec-flow-content">
+                <div class="spec-flow-title">Response returned to client</div>
+                <div class="spec-flow-desc">The processed result (transcript, rubric JSON, audio bytes, or study plan) is returned as <code>200 OK</code>. The Riverpod notifier updates state and Flutter rebuilds the feedback screen.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="spec-section-block" id="provider-specification">
+          <h2 class="spec-section-h">Provider specification</h2>
+          <div class="spec-table-wrap">
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th>Provider</th>
+                  <th>Model</th>
+                  <th>Use case</th>
+                  <th>Input</th>
+                  <th>Output</th>
+                  <th>Credit cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Google Gemini</td>
+                  <td>gemini-2.5-pro</td>
+                  <td>TTS, feedback, study plan</td>
+                  <td>Text / JSON prompt</td>
+                  <td>Audio / JSON</td>
+                  <td>2–5 / call</td>
+                </tr>
+                <tr>
+                  <td>Deepgram</td>
+                  <td>nova-3</td>
+                  <td>Speaking evaluation (STT)</td>
+                  <td>WAV / WebM audio</td>
+                  <td>Transcript + confidence</td>
+                  <td>3 / call</td>
+                </tr>
+                <tr>
+                  <td>Inworld AI</td>
+                  <td>—</td>
+                  <td>NPC conversation (AI tutor)</td>
+                  <td>Text utterance</td>
+                  <td>NPC dialogue + emotion</td>
+                  <td>1 / turn</td>
+                </tr>
+                <tr>
+                  <td>OpenAI</td>
+                  <td>gpt-4o</td>
+                  <td>Writing evaluation</td>
+                  <td>Essay text</td>
+                  <td>Rubric JSON (iBT scale)</td>
+                  <td>5 / call</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Prompt design -->
+        <section class="spec-section-block" id="prompt-design">
+          <h2 class="spec-section-h">Prompt design</h2>
+          <p class="spec-section-p">
+            Each AI use case has a carefully structured system prompt that enforces output format,
+            scoring rubric, and tone. All prompts are stored in the edge function — never in the client.
+          </p>
+
+          <div class="spec-code-wrap">
+            <div class="spec-code-label"><span class="spec-code-dot"></span>evaluate-writing — system prompt excerpt</div>
+            <div class="spec-tree-wrap">
+              <pre class="spec-tree"><code>You are an expert TOEFL iBT writing evaluator. Score the essay on the four iBT criteria,
+each on a 0–30 scale. Return ONLY valid JSON, no prose.
+
+Response schema:
+{
+  "taskAchievement": { "score": number, "feedback": string },
+  "coherenceCohesion": { "score": number, "feedback": string },
+  "lexicalResource": { "score": number, "feedback": string },
+  "grammaticalRange": { "score": number, "feedback": string },
+  "overallScore": number,
+  "strengths": string[],
+  "improvements": string[]
+}
+
+Task prompt: {{task_prompt}}
+Essay: {{essay_text}}</code></pre>
+            </div>
+          </div>
+
+          <div class="spec-code-wrap">
+            <div class="spec-code-label"><span class="spec-code-dot"></span>generate-study-plan — system prompt excerpt</div>
+            <div class="spec-tree-wrap">
+              <pre class="spec-tree"><code>You are a TOEFL study planner. Given the student's data, create a personalized weekly
+study plan as structured JSON. Distribute tasks to reach the target score by the exam date.
+
+Student data:
+- Current scores: R={{reading}} L={{listening}} S={{speaking}} W={{writing}}
+- Target score: {{target_score}} by {{exam_date}}
+- Weak sections: {{weak_sections}}
+- Daily availability: {{daily_hours}} hours
+
+Return a JSON array of 7 days, each with an array of tasks:
+{ "day": "Monday", "tasks": [{ "module": string, "duration_min": number, "focus": string }] }</code></pre>
+            </div>
+          </div>
+
+          <div class="spec-callout spec-callout--tip">
+            <div class="spec-callout-icon">T</div>
+            <div class="spec-callout-body">
+              <span class="spec-callout-title">Structured output enforced at prompt level</span>
+              All Gemini and GPT-4o prompts use explicit JSON schema instructions in the system prompt, plus the provider's native structured-output mode (<code>response_format: { type: "json_object" }</code> for OpenAI, <code>responseSchema</code> for Gemini). This eliminates JSON parse failures in the edge function response handler.
+            </div>
+          </div>
+        </section>
+
+        <section class="spec-section-block" id="credit-retry">
+          <h2 class="spec-section-h">Credit &amp; retry logic</h2>
+          <div class="spec-table-wrap">
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th>Plan</th>
+                  <th>Monthly credits</th>
+                  <th>Extra packs available</th>
+                  <th>Retry max</th>
+                  <th>On retry failure</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Free</td><td>30</td><td>Yes</td><td>3</td><td>503 + user-facing error</td></tr>
+                <tr><td>Plus</td><td>200</td><td>Yes</td><td>5</td><td>503 + user-facing error</td></tr>
+                <tr><td>Pro</td><td>600</td><td>Yes</td><td>10</td><td>503 + user-facing error</td></tr>
+                <tr><td>Hyper</td><td>Unlimited</td><td>—</td><td>10</td><td>503 + user-facing error</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Fallback behavior -->
+        <section class="spec-section-block" id="fallback-behavior">
+          <h2 class="spec-section-h">Fallback behavior</h2>
+          <p class="spec-section-p">
+            When AI providers are unavailable or return errors, the system fails gracefully with
+            informative user feedback and zero credit deduction.
+          </p>
+          <div class="spec-table-wrap">
+            <table class="spec-table">
+              <thead>
+                <tr><th>Scenario</th><th>HTTP</th><th>Credits charged</th><th>User experience</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Insufficient credits</td><td>402</td><td>None</td>
+                  <td>Upgrade prompt shown immediately; current balance displayed</td>
+                </tr>
+                <tr>
+                  <td>Provider rate limit (429)</td><td>—</td><td>None</td>
+                  <td>Retried automatically with backoff; user sees a loading state</td>
+                </tr>
+                <tr>
+                  <td>Provider timeout (&gt;30s)</td><td>—</td><td>None</td>
+                  <td>Retry attempt; after max retries, 503 returned with "Try again later"</td>
+                </tr>
+                <tr>
+                  <td>All retries exhausted</td><td>503</td><td>None</td>
+                  <td>"Service temporarily unavailable" screen with retry button</td>
+                </tr>
+                <tr>
+                  <td>Invalid AI output (parse fail)</td><td>422</td><td>None</td>
+                  <td>Retry with slightly adjusted prompt; if persistent, 503</td>
+                </tr>
+                <tr>
+                  <td>Provider returns success</td><td>200</td><td>Deducted</td>
+                  <td>Full feedback screen rendered</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="spec-callout spec-callout--decision">
+            <div class="spec-callout-icon">D</div>
+            <div class="spec-callout-body">
+              <span class="spec-callout-title">Why four different AI providers?</span>
+              Each provider is chosen for its strength in a specific task. Deepgram Nova-3 leads for real-time speech recognition accuracy. Gemini 2.5 Pro excels at structured JSON generation and multilingual TTS. GPT-4o's structured output mode produces the most consistent writing rubric scores. Inworld AI provides interactive NPC conversation that no general LLM matches for character immersion.
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-page-nav" aria-label="Page navigation">
+          <a class="spn-prev" href="spec-backend.html">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            03 Edge Functions
+          </a>
+          <a class="spn-next" href="spec-billing.html">
+            05 Billing Architecture
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </nav>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span class="footer-copy">© 2025 Hyunsoo Lee · Missroot TOEFL</span>
+        <nav class="footer-links">
+          <a href="index.html">Intro</a><a href="project.html">Tech</a><a href="ai.html">AI</a><a href="growth.html">Growth</a><a href="spec.html">Spec</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="language.js"></script>
+    <script src="spec-nav.js"></script>
+  </body>
+</html>

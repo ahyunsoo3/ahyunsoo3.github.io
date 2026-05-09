@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>07 Shared Packages · Spec · Hyunsoo Lee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="project.css" />
+    <link rel="stylesheet" href="spec.css" />
+  </head>
+  <body>
+
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Hyunsoo Lee home">
+        <span class="brand-mark">HL</span>
+        <span class="brand-name">Hyunsoo Lee</span>
+      </a>
+      <nav class="page-tabs" aria-label="Primary navigation">
+        <a class="page-tab" href="index.html">About</a>
+        <a class="page-tab" href="project.html">Build</a>
+        <a class="page-tab" href="ai.html">AI Engine</a>
+        <a class="page-tab" href="growth.html">Marketing</a>
+        <a class="page-tab active" href="spec.html">Blueprint</a>
+        <a class="page-tab" href="index.html#contact">Contact</a>
+      </nav>
+      <div class="language-tabs" role="group" aria-label="Language selector">
+        <button class="language-tab" type="button" data-lang-button="en">EN</button>
+        <button class="language-tab" type="button" data-lang-button="ko">KR</button>
+      </div>
+    </header>
+
+    <button class="ssb-open-btn" id="ssb-open-btn" aria-label="Open contents sidebar" aria-expanded="false">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      Contents
+    </button>
+    <div class="ssb-overlay" id="ssb-overlay"></div>
+
+    <aside class="spec-sidebar" id="spec-sidebar" aria-label="Spec navigation">
+      <div class="ssb-header">
+        <a class="ssb-brand" href="spec.html">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Spec Docs
+        </a>
+        <button class="ssb-collapse-btn" id="ssb-collapse-btn" aria-label="Collapse sidebar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+      </div>
+      <nav class="ssb-nav" aria-label="Spec pages">
+        <a class="ssb-overview-link" href="spec.html">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Overview
+        </a>
+        <div class="ssb-group" data-group="arch"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-arch"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">01</span><span class="ssb-group-label">System Architecture</span></button><ul class="ssb-items" id="ssb-arch"><li><a class="ssb-link" href="spec-arch.html" data-page="system-arch">Full-stack topology</a></li><li><a class="ssb-link" href="spec-arch.html" data-page="system-arch">Layer specification</a></li></ul></div>
+        <div class="ssb-group" data-group="modules"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-modules"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">02</span><span class="ssb-group-label">Flutter Modules</span></button><ul class="ssb-items" id="ssb-modules"><li><a class="ssb-link" href="spec-modules.html" data-page="module-map">14 feature modules</a></li><li><a class="ssb-link" href="spec-modules.html" data-page="module-map">Module specification</a></li></ul></div>
+        <div class="ssb-group" data-group="backend"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-backend"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">03</span><span class="ssb-group-label">Edge Functions</span></button><ul class="ssb-items" id="ssb-backend"><li><a class="ssb-link" href="spec-backend.html" data-page="backend-fns">9 Deno functions</a></li><li><a class="ssb-link" href="spec-backend.html" data-page="backend-fns">Function specification</a></li></ul></div>
+        <div class="ssb-group" data-group="ai"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-ai"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">04</span><span class="ssb-group-label">AI Pipeline</span></button><ul class="ssb-items" id="ssb-ai"><li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Call flow</a></li><li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Provider specification</a></li><li><a class="ssb-link" href="spec-ai.html" data-page="ai-pipeline">Credit &amp; retry logic</a></li></ul></div>
+        <div class="ssb-group" data-group="billing"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-billing"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">05</span><span class="ssb-group-label">Billing Architecture</span></button><ul class="ssb-items" id="ssb-billing"><li><a class="ssb-link" href="spec-billing.html" data-page="billing">Billing flow</a></li><li><a class="ssb-link" href="spec-billing.html" data-page="billing">Plan tiers</a></li><li><a class="ssb-link" href="spec-billing.html" data-page="billing">Store packs</a></li></ul></div>
+        <div class="ssb-group" data-group="database"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-database"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">06</span><span class="ssb-group-label">Database Schema</span></button><ul class="ssb-items" id="ssb-database"><li><a class="ssb-link" href="spec-db.html" data-page="database">Table groups</a></li><li><a class="ssb-link" href="spec-db.html" data-page="database">Key table spec</a></li></ul></div>
+        <div class="ssb-group" data-group="packages"><button class="ssb-group-btn" aria-expanded="true" aria-controls="ssb-packages"><svg class="ssb-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg><span class="ssb-group-num">07</span><span class="ssb-group-label">Shared Packages</span></button><ul class="ssb-items" id="ssb-packages"><li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_ui</a></li><li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_network</a></li><li><a class="ssb-link" href="spec-packages.html" data-page="packages">core_billing</a></li></ul></div>
+      </nav>
+    </aside>
+
+    <main class="spec-page-main">
+      <div class="container spec-page-inner">
+
+        <nav class="spec-breadcrumb" aria-label="Breadcrumb">
+          <a href="spec.html">Spec</a>
+          <span>/</span>
+          <span>07 Shared Packages</span>
+        </nav>
+
+        <header class="spec-page-hd">
+          <span class="spec-page-num">07</span>
+          <h1 class="spec-page-title">Shared Packages</h1>
+          <p class="spec-page-desc">
+            Three internal packages shared across all 4 apps (TOEFL, SAT, IELTS, GRE).
+            They encapsulate the design system, networking, and billing — keeping feature
+            modules app-agnostic and independently testable.
+          </p>
+        </header>
+
+        <div class="spec-stat-row">
+          <div class="spec-stat-box"><span class="spec-stat-num">3</span><span class="spec-stat-label">Packages</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">4</span><span class="spec-stat-label">Apps using them</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">14</span><span class="spec-stat-label">Modules consuming</span></div>
+          <div class="spec-stat-box"><span class="spec-stat-num">3</span><span class="spec-stat-label">Test suites</span></div>
+        </div>
+
+        <nav class="spec-toc" aria-label="On this page">
+          <span class="spec-toc-label">On this page</span>
+          <ul>
+            <li><a href="#package-tree">Package structure</a></li>
+            <li><a href="#package-spec">Package specification</a></li>
+            <li><a href="#widget-catalog">core_ui widget catalog</a></li>
+            <li><a href="#network-api">core_network API</a></li>
+            <li><a href="#billing-api">core_billing public API</a></li>
+            <li><a href="#usage-examples">Usage examples</a></li>
+          </ul>
+        </nav>
+
+        <section class="spec-section-block" id="package-tree">
+          <h2 class="spec-section-h">Package structure</h2>
+          <div class="spec-tree-wrap">
+            <pre class="spec-tree"><code>packages/
+├── core_ui/
+│   ├── lib/
+│   │   ├── theme/       AppTheme, ColorTokens, TextStyles
+│   │   ├── widgets/     MRButton, MRCard, MRTextField, ScoreRing …
+│   │   └── animations/  FadeSlide, ScaleIn, SkeletonLoader
+│   └── pubspec.yaml     (flutter, material_color_utilities)
+│
+├── core_network/
+│   ├── lib/
+│   │   ├── client.dart  Dio singleton + interceptors
+│   │   ├── auth/        Token refresh interceptor
+│   │   └── errors/      NetworkException hierarchy
+│   └── pubspec.yaml     (dio, riverpod)
+│
+└── core_billing/
+    ├── lib/
+    │   ├── billing_service.dart   Unified purchase API
+    │   ├── apple/                 StoreKit 2 wrapper
+    │   ├── google/                Google Play Billing wrapper
+    │   └── lemon/                 Lemon Squeezy REST wrapper
+    └── pubspec.yaml     (in_app_purchase, http)</code></pre>
+          </div>
+        </section>
+
+        <section class="spec-section-block" id="package-spec">
+          <h2 class="spec-section-h">Package specification</h2>
+          <div class="spec-table-wrap">
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th>Package</th>
+                  <th>Key exports</th>
+                  <th>Dependencies</th>
+                  <th>Tested</th>
+                  <th>Used by</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>core_ui</td>
+                  <td>AppTheme, MRButton, MRCard, ScoreRing, SkeletonLoader</td>
+                  <td>flutter, material_color_utilities</td>
+                  <td>Widget tests</td>
+                  <td>All 14 modules</td>
+                </tr>
+                <tr>
+                  <td>core_network</td>
+                  <td>NetworkClient, NetworkException, authInterceptor</td>
+                  <td>dio, riverpod, flutter_secure_storage</td>
+                  <td>Unit + integration</td>
+                  <td>All 14 modules</td>
+                </tr>
+                <tr>
+                  <td>core_billing</td>
+                  <td>BillingService, PurchaseResult, PlanTier</td>
+                  <td>in_app_purchase, http, riverpod</td>
+                  <td>Unit + mock tests</td>
+                  <td>billing module</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- core_ui widget catalog -->
+        <section class="spec-section-block" id="widget-catalog">
+          <h2 class="spec-section-h">core_ui widget catalog</h2>
+          <p class="spec-section-p">
+            <code>core_ui</code> provides every visual component used across all 4 apps.
+            Widgets are fully themeable via the <code>AppTheme</code> token system and support both
+            light and dark mode out of the box.
+          </p>
+          <div class="spec-module-grid">
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">Button</div>
+              <div class="spec-module-name">MRButton</div>
+              <div class="spec-module-desc">Primary, secondary, and ghost variants. Supports loading state (spinner), disabled state, and icon prefix. Minimum tap target 48×48dp.</div>
+              <div class="spec-module-tags"><span class="spec-tag spec-tag--accent">3 variants</span><span class="spec-tag">Loading state</span><span class="spec-tag spec-tag--green">Accessible</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">Card</div>
+              <div class="spec-module-name">MRCard</div>
+              <div class="spec-module-desc">Elevated surface with configurable border radius, padding, and shadow level. Used for score cards, module tiles, and practice session summaries.</div>
+              <div class="spec-module-tags"><span class="spec-tag spec-tag--accent">4 shadow levels</span><span class="spec-tag">Configurable padding</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">Score</div>
+              <div class="spec-module-name">ScoreRing</div>
+              <div class="spec-module-desc">Animated circular progress ring with a central score label. Used throughout analytics and post-session feedback. Supports animated transition from 0 to target score on first render.</div>
+              <div class="spec-module-tags"><span class="spec-tag spec-tag--ai">Animated</span><span class="spec-tag">0–30 or 0–120 scale</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">Skeleton</div>
+              <div class="spec-module-name">SkeletonLoader</div>
+              <div class="spec-module-desc">Shimmer-effect placeholder shown while data loads. Accepts any shape via a <code>shape</code> parameter (rect, circle, rounded). Prevents cumulative layout shift.</div>
+              <div class="spec-module-tags"><span class="spec-tag spec-tag--ai">Shimmer animation</span><span class="spec-tag">Any shape</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">Input</div>
+              <div class="spec-module-name">MRTextField</div>
+              <div class="spec-module-desc">Material 3 text field with custom tokens. Supports leading/trailing icons, character counter, error text, and password toggle. Fully keyboard-accessible.</div>
+              <div class="spec-module-tags"><span class="spec-tag spec-tag--accent">Material 3</span><span class="spec-tag">Error states</span><span class="spec-tag spec-tag--green">A11y</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">Chip</div>
+              <div class="spec-module-name">MRChip</div>
+              <div class="spec-module-desc">Filter and suggestion chips used in vocabulary, study plan, and analytics screens. Supports single-select and multi-select modes, with animated selection indicator.</div>
+              <div class="spec-module-tags"><span class="spec-tag">Filter chips</span><span class="spec-tag">Suggestion chips</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">Anim</div>
+              <div class="spec-module-name">FadeSlide / ScaleIn</div>
+              <div class="spec-module-desc">Entrance animations. <code>FadeSlide</code> fades and slides content in from bottom or top. <code>ScaleIn</code> scales from 0.85 to 1.0. Both wrap any <code>Widget</code> child with configurable delay and duration.</div>
+              <div class="spec-module-tags"><span class="spec-tag spec-tag--ai">Entrance animations</span><span class="spec-tag">Configurable delay</span></div>
+            </div>
+
+            <div class="spec-module-card">
+              <div class="spec-module-num">Theme</div>
+              <div class="spec-module-name">AppTheme / ColorTokens</div>
+              <div class="spec-module-desc">Central theme configuration. <code>ColorTokens</code> defines semantic color names (<code>primary</code>, <code>surface</code>, <code>onSurface</code>). <code>AppTheme</code> builds Flutter <code>ThemeData</code> for light and dark modes from these tokens.</div>
+              <div class="spec-module-tags"><span class="spec-tag spec-tag--accent">Light + Dark</span><span class="spec-tag">Semantic tokens</span></div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- core_network API -->
+        <section class="spec-section-block" id="network-api">
+          <h2 class="spec-section-h">core_network API</h2>
+          <p class="spec-section-p">
+            <code>core_network</code> wraps Dio with auth, retry, and error mapping.
+            All feature modules use <code>NetworkClient</code> — never raw Dio.
+          </p>
+
+          <div class="spec-code-wrap">
+            <div class="spec-code-label"><span class="spec-code-dot"></span>NetworkClient usage (Dart)</div>
+            <div class="spec-tree-wrap">
+              <pre class="spec-tree"><code>// Provided via Riverpod
+final networkClientProvider = Provider((ref) => NetworkClient(
+  baseUrl: Env.supabaseUrl,
+  interceptors: [
+    AuthInterceptor(ref),   // attaches JWT, refreshes on 401
+    RetryInterceptor(),     // exponential backoff for 5xx
+    LogInterceptor(),       // dev-only request/response logging
+  ],
+));
+
+// In a repository
+class SpeakingRepository {
+  final NetworkClient _client;
+
+  Future&lt;TranscriptResult&gt; transcribeSpeech(Uint8List audio) async {
+    final response = await _client.post(
+      '/functions/v1/stt-deepgram',
+      data: FormData.fromMap({ 'audio': MultipartFile.fromBytes(audio) }),
+    );
+    return TranscriptResult.fromJson(response.data);
+  }
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="spec-code-wrap">
+            <div class="spec-code-label"><span class="spec-code-dot"></span>NetworkException hierarchy</div>
+            <div class="spec-tree-wrap">
+              <pre class="spec-tree"><code>NetworkException                   // base class
+├── UnauthorizedException          // 401 → triggers token refresh
+├── PaymentRequiredException       // 402 → triggers billing screen
+├── NotFoundException              // 404 → show "not found" UI
+├── ConflictException              // 409 → idempotent retry (ignore)
+├── ProviderException              // 422 → AI provider error, retry
+├── ServerException                // 500 → generic error message
+├── ServiceUnavailableException    // 503 → "try again later" UI
+└── TimeoutException               // timeout → show retry button</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="spec-section-block" id="billing-api">
+          <h2 class="spec-section-h">core_billing public API</h2>
+          <p class="spec-section-p">
+            Feature modules call one method regardless of platform.
+            <code>BillingService</code> delegates internally to the right store wrapper.
+          </p>
+          <div class="spec-table-wrap">
+            <table class="spec-table">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Returns</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>getProducts()</td><td>List&lt;ProductDetails&gt;</td><td>Fetch available plans and packs from the active store</td></tr>
+                <tr><td>purchaseSubscription(plan)</td><td>PurchaseResult</td><td>Initiate subscription, await platform confirmation</td></tr>
+                <tr><td>purchasePack(packId)</td><td>PurchaseResult</td><td>One-time credit pack purchase</td></tr>
+                <tr><td>restorePurchases()</td><td>List&lt;PurchaseResult&gt;</td><td>Cross-device restore; calls edge function to re-verify</td></tr>
+                <tr><td>getCurrentPlan()</td><td>PlanTier</td><td>Read active subscription from Supabase (cached)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Usage examples -->
+        <section class="spec-section-block" id="usage-examples">
+          <h2 class="spec-section-h">Usage examples</h2>
+          <p class="spec-section-p">
+            Typical usage patterns for each package. All three packages are consumed via Riverpod providers,
+            keeping feature modules decoupled from package internals.
+          </p>
+
+          <div class="spec-code-wrap">
+            <div class="spec-code-label"><span class="spec-code-dot"></span>core_ui — using MRButton and ScoreRing in a widget</div>
+            <div class="spec-tree-wrap">
+              <pre class="spec-tree"><code>import 'package:core_ui/core_ui.dart';
+
+class WritingFeedbackScreen extends StatelessWidget {
+  final WritingResult result;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ScoreRing(
+          score: result.overallScore,
+          maxScore: 30,
+          label: 'Overall',
+          animate: true,
+        ),
+        MRCard(
+          child: Text(result.feedback, style: AppTheme.bodyText),
+        ),
+        MRButton.primary(
+          label: 'Practice Again',
+          onPressed: () =&gt; context.go('/writing'),
+        ),
+      ],
+    );
+  }
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="spec-code-wrap">
+            <div class="spec-code-label"><span class="spec-code-dot"></span>core_billing — subscribing to a plan</div>
+            <div class="spec-tree-wrap">
+              <pre class="spec-tree"><code>import 'package:core_billing/core_billing.dart';
+
+// In the billing module's notifier
+class BillingNotifier extends AsyncNotifier&lt;BillingState&gt; {
+  late final BillingService _service;
+
+  @override
+  Future&lt;BillingState&gt; build() async {
+    _service = ref.watch(billingServiceProvider);
+    final plan = await _service.getCurrentPlan();
+    final products = await _service.getProducts();
+    return BillingState(currentPlan: plan, products: products);
+  }
+
+  Future&lt;void&gt; subscribe(PlanTier tier) async {
+    state = const AsyncValue.loading();
+    final result = await _service.purchaseSubscription(tier);
+    if (result.success) {
+      state = AsyncValue.data(state.value!.copyWith(currentPlan: tier));
+    }
+  }
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="spec-callout spec-callout--tip">
+            <div class="spec-callout-icon">T</div>
+            <div class="spec-callout-body">
+              <span class="spec-callout-title">Testing shared packages</span>
+              Each package has its own test suite. <code>core_ui</code> uses Flutter widget tests with golden file comparison. <code>core_network</code> uses unit tests with a mock Dio adapter. <code>core_billing</code> uses a <code>MockBillingService</code> to test all purchase flows without hitting a real store — including simulating purchase failures, refunds, and restore flows.
+            </div>
+          </div>
+        </section>
+
+        <nav class="spec-page-nav" aria-label="Page navigation">
+          <a class="spn-prev" href="spec-db.html">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            06 Database Schema
+          </a>
+          <a class="spn-next" href="spec.html">
+            Back to Overview
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </nav>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span class="footer-copy">© 2025 Hyunsoo Lee · Missroot TOEFL</span>
+        <nav class="footer-links">
+          <a href="index.html">Intro</a><a href="project.html">Tech</a><a href="ai.html">AI</a><a href="growth.html">Growth</a><a href="spec.html">Spec</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="language.js"></script>
+    <script src="spec-nav.js"></script>
+  </body>
+</html>
