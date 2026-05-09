@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Hyunsoo Lee — solo founder and full-stack AI product engineer. Built Missroot TOEFL: live on Google Play and App Store." />
+    <meta name="theme-color" content="#0a0f1e" />
+    <meta property="og:title" content="Hyunsoo Lee · AI Product Engineer" />
+    <meta property="og:description" content="Built Missroot TOEFL — a Flutter × Supabase AI exam prep platform, live on both app stores." />
+    <meta property="og:type" content="website" />
+    <title>Hyunsoo Lee · AI Product Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+
+    <!-- ─── HEADER ─────────────────────────────────────────────────────── -->
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Hyunsoo Lee home">
+        <span class="brand-mark">HL</span>
+        <span class="brand-name">Hyunsoo Lee</span>
+      </a>
+      <nav class="page-tabs" aria-label="Primary navigation">
+        <a class="page-tab active" href="index.html">Intro</a>
+        <a class="page-tab" href="project.html">Tech</a>
+        <a class="page-tab" href="ai.html">AI</a>
+        <a class="page-tab" href="growth.html">Growth</a>
+        <a class="page-tab" href="index.html#contact">Contact</a>
+      </nav>
+      <div class="language-tabs" role="group" aria-label="Language selector">
+        <button class="language-tab" type="button" data-lang-button="en">EN</button>
+        <button class="language-tab" type="button" data-lang-button="ko">KR</button>
+      </div>
+    </header>
+
+    <main id="top">
+
+      <!-- ─── HERO ───────────────────────────────────────────────────────── -->
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-text">
+            <div class="live-badge" aria-label="App status">
+              <span class="live-dot" aria-hidden="true"></span>
+              Live on iOS &amp; Android
+            </div>
+            <h1>Ship AI products</h1>
+            <p class="hero-sub">
+              Solo founder of Missroot TOEFL — a Flutter × Supabase AI
+              exam prep platform, live on Google Play and App Store.
+            </p>
+            <div class="hero-ctas">
+              <a class="store-btn apple" href="https://apps.apple.com/us/app/missroot-toefl/id6764210591" target="_blank" rel="noopener noreferrer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
+                App Store
+              </a>
+              <a class="store-btn google" href="https://play.google.com/store/apps/details?id=com.missroot.toefl" target="_blank" rel="noopener noreferrer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.18 23.76c.34.19.73.24 1.12.14l12.44-7.18-2.7-2.7zm16.2-9.53L16.56 12l2.82-2.23L22 11.4a1.25 1.25 0 0 1 0 2.2zM4.3.1A1.27 1.27 0 0 0 3 1.24v21.52l.18.17 12.04-12.03zm9.28 9.28L4.82.64 16.56 7.5z"/></svg>
+                Google Play
+              </a>
+              <a class="store-btn web" href="https://missroot.com" target="_blank" rel="noopener noreferrer">
+                missroot.com ↗
+              </a>
+            </div>
+          </div>
+
+          <!-- CSS phone mockup -->
+          <div class="hero-visual" aria-hidden="true">
+            <div class="phone-wrap">
+              <div class="phone">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                  <div class="ps-header">
+                    <span class="ps-logo">M</span>
+                    <span class="ps-title">Missroot TOEFL</span>
+                  </div>
+                  <div class="ps-grid">
+                    <div class="ps-tile tile-reading">
+                      <span class="tile-label">Reading</span>
+                      <span class="tile-bar" style="width:78%"></span>
+                    </div>
+                    <div class="ps-tile tile-listening">
+                      <span class="tile-label">Listening</span>
+                      <span class="tile-bar" style="width:64%"></span>
+                    </div>
+                    <div class="ps-tile tile-speaking">
+                      <span class="tile-label">Speaking</span>
+                      <span class="tile-bar" style="width:55%"></span>
+                    </div>
+                    <div class="ps-tile tile-writing">
+                      <span class="tile-label">Writing</span>
+                      <span class="tile-bar" style="width:70%"></span>
+                    </div>
+                  </div>
+                  <div class="ps-score-card">
+                    <span class="ps-score-label">Expected Score</span>
+                    <span class="ps-score-val">92+</span>
+                    <div class="ps-score-bar-bg">
+                      <div class="ps-score-bar-fill"></div>
+                    </div>
+                  </div>
+                  <div class="ps-ai-chip">
+                    <span class="ps-ai-dot"></span>
+                    AI scoring active
+                  </div>
+                </div>
+              </div>
+              <div class="phone-glow" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── METRICS ─────────────────────────────────────────────────────── -->
+      <section class="metrics-strip" aria-label="Key product metrics">
+        <div class="container metrics-inner">
+          <div class="metric-item">
+            <span class="m-val">4</span>
+            <span class="m-label">TOEFL sections</span>
+          </div>
+          <div class="metric-div" aria-hidden="true"></div>
+          <div class="metric-item">
+            <span class="m-val m-val--text">iOS &amp; Android</span>
+            <span class="m-label">live in both stores</span>
+          </div>
+          <div class="metric-div" aria-hidden="true"></div>
+          <div class="metric-item">
+            <span class="m-val">4</span>
+            <span class="m-label">subscription tiers</span>
+          </div>
+          <div class="metric-div" aria-hidden="true"></div>
+          <div class="metric-item">
+            <span class="m-val">3</span>
+            <span class="m-label">billing providers</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── FLAGSHIP ────────────────────────────────────────────────────── -->
+      <section id="flagship" class="section">
+        <div class="container">
+          <p class="eyebrow">What I built</p>
+          <h2 class="section-title">Missroot TOEFL — a production AI product</h2>
+          <p class="section-sub">
+            A real app used by real students to prepare for one of the
+            world's most competitive English exams.
+          </p>
+
+          <div class="flagship-cta-bar">
+            <a class="flagship-deep-link" href="project.html">
+              View full technical deep-dive — architecture, all 14 modules, billing flows, AI scoring, content pipeline
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <div class="arch-grid">
+            <article class="arch-card">
+              <div class="arch-icon-wrap indigo">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              </div>
+              <h3>Flutter client</h3>
+              <p>Cross-platform app with Reading, Listening, Speaking, Writing, onboarding, score history, statistics, and monetization flows.</p>
+              <ul class="arch-list">
+                <li>Shared design system (core_ui package)</li>
+                <li>Google, Apple, email auth via Supabase</li>
+                <li>Adaptive difficulty engine</li>
+                <li>Force-update version gate</li>
+              </ul>
+            </article>
+
+            <article class="arch-card">
+              <div class="arch-icon-wrap sky">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <h3>Supabase backend</h3>
+              <p>Postgres + Edge Functions + Storage. All server logic as Deno TypeScript edge functions deployed to Supabase.</p>
+              <ul class="arch-list">
+                <li>Server-side purchase verification</li>
+                <li>Exchange-rate &amp; currency API functions</li>
+                <li>Storage bucket media path management</li>
+                <li>User profile sync across auth providers</li>
+              </ul>
+            </article>
+
+            <article class="arch-card">
+              <div class="arch-icon-wrap emerald">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+              </div>
+              <h3>AI integration</h3>
+              <p>Gemini for content generation and AI scoring. Deepgram for speech recognition in Speaking tasks. Automated TTS pipeline.</p>
+              <ul class="arch-list">
+                <li>Writing &amp; Speaking scored by Gemini AI</li>
+                <li>Credit-based usage quota control</li>
+                <li>Validated JSONL content generation</li>
+                <li>Inworld TTS for 4 listening task types</li>
+              </ul>
+            </article>
+
+            <article class="arch-card">
+              <div class="arch-icon-wrap amber">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              </div>
+              <h3>Billing &amp; payments</h3>
+              <p>Three payment providers integrated: Google Play, Apple App Store, and Lemon Squeezy. Subscriptions + one-time packs.</p>
+              <ul class="arch-list">
+                <li>Webhook idempotency with billing nonces</li>
+                <li>Free, Plus, Pro, Hyper subscription tiers</li>
+                <li>Leaf → AI credit exchange wallet</li>
+                <li>Cross-platform subscription state sync</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── STACK ─────────────────────────────────────────────────────────── -->
+      <section id="stack" class="section stack-section">
+        <div class="container">
+          <p class="eyebrow">Technologies</p>
+          <h2 class="section-title">Full-stack and cross-platform</h2>
+          <div class="stack-groups">
+            <div class="stack-group">
+              <span class="stack-group-label">Mobile</span>
+              <div class="stack-chips">
+                <span class="chip chip-indigo">Flutter</span>
+                <span class="chip chip-indigo">Dart</span>
+              </div>
+            </div>
+            <div class="stack-group">
+              <span class="stack-group-label">Backend</span>
+              <div class="stack-chips">
+                <span class="chip chip-sky">Supabase</span>
+                <span class="chip chip-sky">PostgreSQL</span>
+                <span class="chip chip-sky">TypeScript</span>
+                <span class="chip chip-sky">Deno</span>
+              </div>
+            </div>
+            <div class="stack-group">
+              <span class="stack-group-label">AI &amp; Data</span>
+              <div class="stack-chips">
+                <span class="chip chip-emerald">Gemini AI</span>
+                <span class="chip chip-emerald">Deepgram</span>
+                <span class="chip chip-emerald">Python</span>
+                <span class="chip chip-emerald">Pydantic</span>
+                <span class="chip chip-emerald">Inworld TTS</span>
+              </div>
+            </div>
+            <div class="stack-group">
+              <span class="stack-group-label">Payments</span>
+              <div class="stack-chips">
+                <span class="chip chip-amber">Google Play</span>
+                <span class="chip chip-amber">App Store Connect</span>
+                <span class="chip chip-amber">Lemon Squeezy</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── WORKFLOW ──────────────────────────────────────────────────────── -->
+      <section id="workflow" class="section workflow-section">
+        <div class="container">
+          <p class="eyebrow">How I work</p>
+          <h2 class="section-title">I own the complete product loop.</h2>
+          <p class="section-sub">
+            From user problem to shipped update, I design, build, test,
+            release, and maintain every layer without waiting for another team.
+          </p>
+          <div class="wf-steps">
+            <div class="wf-step">
+              <span class="wf-num">01</span>
+              <h3>Design &amp; decide</h3>
+              <p>Define the user problem, map product flows, model data schemas, and specify Edge Function contracts — before writing app code.</p>
+            </div>
+            <div class="wf-connector" aria-hidden="true"></div>
+            <div class="wf-step">
+              <span class="wf-num">02</span>
+              <h3>Build full stack</h3>
+              <p>Flutter UI, Supabase backend, billing webhooks, AI scoring, and content ingestion pipelines — built as one coherent system.</p>
+            </div>
+            <div class="wf-connector" aria-hidden="true"></div>
+            <div class="wf-step">
+              <span class="wf-num">03</span>
+              <h3>Ship to stores</h3>
+              <p>Build, sign, and submit through Google Play and App Store review. Missroot TOEFL has passed both platforms and is live today.</p>
+            </div>
+            <div class="wf-connector" aria-hidden="true"></div>
+            <div class="wf-step">
+              <span class="wf-num">04</span>
+              <h3>Maintain &amp; iterate</h3>
+              <p>Isolate bugs, inspect client state and backend records, patch the smallest reliable fix, verify end-to-end, and ship the update.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── RESUME ────────────────────────────────────────────────────────── -->
+      <section id="resume" class="section resume-section">
+        <div class="container">
+          <p class="eyebrow">Background</p>
+          <h2 class="section-title">Competitive track record</h2>
+          <div class="resume-list">
+            <div class="resume-row featured">
+              <span class="r-date">2026</span>
+              <div class="r-body">
+                <h3>Missroot TOEFL — sole developer, designer &amp; product owner</h3>
+                <p>Designed, built, and shipped a Flutter + Supabase + AI exam prep app to both Google Play and App Store. Responsible for the full stack: mobile, backend, AI, billing, and content pipelines.</p>
+              </div>
+            </div>
+            <div class="resume-row">
+              <span class="r-date">2024–2025</span>
+              <div class="r-body">
+                <h3>Game Developer · Toben Studio (USA)</h3>
+                <p>Contract freelance game development and systems engineering.</p>
+              </div>
+            </div>
+            <div class="resume-row">
+              <span class="r-date">2024</span>
+              <div class="r-body">
+                <h3>PII Data Detection · Kaggle Top 2.8%</h3>
+                <p>Personal Identifiable Information detection in text.</p>
+              </div>
+            </div>
+            <div class="resume-row">
+              <span class="r-date">2023</span>
+              <div class="r-body">
+                <h3>AI Text Detection · Top 7.4% &nbsp;·&nbsp; IceCube Neutrinos · Top 9.5%</h3>
+                <p>Kaggle competitions in NLP and scientific machine learning.</p>
+              </div>
+            </div>
+            <div class="resume-row">
+              <span class="r-date">2021</span>
+              <div class="r-body">
+                <h3>AI Researcher · Lululab Inc., Seoul</h3>
+                <p>Skin AI research in the Department of Artificial Intelligence.</p>
+              </div>
+            </div>
+            <div class="resume-row">
+              <span class="r-date">2019</span>
+              <div class="r-body">
+                <h3>AI World Cup Grand Prize (KAIST-sponsored)</h3>
+                <p>Built an AI sports commentator model. Top prize in commentator modeling category at the KAIST-sponsored competition.</p>
+              </div>
+            </div>
+            <div class="resume-row">
+              <span class="r-date">2019</span>
+              <div class="r-body">
+                <h3>Exchange Student · Purdue University, CIT</h3>
+                <p>IITP-sponsored exchange program. West Lafayette, IN.</p>
+              </div>
+            </div>
+            <div class="resume-row">
+              <span class="r-date">2012–2020</span>
+              <div class="r-body">
+                <h3>B.S. Computer Science · Sun Moon University</h3>
+                <p>Major GPA 4.3 / 4.5. Google Cloud + Kubernetes certifications (Coursera). Exchange at Purdue University.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── PITCH ─────────────────────────────────────────────────────────── -->
+      <section class="pitch-section">
+        <div class="container pitch-inner">
+          <div class="pitch-text">
+            <p class="eyebrow light">What I am looking for</p>
+            <h2>A senior role where shipping a real product matters.</h2>
+            <p>
+              Mobile engineering, AI product integration, backend systems,
+              or full-stack ownership — anywhere in Korea or remote.
+            </p>
+          </div>
+          <a class="button-big" href="mailto:ahyunsoo3@gmail.com">
+            Get in touch
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </section>
+
+      <!-- ─── CONTACT ───────────────────────────────────────────────────────── -->
+      <section id="contact" class="section contact-section">
+        <div class="container">
+          <p class="eyebrow">Contact</p>
+          <h2 class="section-title">Let's talk.</h2>
+          <div class="contact-grid">
+            <a class="contact-item" href="mailto:ahyunsoo3@gmail.com">
+              <span class="c-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </span>
+              <div>
+                <span class="c-label">Email</span>
+                <span class="c-value">ahyunsoo3@gmail.com</span>
+              </div>
+            </a>
+            <a class="contact-item" href="https://github.com/ahyunsoo3" target="_blank" rel="noopener noreferrer">
+              <span class="c-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              </span>
+              <div>
+                <span class="c-label">GitHub</span>
+                <span class="c-value">github.com/ahyunsoo3</span>
+              </div>
+            </a>
+            <a class="contact-item" href="https://missroot.com" target="_blank" rel="noopener noreferrer">
+              <span class="c-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </span>
+              <div>
+                <span class="c-label">Product</span>
+                <span class="c-value">missroot.com</span>
+              </div>
+            </a>
+            <a class="contact-item" href="https://apps.apple.com/us/app/missroot-toefl/id6764210591" target="_blank" rel="noopener noreferrer">
+              <span class="c-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/></svg>
+              </span>
+              <div>
+                <span class="c-label">App Store</span>
+                <span class="c-value">Missroot TOEFL</span>
+              </div>
+            </a>
+            <a class="contact-item" href="https://play.google.com/store/apps/details?id=com.missroot.toefl" target="_blank" rel="noopener noreferrer">
+              <span class="c-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.18 23.76c.34.19.73.24 1.12.14l12.44-7.18-2.7-2.7zm16.2-9.53L16.56 12l2.82-2.23L22 11.4a1.25 1.25 0 0 1 0 2.2zM4.3.1A1.27 1.27 0 0 0 3 1.24v21.52l.18.17 12.04-12.03zm9.28 9.28L4.82.64 16.56 7.5z"/></svg>
+              </span>
+              <div>
+                <span class="c-label">Google Play</span>
+                <span class="c-value">Missroot TOEFL</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- ─── Resume links ─────────────────────────────────────────── -->
+          <div class="resume-links-wrap">
+            <p class="resume-links-label">Resume</p>
+            <div class="resume-links-row">
+              <a class="resume-link-card" href="resume-en.html" target="_blank" rel="noopener noreferrer">
+                <span class="c-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                </span>
+                <div>
+                  <span class="c-label">English</span>
+                  <span class="c-value">Resume (EN)</span>
+                </div>
+                <svg class="resume-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+              <a class="resume-link-card" href="resume-ko.html" target="_blank" rel="noopener noreferrer">
+                <span class="c-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                </span>
+                <div>
+                  <span class="c-label">Korean</span>
+                  <span class="c-value">이력서 (KR)</span>
+                </div>
+                <svg class="resume-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>&copy; 2026 Hyunsoo Lee</span>
+        <span>
+          <a href="https://missroot.com" target="_blank" rel="noopener noreferrer">missroot.com</a>
+          &nbsp;·&nbsp; Built for GitHub Pages
+        </span>
+      </div>
+    </footer>
+
+    <script src="language.js"></script>
+  </body>
+</html>

@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="How Hyunsoo Lee uses Gemini, Deepgram, and Inworld TTS in a production AI app — scoring, generation, speech recognition, cost control." />
+    <title>AI Integration · Hyunsoo Lee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="project.css" />
+    <link rel="stylesheet" href="ai.css" />
+  </head>
+  <body>
+
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Hyunsoo Lee home">
+        <span class="brand-mark">HL</span>
+        <span class="brand-name">Hyunsoo Lee</span>
+      </a>
+      <nav class="page-tabs" aria-label="Primary navigation">
+        <a class="page-tab" href="index.html">Intro</a>
+        <a class="page-tab" href="project.html">Tech</a>
+        <a class="page-tab active" href="ai.html">AI</a>
+        <a class="page-tab" href="growth.html">Growth</a>
+        <a class="page-tab" href="index.html#contact">Contact</a>
+      </nav>
+      <div class="language-tabs" role="group" aria-label="Language selector">
+        <button class="language-tab" type="button" data-lang-button="en">EN</button>
+        <button class="language-tab" type="button" data-lang-button="ko">KR</button>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- ─── HERO ──────────────────────────────────────────────────────── -->
+      <section class="ai-hero">
+        <div class="container ai-hero-inner">
+          <div>
+            <p class="eyebrow light">AI integration</p>
+            <h1 class="ai-h1">AI-native products</h1>
+            <p class="ai-hero-sub">
+              Gemini scores user writing and speaking. Deepgram transcribes speech in real time.
+              Inworld TTS voices every listening exercise. A credit wallet controls cost at every layer.
+              This is what AI looks like when it's the product, not a feature.
+            </p>
+            <div class="ai-model-chips">
+              <span class="ai-chip chip-gemini">Gemini 3.1 Flash Lite</span>
+              <span class="ai-chip chip-gemini">Gemini 3.1 Pro</span>
+              <span class="ai-chip chip-deepgram">Deepgram Nova-3</span>
+              <span class="ai-chip chip-inworld">Inworld TTS</span>
+            </div>
+          </div>
+          <div class="ai-hero-diagram" aria-hidden="true">
+            <div class="aihd-center">
+              <span class="aihd-label">Missroot TOEFL</span>
+            </div>
+            <div class="aihd-orbit">
+              <div class="aihd-node aihd-n1">
+                <span class="aihd-icon">G</span>
+                <span>Gemini<br>Scoring</span>
+              </div>
+              <div class="aihd-node aihd-n2">
+                <span class="aihd-icon">G</span>
+                <span>Gemini<br>Generate</span>
+              </div>
+              <div class="aihd-node aihd-n3">
+                <span class="aihd-icon">D</span>
+                <span>Deepgram<br>STT</span>
+              </div>
+              <div class="aihd-node aihd-n4">
+                <span class="aihd-icon">♪</span>
+                <span>Inworld<br>TTS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── AI USAGE SUMMARY ──────────────────────────────────────────── -->
+      <section class="ai-summary-strip">
+        <div class="container ai-summary-inner">
+          <div class="ai-summary-item">
+            <span class="as-val">4</span>
+            <span class="as-label">AI providers integrated</span>
+          </div>
+          <div class="as-div"></div>
+          <div class="ai-summary-item">
+            <span class="as-val">12</span>
+            <span class="as-label">AI-powered task types</span>
+          </div>
+          <div class="as-div"></div>
+          <div class="ai-summary-item">
+            <span class="as-val">10×</span>
+            <span class="as-label">Retry logic on scoring</span>
+          </div>
+          <div class="as-div"></div>
+          <div class="ai-summary-item">
+            <span class="as-val">2</span>
+            <span class="as-label">Gemini model tiers</span>
+          </div>
+          <div class="as-div"></div>
+          <div class="ai-summary-item">
+            <span class="as-val">6</span>
+            <span class="as-label">Credit pack types</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── GEMINI SCORING ────────────────────────────────────────────── -->
+      <section id="scoring" class="section">
+        <div class="container">
+          <p class="eyebrow">Gemini AI scoring</p>
+          <h2 class="section-title">Writing and speaking, graded by Gemini</h2>
+          <p class="section-sub">
+            Not just "call the API and show the result." The scoring system has token budgets,
+            per-tier model routing, retry loops, pre-call credit deduction, and async cost logging.
+          </p>
+
+          <div class="scoring-layout">
+            <div class="scoring-main">
+
+              <div class="scoring-card">
+                <div class="sc-header">
+                  <span class="sc-badge sc-writing">Writing</span>
+                  <h3>Email &amp; academic discussion scoring</h3>
+                </div>
+                <p>When a user submits a writing response, the flow is:</p>
+                <ol class="scoring-steps">
+                  <li>Plan limit checked — does this tier allow AI scoring?</li>
+                  <li><strong>1 AI credit deducted</strong> from <code>user_profiles.ai_scoring_credits</code> before the API call — no free retries on failure.</li>
+                  <li>Input trimmed to ≤ 1,000 tokens (≈4 chars/token estimate) to cap cost.</li>
+                  <li>Model selected: <code>gemini-3.1-flash-lite-preview</code> for Free/Plus/Pro; <code>gemini-3.1-pro-preview</code> for Hyper tier only.</li>
+                  <li>Gemini <code>generateContent</code> called with output capped at 1,000 tokens.</li>
+                  <li>Response parsed into <code>WritingEmailAssessment</code> (band score, strengths, improvements, model answer).</li>
+                  <li>Result written to practice history. A retry progress callback drives the in-app loading UI.</li>
+                </ol>
+                <div class="proof-tags">
+                  <span class="proof-tag">Pre-call credit gate</span>
+                  <span class="proof-tag">Token budget management</span>
+                  <span class="proof-tag">Structured JSON output parsing</span>
+                </div>
+              </div>
+
+              <div class="scoring-card">
+                <div class="sc-header">
+                  <span class="sc-badge sc-speaking">Speaking</span>
+                  <h3>Interview &amp; listen-repeat scoring</h3>
+                </div>
+                <p>Speaking scoring chains Deepgram STT → Gemini text assessment:</p>
+                <ol class="scoring-steps">
+                  <li>User records audio → WAV bytes sent to <code>DeepgramListenClient.transcribeAudioBytes()</code>.</li>
+                  <li>Deepgram Nova-3 returns transcript.</li>
+                  <li>Transcript fed to <code>GeminiPracticeAssessmentClient</code> for speaking-specific scoring rubric.</li>
+                  <li>Speaking assessment model: <code>SpeakingInterviewAssessment</code> — pronunciation, fluency, content, vocabulary bands.</li>
+                  <li>Token usage for both STT and LLM calls logged to <code>record_ai_token_usage</code>.</li>
+                </ol>
+                <div class="proof-tags">
+                  <span class="proof-tag">STT → LLM pipeline</span>
+                  <span class="proof-tag">Multi-service credit tracking</span>
+                  <span class="proof-tag">Domain-specific scoring rubric</span>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="scoring-side">
+              <div class="model-compare-card">
+                <h4>Model routing by tier</h4>
+                <div class="mc-row mc-hyper">
+                  <span class="mc-tier">Hyper</span>
+                  <span class="mc-model"><code>gemini-3.1-pro-preview</code></span>
+                  <span class="mc-note">Flagship model</span>
+                </div>
+                <div class="mc-divider"></div>
+                <div class="mc-row">
+                  <span class="mc-tier mc-other">Pro</span>
+                  <span class="mc-model mc-other-model"><code>gemini-3.1-flash-lite-preview</code></span>
+                  <span class="mc-note mc-other-note">Cost-efficient</span>
+                </div>
+                <div class="mc-row">
+                  <span class="mc-tier mc-other">Plus</span>
+                  <span class="mc-model mc-other-model"><code>gemini-3.1-flash-lite-preview</code></span>
+                  <span class="mc-note mc-other-note">Cost-efficient</span>
+                </div>
+                <div class="mc-row">
+                  <span class="mc-tier mc-other">Free</span>
+                  <span class="mc-model mc-other-model">pack purchase required</span>
+                  <span class="mc-note mc-other-note">Credit wallet</span>
+                </div>
+              </div>
+
+              <div class="retry-card">
+                <h4>Retry logic</h4>
+                <div class="retry-vis">
+                  <div class="rv-attempt rv-ok">Call 1</div>
+                  <div class="rv-line"></div>
+                  <div class="rv-attempt rv-fail">Fail</div>
+                  <div class="rv-gap">4s</div>
+                  <div class="rv-attempt rv-fail">Fail</div>
+                  <div class="rv-gap">4s</div>
+                  <div class="rv-attempt rv-ok">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                </div>
+                <p class="retry-note">Up to 10 attempts · 4 s between retries · <code>ScoringRetryProgressCallback</code> drives in-app progress UI · Credit already deducted on attempt 1.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── CONTENT GENERATION ────────────────────────────────────────── -->
+      <section id="generation" class="section alt-section">
+        <div class="container">
+          <p class="eyebrow">Gemini content generation</p>
+          <h2 class="section-title">All 12 task types generated by AI</h2>
+          <p class="section-sub">
+            Practice content isn't written by hand. A Python pipeline prompts Gemini to output
+            structured JSONL, validates each line with Pydantic, then loads it into Postgres.
+          </p>
+
+          <div class="gen-flow">
+            <div class="gf-step">
+              <span class="gf-num">1</span>
+              <div>
+                <strong>Schema-first prompting</strong>
+                <p>Each of 12 task types has a Pydantic model. Gemini is prompted with the schema as a system instruction and asked to output JSON Lines matching it exactly.</p>
+              </div>
+            </div>
+            <div class="gf-step">
+              <span class="gf-num">2</span>
+              <div>
+                <strong>Structured output validation</strong>
+                <p>Every line in the generated JSONL is parsed and validated by Pydantic. Schema violations, missing fields, and type mismatches are caught before any DB write.</p>
+              </div>
+            </div>
+            <div class="gf-step">
+              <span class="gf-num">3</span>
+              <div>
+                <strong>Idempotent upsert</strong>
+                <p>Content is keyed by a stable <code>slug</code> field. Re-running the ingestion script updates existing rows rather than duplicating them — safe to re-generate.</p>
+              </div>
+            </div>
+            <div class="gf-step">
+              <span class="gf-num">4</span>
+              <div>
+                <strong>Model override</strong>
+                <p>The generation model defaults to <code>gemini-3.1-flash-lite-preview</code> but can be overridden via <code>GEMINI_MODEL</code> env variable for quality A/B testing.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="task-type-showcase">
+            <h3 class="subsection-title">What Gemini generates for each task type</h3>
+            <div class="tt-grid">
+              <div class="tt-row tt-reading">
+                <span class="tt-section">Reading</span>
+                <div class="tt-items">
+                  <div class="tt-item">
+                    <strong>Academic passage</strong>
+                    <span>Long-form passage + 5 multiple choice questions with answer keys and explanations</span>
+                  </div>
+                  <div class="tt-item">
+                    <strong>Daily life (email + document)</strong>
+                    <span>Realistic email or notice format + 3 comprehension questions</span>
+                  </div>
+                  <div class="tt-item">
+                    <strong>Word completion</strong>
+                    <span>Sentence sets with blanks, 4 options per blank, difficulty-tagged at 5 levels</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tt-row tt-listening">
+                <span class="tt-section">Listening</span>
+                <div class="tt-items">
+                  <div class="tt-item">
+                    <strong>Academic talk</strong>
+                    <span>Lecture transcript + 5 MCQs — then TTS script generates the MP3</span>
+                  </div>
+                  <div class="tt-item">
+                    <strong>Conversation</strong>
+                    <span>Two-speaker dialogue + 2 MCQs — each speaker assigned a distinct TTS voice</span>
+                  </div>
+                  <div class="tt-item">
+                    <strong>Announcement + Choose-a-response</strong>
+                    <span>Short spoken passages with MCQ sets for quick-fire practice</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tt-row tt-speaking">
+                <span class="tt-section">Speaking</span>
+                <div class="tt-items">
+                  <div class="tt-item">
+                    <strong>Interview sets</strong>
+                    <span>Interview scenario + 4 open-ended questions per set; model answer for scoring reference</span>
+                  </div>
+                  <div class="tt-item">
+                    <strong>Listen &amp; repeat</strong>
+                    <span>Sentence sets targeted at pronunciation patterns; also TTS-voiced</span>
+                  </div>
+                </div>
+              </div>
+              <div class="tt-row tt-writing">
+                <span class="tt-section">Writing</span>
+                <div class="tt-items">
+                  <div class="tt-item">
+                    <strong>Email prompts</strong>
+                    <span>Scenario + task description + band-6 model answer used for AI scoring reference</span>
+                  </div>
+                  <div class="tt-item">
+                    <strong>Academic discussion</strong>
+                    <span>Professor's prompt + two student responses + writing task + model answer</span>
+                  </div>
+                  <div class="tt-item">
+                    <strong>Build a sentence (cloze)</strong>
+                    <span>Sentence fragments with blanks; 4 options; used in onboarding demo</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── DEEPGRAM ──────────────────────────────────────────────────── -->
+      <section id="stt" class="section">
+        <div class="container">
+          <p class="eyebrow">Deepgram STT</p>
+          <h2 class="section-title">Real-user speech → scored transcript</h2>
+          <p class="section-sub">
+            Speaking practice records the user's voice and transcribes it before scoring.
+            The integration is hardened against key misconfiguration and encoding edge cases.
+          </p>
+
+          <div class="stt-layout">
+            <div class="stt-flow">
+              <div class="sttf-step">
+                <div class="sttf-icon mic-icon">🎙</div>
+                <div>
+                  <strong>Record audio</strong>
+                  <p>Flutter records WAV audio on device. Bytes buffered in memory — no temp files on disk.</p>
+                </div>
+              </div>
+              <div class="sttf-arrow">↓</div>
+              <div class="sttf-step">
+                <div class="sttf-icon api-icon">D</div>
+                <div>
+                  <strong>POST /v1/listen</strong>
+                  <p>Raw WAV bytes sent to Deepgram with <code>model=nova-3</code>, <code>language=en</code>. Token usage logged asynchronously.</p>
+                </div>
+              </div>
+              <div class="sttf-arrow">↓</div>
+              <div class="sttf-step">
+                <div class="sttf-icon text-icon">T</div>
+                <div>
+                  <strong>Transcript extracted</strong>
+                  <p>Top-confidence transcript pulled from JSON response and passed to Gemini scoring pipeline.</p>
+                </div>
+              </div>
+              <div class="sttf-arrow">↓</div>
+              <div class="sttf-step">
+                <div class="sttf-icon score-icon">★</div>
+                <div>
+                  <strong>AI scoring</strong>
+                  <p>Transcript → <code>GeminiPracticeAssessmentClient</code> for pronunciation, fluency, content, and vocabulary bands.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="stt-details">
+              <div class="sttd-card">
+                <h4>API key resolution (3 paths)</h4>
+                <div class="key-paths">
+                  <div class="kp-item">
+                    <span class="kp-num">1</span>
+                    <div>
+                      <strong>Bundled .env asset</strong>
+                      <p>Loaded by <code>flutter_dotenv</code> from <code>apps/missroot_toefl/.env</code> at app start. Strips BOM if present.</p>
+                    </div>
+                  </div>
+                  <div class="kp-item">
+                    <span class="kp-num">2</span>
+                    <div>
+                      <strong>Compile-time define</strong>
+                      <p><code>--dart-define=DEEPGRAM_API_KEY=…</code> at build time. Works for CI builds where the .env can't be committed.</p>
+                    </div>
+                  </div>
+                  <div class="kp-item">
+                    <span class="kp-num">3</span>
+                    <div>
+                      <strong>Typo-tolerant fallback</strong>
+                      <p>Also checks <code>DEEPGRAD_API_KEY</code> (common typo) — graceful degradation instead of silent failure.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="sttd-card">
+                <h4>When Deepgram is not configured</h4>
+                <p class="sttd-note"><code>DeepgramListenClient.isConfigured</code> is checked before recording starts. If no key is resolved, the speaking task gracefully degrades to text-only input instead of crashing.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── INWORLD TTS ───────────────────────────────────────────────── -->
+      <section id="tts" class="section alt-section">
+        <div class="container">
+          <p class="eyebrow">Inworld TTS</p>
+          <h2 class="section-title">Every listening exercise voiced by AI</h2>
+          <p class="section-sub">
+            All 4 listening task types require audio. Rather than paying for human voice recording,
+            an automated TTS pipeline converts Gemini-generated transcripts into MP3s.
+          </p>
+
+          <div class="tts-grid">
+            <div class="tts-card">
+              <span class="tts-icon">🎓</span>
+              <h3>Academic talk</h3>
+              <p>Single lecturer voice. 5+ minute lecture MP3 generated from the academic transcript, uploaded to Supabase Storage bucket <code>listening</code>.</p>
+            </div>
+            <div class="tts-card">
+              <span class="tts-icon">💬</span>
+              <h3>Conversation</h3>
+              <p>Two distinct voices for the two speakers in the dialogue, interleaved and merged into a single MP3 for seamless playback.</p>
+            </div>
+            <div class="tts-card">
+              <span class="tts-icon">📢</span>
+              <h3>Announcement</h3>
+              <p>Single clear voice. Short announcements (campus, transit, public service) in a neutral English accent.</p>
+            </div>
+            <div class="tts-card">
+              <span class="tts-icon">↩️</span>
+              <h3>Listen &amp; repeat (Speaking)</h3>
+              <p>TTS also voices the Speaking listen-and-repeat tasks. Users hear the target sentence before recording their own version.</p>
+            </div>
+          </div>
+
+          <div class="tts-pipeline">
+            <h3 class="subsection-title">From text to app — the audio pipeline</h3>
+            <div class="tp-steps">
+              <div class="tp-step">
+                <div class="tp-icon">G</div>
+                <span>Gemini generates transcript</span>
+              </div>
+              <div class="tp-arrow">→</div>
+              <div class="tp-step">
+                <div class="tp-icon">♪</div>
+                <span>Inworld TTS script generates MP3</span>
+              </div>
+              <div class="tp-arrow">→</div>
+              <div class="tp-step">
+                <div class="tp-icon">☁</div>
+                <span>Upload to Supabase Storage bucket</span>
+              </div>
+              <div class="tp-arrow">→</div>
+              <div class="tp-step">
+                <div class="tp-icon">DB</div>
+                <span>Storage path saved to Postgres row</span>
+              </div>
+              <div class="tp-arrow">→</div>
+              <div class="tp-step">
+                <div class="tp-icon">📱</div>
+                <span>Flutter resolves <code>getPublicUrl(path)</code> at runtime</span>
+              </div>
+            </div>
+            <p class="tp-note">No hardcoded CDN URLs in app code. Storage paths are bucket-relative — if the bucket or domain changes, only the Supabase config changes, not the app binary.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── CREDIT SYSTEM ─────────────────────────────────────────────── -->
+      <section id="credits" class="section">
+        <div class="container">
+          <p class="eyebrow">Credit &amp; quota system</p>
+          <h2 class="section-title">AI usage without cost surprises</h2>
+          <p class="section-sub">
+            Three independent credit types, each deducted before its AI call. Users can buy more
+            via App Store, Google Play, or Lemon Squeezy. Quotas are enforced in the Flutter client
+            before any network request is made.
+          </p>
+
+          <div class="credit-grid">
+            <div class="credit-card">
+              <div class="cc-icon cc-scoring">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <h3>AI scoring credits</h3>
+              <p>1 credit consumed per Writing or Speaking AI scoring call. Deducted before the Gemini call — no refund on API failure. Packs: 40 or 100 credits.</p>
+              <div class="cc-flow">
+                <code>ai_scoring_credits</code>
+                <span class="cc-arrow">→</span>
+                <span>Gemini scoring</span>
+              </div>
+            </div>
+
+            <div class="credit-card">
+              <div class="cc-icon cc-tutor">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <h3>AI tutor credits</h3>
+              <p>1 credit per tutor chat message. Separate from scoring credits — users can buy tutor packs without scoring packs. Packs: 250 or 1,000 messages.</p>
+              <div class="cc-flow">
+                <code>tutor_chat_credits</code>
+                <span class="cc-arrow">→</span>
+                <span>Gemini chat</span>
+              </div>
+            </div>
+
+            <div class="credit-card">
+              <div class="cc-icon cc-captions">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M7 8h3m4 0h3M7 12h5m4 0h1M7 16h3m4 0h3"/></svg>
+              </div>
+              <h3>Live caption seconds</h3>
+              <p>Time-based credit for live speech captioning. Deducted per second of active captioning. Packs: 30 minutes or 2 hours.</p>
+              <div class="cc-flow">
+                <code>live_captions_seconds</code>
+                <span class="cc-arrow">→</span>
+                <span>Deepgram streaming</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="quota-design">
+            <h3 class="subsection-title">How quota enforcement is designed</h3>
+            <div class="qd-grid">
+              <div class="qd-item">
+                <strong>Client-side pre-check</strong>
+                <p><code>PlanLimits</code> checks the user's current credit balance before any UI that leads to an AI call. If the balance is zero, the action is gated with an upsell prompt — no wasted network round-trip.</p>
+              </div>
+              <div class="qd-item">
+                <strong>Deduct before call</strong>
+                <p>Credits are deducted from <code>user_profiles</code> before the Gemini or Deepgram call is made. This prevents users from hammering the API by retrying failed requests — the deduction is the gate.</p>
+              </div>
+              <div class="qd-item">
+                <strong>Subscription period resets</strong>
+                <p>For subscription tiers, the Lemon Squeezy webhook and App Store / Google Play verification functions check if a new billing period has started and reset the quota accordingly.</p>
+              </div>
+              <div class="qd-item">
+                <strong>Usage logging</strong>
+                <p>Actual input and output token counts from every Gemini and Deepgram call are logged to <code>record_ai_token_usage</code> with the model ID, timestamp, and user ID — enabling per-user cost analysis.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── WHAT THIS PROVES ──────────────────────────────────────────── -->
+      <section class="pitch-section">
+        <div class="container pitch-inner">
+          <div class="pitch-text">
+            <p class="eyebrow light">What this proves</p>
+            <h2>AI is the product. I know how to make it work in production.</h2>
+            <p>
+              Token budgets. Retry logic. Multi-tier model routing. Credit wallets. Cost logging.
+              This is what responsible AI integration looks like when real users and real money are involved.
+            </p>
+          </div>
+          <div class="cta-group">
+            <a class="button-big" href="mailto:ahyunsoo3@gmail.com">
+              Get in touch
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a class="button-outline" href="project.html">See full tech deep-dive</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>&copy; 2026 Hyunsoo Lee</span>
+        <span><a href="https://missroot.com" target="_blank" rel="noopener noreferrer">missroot.com</a> · <a href="index.html">Portfolio</a></span>
+      </div>
+    </footer>
+
+    <script src="project-lang.js"></script>
+  </body>
+</html>

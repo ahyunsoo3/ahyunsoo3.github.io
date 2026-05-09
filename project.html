@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Technical deep-dive: Missroot TOEFL architecture, feature modules, Supabase edge functions, AI scoring, billing, and content pipeline." />
+    <title>Missroot TOEFL – Technical Deep Dive · Hyunsoo Lee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="project.css" />
+  </head>
+  <body>
+
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Back to portfolio">
+        <span class="brand-mark">HL</span>
+        <span class="brand-name">Hyunsoo Lee</span>
+      </a>
+      <nav class="page-tabs" aria-label="Primary navigation">
+        <a class="page-tab" href="index.html">Intro</a>
+        <a class="page-tab active" href="project.html">Tech</a>
+        <a class="page-tab" href="ai.html">AI</a>
+        <a class="page-tab" href="growth.html">Growth</a>
+        <a class="page-tab" href="index.html#contact">Contact</a>
+      </nav>
+      <div class="language-tabs" role="group" aria-label="Language selector">
+        <button class="language-tab" type="button" data-lang-button="en">EN</button>
+        <button class="language-tab" type="button" data-lang-button="ko">KR</button>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- ─── PAGE HERO ─────────────────────────────────────────────────── -->
+      <section class="project-hero">
+        <div class="container">
+          <a class="back-link" href="index.html">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Back to portfolio
+          </a>
+          <div class="project-hero-inner">
+            <div>
+              <p class="eyebrow">Technical deep-dive</p>
+              <h1 class="project-h1">Missroot TOEFL</h1>
+              <p class="project-hero-sub">
+                End-to-end architecture of a production Flutter × Supabase AI exam prep platform.
+                Every function explained — from the Flutter session gate to billing nonces,
+                Gemini scoring retries, and the automated content pipeline.
+              </p>
+              <div class="hero-ctas">
+                <a class="store-btn google" href="https://play.google.com/store/apps/details?id=com.missroot.toefl" target="_blank" rel="noopener noreferrer">Google Play</a>
+                <a class="store-btn apple" href="https://apps.apple.com/us/app/missroot-toefl/id6764210591" target="_blank" rel="noopener noreferrer">App Store</a>
+                <a class="store-btn web" href="https://missroot.com" target="_blank" rel="noopener noreferrer">missroot.com ↗</a>
+              </div>
+            </div>
+            <div class="project-hero-stats">
+              <div class="stat-row">
+                <span class="stat-num">14</span>
+                <span class="stat-label">Flutter feature modules</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-num">9</span>
+                <span class="stat-label">Supabase edge functions</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-num">12</span>
+                <span class="stat-label">TOEFL task types</span>
+              </div>
+              <div class="stat-row">
+                <span class="stat-num">3</span>
+                <span class="stat-label">Shared packages</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── REPO MAP ──────────────────────────────────────────────────── -->
+      <section id="repo" class="section">
+        <div class="container two-col">
+          <div>
+            <p class="eyebrow">Repository structure</p>
+            <h2 class="section-title">Monorepo designed for scale</h2>
+            <p class="section-sub">
+              One repository hosts four exam apps, three shared packages, nine backend functions,
+              and a Python content pipeline. Shared packages keep a single source of truth for
+              billing logic, networking, and the design system across all apps.
+            </p>
+            <div class="proof-tags">
+              <span class="proof-tag">Monorepo architecture</span>
+              <span class="proof-tag">Shared package design</span>
+              <span class="proof-tag">Multi-product thinking</span>
+            </div>
+          </div>
+          <div class="code-block" aria-label="Repository directory tree">
+            <div class="code-header">
+              <span class="code-dot cd-red"></span>
+              <span class="code-dot cd-yellow"></span>
+              <span class="code-dot cd-green"></span>
+              <span class="code-fname">edu-eng/</span>
+            </div>
+            <pre class="code-body">apps/
+├── missroot_toefl/      <span class="cm"># Main TOEFL app ← this page</span>
+│   ├── lib/features/    <span class="cm"># 14 feature modules</span>
+│   ├── lib/theme/       <span class="cm"># Tokens + typography</span>
+│   ├── lib/widgets/     <span class="cm"># Shared widgets</span>
+│   └── web/             <span class="cm"># PWA manifest + version</span>
+├── missroot_sat/        <span class="cm"># SAT variant</span>
+├── missroot_ielts/      <span class="cm"># IELTS variant</span>
+└── missroot_gre/        <span class="cm"># GRE variant</span>
+
+packages/
+├── core_ui/             <span class="cm"># Material 3 design system</span>
+├── core_network/        <span class="cm"># Supabase client factory</span>
+└── core_billing/        <span class="cm"># Subscription + credit logic</span>
+
+supabase/functions/      <span class="cm"># 9 Deno/TypeScript functions</span>
+scripts/
+└── content_ingestion/   <span class="cm"># Python ingestion pipeline</span></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── FLUTTER APP ───────────────────────────────────────────────── -->
+      <section id="flutter" class="section alt-section">
+        <div class="container">
+          <p class="eyebrow">Flutter app</p>
+          <h2 class="section-title">14 feature modules, 1 coherent product</h2>
+          <p class="section-sub">
+            Each module has its own data layer, business logic, and UI — but shares auth, theme, routing, and billing
+            through cross-cutting services and shared packages.
+          </p>
+
+          <div class="module-grid">
+
+            <article class="module-card accent-indigo">
+              <div class="module-header">
+                <span class="module-path">lib/features/auth/</span>
+                <span class="module-badge">Authentication</span>
+              </div>
+              <h3>Social auth &amp; session gate</h3>
+              <p>
+                <code>SocialAuthService</code> handles four sign-in paths: native Google on Android,
+                Supabase OAuth Google on web/Android, native Apple on iOS/macOS, and email/password.
+                Each path produces a Supabase session via <code>signInWithIdToken</code> or <code>signInWithOAuth</code>.
+                <code>AppSessionGate</code> wraps the router and blocks rendering until the session
+                is resolved, preventing any screen flicker on cold start.
+              </p>
+              <ul class="module-caps">
+                <li>Cross-platform OAuth with platform-specific fallback paths</li>
+                <li>Nonce-based Apple ID token validation against Supabase</li>
+                <li>Nickname onboarding flow after first sign-in</li>
+                <li>Auto-login service for seamless return sessions</li>
+              </ul>
+            </article>
+
+            <article class="module-card accent-sky">
+              <div class="module-header">
+                <span class="module-path">lib/features/onboarding/</span>
+                <span class="module-badge">Onboarding</span>
+              </div>
+              <h3>First-run flow &amp; mobile web install</h3>
+              <p>
+                <code>FirstRunOnboardingFlow</code> shows a welcome screen and three randomly-picked
+                Writing cloze tasks so users feel the product before signing in. After demo tasks, the
+                <code>SignInGatePage</code> collects credentials. A separate <code>MobileWebInstallPrompt</code>
+                detects if the user is on a mobile browser and conditionally suggests installing the PWA —
+                only shown when it makes sense per platform.
+              </p>
+              <ul class="module-caps">
+                <li>Demo-before-signup reduces sign-in friction</li>
+                <li>Platform-aware PWA install prompt (iOS Safari / Android Chrome)</li>
+                <li>SharedPreferences tracks onboarding state across restarts</li>
+              </ul>
+            </article>
+
+            <article class="module-card accent-indigo">
+              <div class="module-header">
+                <span class="module-path">lib/features/reading/</span>
+                <span class="module-badge">Reading practice</span>
+              </div>
+              <h3>Three reading task types</h3>
+              <p>
+                <strong>Academic passage</strong>: long passage with multiple questions, scroll-linked
+                progress. <strong>Daily life</strong>: email and document formats with multiple-choice
+                questions. <strong>Word completion</strong>: fill-in-the-blank sentences with adaptive
+                difficulty. Each page fetches its content from Supabase and persists results to
+                practice history.
+              </p>
+              <ul class="module-caps">
+                <li>Task type router: one entry point dispatches to correct page</li>
+                <li>Adaptive difficulty adjusts based on recent accuracy history</li>
+                <li>Correct/incorrect feedback written to Postgres on submit</li>
+              </ul>
+            </article>
+
+            <article class="module-card accent-sky">
+              <div class="module-header">
+                <span class="module-path">lib/features/listening/</span>
+                <span class="module-badge">Listening practice</span>
+              </div>
+              <h3>Four listening task types with remote audio</h3>
+              <p>
+                <strong>Conversation</strong>, <strong>academic talk</strong>, <strong>announcement</strong>,
+                and <strong>choose-a-response</strong> pages. Audio is stored in a Supabase Storage bucket;
+                the Flutter app resolves public URLs at runtime using the DB path. The audio player
+                enforces listen-before-answer ordering for realistic exam simulation.
+              </p>
+              <ul class="module-caps">
+                <li>Supabase Storage path → public URL resolved at runtime, not hardcoded</li>
+                <li>Audio playback gating before MCQ answer submission</li>
+                <li>5 MCQs per academic talk, 2 per conversation — matches real TOEFL format</li>
+              </ul>
+            </article>
+
+            <article class="module-card accent-emerald">
+              <div class="module-header">
+                <span class="module-path">lib/features/speaking/</span>
+                <span class="module-badge">Speaking practice</span>
+              </div>
+              <h3>Speech recognition via Deepgram</h3>
+              <p>
+                <code>TakeInterviewPage</code> and <code>ListenRepeatPage</code> record user audio
+                then send WAV bytes to <code>DeepgramListenClient</code>, which calls Deepgram's
+                <code>POST /v1/listen</code> with Nova-3 (English monolingual). The transcript is
+                then optionally passed to <code>GeminiPracticeAssessmentClient</code> for AI scoring.
+                Token usage is logged to <code>record_ai_token_usage</code> for quota tracking.
+              </p>
+              <ul class="module-caps">
+                <li>WAV audio → Deepgram STT → transcript for scoring</li>
+                <li>AI credit consumed only if a transcript is successfully produced</li>
+                <li>API key resolved from .env asset, compile-time define, or dotenv</li>
+              </ul>
+            </article>
+
+            <article class="module-card accent-emerald">
+              <div class="module-header">
+                <span class="module-path">lib/features/writing/</span>
+                <span class="module-badge">Writing practice</span>
+              </div>
+              <h3>Three writing task types with AI scoring</h3>
+              <p>
+                <strong>Email</strong>, <strong>academic discussion</strong>, and <strong>cloze (build a sentence)</strong>
+                tasks. Email and academic discussion submissions are scored by <code>GeminiPracticeAssessmentClient</code>
+                with a tier-aware model (Hyper tier gets <code>gemini-3.1-pro-preview</code>; others get
+                <code>gemini-3.1-flash-lite-preview</code>). Results display a band-6 model answer alongside the
+                AI score.
+              </p>
+              <ul class="module-caps">
+                <li>Input truncated to &lt;1000 tokens to control API cost</li>
+                <li>Retry logic: up to 10 attempts with 4-second backoff</li>
+                <li>Model answer card shown after scored attempts</li>
+              </ul>
+            </article>
+
+            <article class="module-card accent-amber">
+              <div class="module-header">
+                <span class="module-path">lib/features/assessment/</span>
+                <span class="module-badge">AI scoring engine</span>
+              </div>
+              <h3>GeminiPracticeAssessmentClient</h3>
+              <p>
+                Singleton HTTP client that calls the Gemini <code>generateContent</code> API.
+                Handles: API key resolution, input token budget (≈4 chars/token, truncated to 1000),
+                output capped at 1000 tokens, retry loop up to 10 attempts, tier-based model selection,
+                and async usage logging to Postgres for cost tracking. A <code>ScoringRetryProgressCallback</code>
+                drives a live progress UI in the app.
+              </p>
+              <ul class="module-caps">
+                <li>Tier-aware model routing (Flash vs Pro preview)</li>
+                <li>Structured JSON output parsed into typed Dart assessment models</li>
+                <li>AI credit deducted before call; usage logged after</li>
+              </ul>
+            </article>
+
+            <article class="module-card accent-indigo">
+              <div class="module-header">
+                <span class="module-path">lib/features/statistics/</span>
+                <span class="module-badge">Progress analytics</span>
+              </div>
+              <h3>Expected score estimation</h3>
+              <p>
+                The statistics page aggregates scored practice runs across all four sections and
+                estimates an expected TOEFL score. It uses 1 AI credit to generate the estimate from
+                a sample of the user's practice history. Coverage (percentage of 12 task types that
+                have scored runs) and validity signal are shown alongside the score estimate.
+              </p>
+              <ul class="module-caps">
+                <li>Score validity rises with more scored runs per task type</li>
+                <li>Confirmation dialog before consuming the AI credit</li>
+                <li>Item coverage matrix: 12 task types × cleared/open state</li>
+              </ul>
+            </article>
+
+            <article class="module-card accent-sky">
+              <div class="module-header">
+                <span class="module-path">lib/features/practice/</span>
+                <span class="module-badge">Adaptive difficulty</span>
+              </div>
+              <h3>Adaptive study level engine</h3>
+              <p>
+                <code>AdaptiveStudyLevel</code> looks at the last 12 graded practice entries per section
+                and computes accuracy. <strong>Below 60%</strong> → signal <em>review</em> → drop one level.
+                <strong>Above 88%</strong> → signal <em>stretch</em> → raise one level. Between → signal
+                <em>steady</em> → hold. <code>AdaptiveStudyLevelConfidence</code> tracks whether there is
+                enough data (≥6 answers) or confident data (≥20 answers) before shifting the level.
+              </p>
+              <ul class="module-caps">
+                <li>Accuracy thresholds: &lt;60% review · ≥88% stretch</li>
+                <li>Conservative shifts: moves at most one level per recommendation</li>
+                <li>Confidence guard: won't shift without ≥6 graded answers</li>
+              </ul>
+            </article>
+
+            <article class="module-card accent-amber">
+              <div class="module-header">
+                <span class="module-path">lib/features/home/ · lib/features/subscription/</span>
+                <span class="module-badge">Monetization</span>
+              </div>
+              <h3>Store page &amp; billing clients</h3>
+              <p>
+                <code>StorePage</code> shows subscription plans and one-time credit packs.
+                Five billing clients handle each platform: <code>AppStoreSubscriptionBilling</code>,
+                <code>GooglePlaySubscriptionBilling</code>, <code>LemonSqueezyBillingClient</code>,
+                <code>AppStoreStorePackBilling</code>, and <code>GooglePlayStorePackBilling</code>.
+                All flows use a server-side nonce to prevent replay attacks on purchase tokens.
+              </p>
+              <ul class="module-caps">
+                <li>Platform detected at runtime: iOS, Android, or web → correct billing client</li>
+                <li>Nonce issued from server before purchase; consumed on verification</li>
+                <li>Plan limits enforce AI credit quotas per subscription tier</li>
+              </ul>
+            </article>
+
+            <article class="module-card accent-indigo">
+              <div class="module-header">
+                <span class="module-path">lib/features/version_gate/</span>
+                <span class="module-badge">Version control</span>
+              </div>
+              <h3>Force-update guard</h3>
+              <p>
+                <code>ForceUpdateGuard</code> wraps the entire app router. On startup it queries
+                <code>AppVersionGateRepository</code> which fetches the minimum required version
+                from Supabase. If the installed version (read from the build-baked
+                <code>AppBuildVersion</code>) is below the minimum, the app renders a full-screen
+                block with a deep-link to the store. If the policy check fails, the app stays blocked
+                — stale binaries cannot fail open.
+              </p>
+              <ul class="module-caps">
+                <li>Fail-closed: network error keeps app blocked, not open</li>
+                <li>Platform matrix: separate min versions for iOS, Android, web, macOS</li>
+                <li>Test hook: <code>platformOverride</code> + <code>versionLabelLoader</code> for unit tests</li>
+              </ul>
+            </article>
+
+            <article class="module-card accent-sky">
+              <div class="module-header">
+                <span class="module-path">lib/features/history/ · lib/features/scoring/</span>
+                <span class="module-badge">History &amp; scoring</span>
+              </div>
+              <h3>Practice history &amp; bookmarks</h3>
+              <p>
+                All practice attempts — correct counts, task types, mock vs practice mode, scoring
+                results — are written to Postgres and surfaced in <code>PracticeHistoryPage</code>.
+                <code>PracticeBookmarksPage</code> lets users save items for review.
+                <code>ScoringHistoryPage</code> shows a timeline of AI-scored runs with their results.
+              </p>
+              <ul class="module-caps">
+                <li>Scoring pending / failed / success states tracked per entry</li>
+                <li>Bookmark toggle synced to Supabase in real time</li>
+                <li>Mock exam mode creates a separate batch entry for full-test tracking</li>
+              </ul>
+            </article>
+
+            <article class="module-card accent-emerald">
+              <div class="module-header">
+                <span class="module-path">lib/features/mock/</span>
+                <span class="module-badge">Mock exam</span>
+              </div>
+              <h3>Full timed mock exam</h3>
+              <p>
+                <code>MockExamPage</code> sequences all four sections with real TOEFL timing.
+                <code>MockTransitionPage</code> handles section breaks. Results are stored as a
+                single grouped practice history batch, separable from individual practice sessions
+                in the statistics view.
+              </p>
+              <ul class="module-caps">
+                <li>Section sequence: Reading → Listening → Speaking → Writing</li>
+                <li>Timed section enforcement with auto-advance on expiry</li>
+                <li>Separate result grouping: mock vs practice in history</li>
+              </ul>
+            </article>
+
+            <article class="module-card accent-amber">
+              <div class="module-header">
+                <span class="module-path">lib/features/chat/</span>
+                <span class="module-badge">AI tutor</span>
+              </div>
+              <h3>AI tutor chat</h3>
+              <p>
+                <code>TutorChatAppBarButton</code> surfaces an AI chat assistant accessible from any
+                practice page. Credits are drawn from the <code>tutor_chat_credits</code> balance in
+                the user profile. The tutor is aware of the current practice context, providing
+                section-specific hints and explanations.
+              </p>
+              <ul class="module-caps">
+                <li>Tutor credit pack purchasable separately from scoring credits</li>
+                <li>App bar integration: available in-context from any practice flow</li>
+              </ul>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── SHARED PACKAGES ───────────────────────────────────────────── -->
+      <section class="section">
+        <div class="container">
+          <p class="eyebrow">Shared packages</p>
+          <h2 class="section-title">Three packages, four apps</h2>
+          <p class="section-sub">
+            Shared packages enforce a single source of truth across TOEFL, SAT, IELTS, and GRE.
+            Any billing rule change, design token, or Supabase config fix propagates to all apps
+            from one place.
+          </p>
+          <div class="pkg-grid">
+            <div class="pkg-card">
+              <span class="pkg-path">packages/core_ui/</span>
+              <h3>Design system</h3>
+              <p>Material 3 light and dark themes (<code>CoreTheme</code>), typography scale
+              (<code>CoreTypography</code>), and shared button components
+              (<code>CorePrimaryButton</code>, <code>CoreSecondaryButton</code>). All visual
+              consistency in the multi-app family flows from this package.</p>
+            </div>
+            <div class="pkg-card">
+              <span class="pkg-path">packages/core_network/</span>
+              <h3>Supabase networking</h3>
+              <p><code>SupabaseConfig</code> and <code>SupabaseClientFactory</code> centralise
+              URL and key resolution. Repository interfaces define contracts for Supabase-backed
+              data access without coupling feature code to concrete implementations.</p>
+            </div>
+            <div class="pkg-card">
+              <span class="pkg-path">packages/core_billing/</span>
+              <h3>Billing primitives</h3>
+              <p>Free, Plus, Pro, and Hyper subscription tier scaffolding. Credit wallet logic
+              (<code>aiScoringCredits</code>, <code>tutorChatCredits</code>, <code>liveCaptionsSeconds</code>).
+              Repository and service contracts for app-specific billing persistence.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── BACKEND FUNCTIONS ─────────────────────────────────────────── -->
+      <section id="backend" class="section alt-section">
+        <div class="container">
+          <p class="eyebrow">Supabase edge functions</p>
+          <h2 class="section-title">9 Deno TypeScript functions</h2>
+          <p class="section-sub">
+            All deployed as Supabase Edge Functions. Each has its own <code>index.ts</code> and
+            imports from a shared <code>_shared/</code> library for billing logic, catalog
+            lookups, and response helpers.
+          </p>
+          <div class="fn-grid">
+
+            <div class="fn-card">
+              <div class="fn-header">
+                <span class="fn-name">verify-app-store-subscription</span>
+                <span class="fn-badge fn-badge-billing">Billing</span>
+              </div>
+              <p>Verifies an Apple receipt against the App Store API using a nonce for replay
+              protection. Maps the <code>product_id</code> to a canonical plan (plus/pro/hyper)
+              via <code>app_store_catalog.ts</code>, then calls <code>applyAppStoreSubscriptionFromReceiptRow</code>
+              to update <code>user_profiles</code>.</p>
+            </div>
+
+            <div class="fn-card">
+              <div class="fn-header">
+                <span class="fn-name">verify-google-play-subscription</span>
+                <span class="fn-badge fn-badge-billing">Billing</span>
+              </div>
+              <p>Authenticates with the Google Play Developer API using a service account JSON
+              (<code>google-auth-library</code>), fetches <code>subscriptionsv2</code> for the
+              purchase token, and applies the subscription via <code>applyGooglePlaySubscriptionFromV2</code>.</p>
+            </div>
+
+            <div class="fn-card">
+              <div class="fn-header">
+                <span class="fn-name">lemon-squeezy-webhook</span>
+                <span class="fn-badge fn-badge-billing">Billing</span>
+              </div>
+              <p>Handles all Lemon Squeezy events: subscription created/updated/expired and
+              order created. Verifies HMAC webhook signature, maps variant IDs to plan IDs,
+              checks renewal dates for usage period reset, and grants one-time store packs
+              with idempotent order tracking.</p>
+            </div>
+
+            <div class="fn-card">
+              <div class="fn-header">
+                <span class="fn-name">verify-app-store-store-pack</span>
+                <span class="fn-badge fn-badge-billing">Billing</span>
+              </div>
+              <p>Verifies one-time App Store purchases (AI scoring credits, tutor messages,
+              live captions). Maps product ID to a <code>StorePackGrant</code> (e.g. 40 or 100
+              AI scoring credits) and calls <code>applyStorePackGrantForProfile</code>.</p>
+            </div>
+
+            <div class="fn-card">
+              <div class="fn-header">
+                <span class="fn-name">verify-google-play-store-pack</span>
+                <span class="fn-badge fn-badge-billing">Billing</span>
+              </div>
+              <p>Same pattern as App Store store pack but using Google Play's Products API
+              (<code>inappproducts</code>) to verify one-time purchases and grant credits.</p>
+            </div>
+
+            <div class="fn-card">
+              <div class="fn-header">
+                <span class="fn-name">create-lemon-squeezy-checkout</span>
+                <span class="fn-badge fn-badge-api">API</span>
+              </div>
+              <p>Creates a Lemon Squeezy checkout URL for web purchases. Embeds
+              <code>auth_provider</code>, <code>external_user_id</code>, and <code>plan_id</code>
+              in custom data so the webhook can identify the user without requiring them to be
+              logged in on the payment page.</p>
+            </div>
+
+            <div class="fn-card">
+              <div class="fn-header">
+                <span class="fn-name">create-lemon-squeezy-customer-portal</span>
+                <span class="fn-badge fn-badge-api">API</span>
+              </div>
+              <p>Generates a Lemon Squeezy customer portal URL for subscription management
+              (upgrade, downgrade, cancel). Looks up the stored <code>lemon_squeezy_customer_id</code>
+              from <code>user_profiles</code> and returns a one-time portal URL.</p>
+            </div>
+
+            <div class="fn-card">
+              <div class="fn-header">
+                <span class="fn-name">exchange-rates</span>
+                <span class="fn-badge fn-badge-api">API</span>
+              </div>
+              <p>Fetches current currency exchange rates from an external provider and
+              returns them for display in the pricing and store pages. Results may be
+              cached at the edge to reduce upstream API calls.</p>
+            </div>
+
+            <div class="fn-card">
+              <div class="fn-header">
+                <span class="fn-name">exchange-convert</span>
+                <span class="fn-badge fn-badge-api">API</span>
+              </div>
+              <p>Performs server-side currency conversion using stored exchange rates,
+              returning a converted amount for a given source currency, target currency,
+              and input value.</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── BILLING DEEP DIVE ─────────────────────────────────────────── -->
+      <section id="billing" class="section">
+        <div class="container">
+          <p class="eyebrow">Billing system</p>
+          <h2 class="section-title">Three providers, one user profile</h2>
+          <p class="section-sub">
+            Whether a user pays on iOS, Android, or web, the subscription state lands in the same
+            <code>user_profiles</code> row. Each path is idempotent and replay-safe.
+          </p>
+
+          <!-- Subscription tiers -->
+          <h3 class="subsection-title">Subscription tiers &amp; store packs</h3>
+          <div class="tier-grid">
+            <div class="tier-card">
+              <span class="tier-name">Free</span>
+              <p>Basic practice access. No AI scoring credits included. Purchase store packs for credits.</p>
+            </div>
+            <div class="tier-card tier-plus">
+              <span class="tier-name">Plus · $19.99/mo</span>
+              <p>Expanded practice sets, AI scoring credits per period, and access to scored writing tasks.</p>
+            </div>
+            <div class="tier-card tier-pro">
+              <span class="tier-name">Pro · $59.90/mo</span>
+              <p>Full practice library, higher AI scoring quota, scored speaking tasks.</p>
+            </div>
+            <div class="tier-card tier-hyper">
+              <span class="tier-name">Hyper · $239/mo</span>
+              <p>Unlimited access + Gemini Pro model for AI scoring. Highest credit quota.</p>
+            </div>
+          </div>
+
+          <!-- Store packs -->
+          <h3 class="subsection-title">One-time credit packs</h3>
+          <div class="pack-grid">
+            <div class="pack-item"><code>ai_scoring_40</code> — 40 AI scoring credits</div>
+            <div class="pack-item"><code>ai_scoring_100</code> — 100 AI scoring credits</div>
+            <div class="pack-item"><code>tutor_chat_250</code> — 250 AI tutor messages</div>
+            <div class="pack-item"><code>tutor_chat_1000</code> — 1,000 AI tutor messages</div>
+            <div class="pack-item"><code>live_captions_30m</code> — 30 min live captions</div>
+            <div class="pack-item"><code>live_captions_2h</code> — 2 hr live captions</div>
+          </div>
+
+          <!-- Billing nonce system -->
+          <h3 class="subsection-title">Replay-safe nonce system</h3>
+          <div class="nonce-explainer">
+            <p>
+              Before any purchase, the client requests a short-lived nonce from the server.
+              The nonce is stored in <code>lemon_squeezy_billing_nonces</code> with an expiry and
+              a <code>purpose</code> field (e.g. <code>google_play_plan</code>). The purchase token
+              is then sent to the Edge Function along with the nonce. The function validates the nonce,
+              verifies the token with the store API, and <strong>deletes the nonce</strong> before
+              updating the profile — preventing double-grants on webhook retries or replayed requests.
+            </p>
+            <div class="nonce-flow">
+              <div class="nf-step">
+                <span class="nf-num">1</span>
+                <span>Client requests nonce from server</span>
+              </div>
+              <div class="nf-arrow">→</div>
+              <div class="nf-step">
+                <span class="nf-num">2</span>
+                <span>User pays in store</span>
+              </div>
+              <div class="nf-arrow">→</div>
+              <div class="nf-step">
+                <span class="nf-num">3</span>
+                <span>Token + nonce sent to Edge Function</span>
+              </div>
+              <div class="nf-arrow">→</div>
+              <div class="nf-step">
+                <span class="nf-num">4</span>
+                <span>Nonce validated &amp; deleted</span>
+              </div>
+              <div class="nf-arrow">→</div>
+              <div class="nf-step">
+                <span class="nf-num">5</span>
+                <span>Store API verification</span>
+              </div>
+              <div class="nf-arrow">→</div>
+              <div class="nf-step">
+                <span class="nf-num">6</span>
+                <span>user_profiles updated</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── AI SECTION ────────────────────────────────────────────────── -->
+      <section id="ai" class="section alt-section">
+        <div class="container">
+          <p class="eyebrow">AI integration</p>
+          <h2 class="section-title">AI scoring, speech recognition, and tutor</h2>
+
+          <div class="ai-grid">
+            <div class="ai-card">
+              <div class="ai-card-header">
+                <span class="ai-icon gemini-icon">G</span>
+                <div>
+                  <h3>Gemini AI scoring</h3>
+                  <span class="module-path">GeminiPracticeAssessmentClient</span>
+                </div>
+              </div>
+              <p>Scores Writing (email, academic discussion) and Speaking tasks. Two model tiers:
+              <code>gemini-3.1-flash-lite-preview</code> for Free/Plus/Pro;
+              <code>gemini-3.1-pro-preview</code> for Hyper. Input is capped at ~1,000 tokens
+              (4 chars/token estimate) to control cost. Output is capped at 1,000 tokens.
+              Up to 10 retry attempts with 4-second backoff handle transient API errors.
+              All calls are logged with input/output token counts for cost tracking.</p>
+              <div class="proof-tags">
+                <span class="proof-tag">Prompt engineering</span>
+                <span class="proof-tag">Token budget management</span>
+                <span class="proof-tag">Retry with backoff</span>
+                <span class="proof-tag">Cost tracking</span>
+              </div>
+            </div>
+
+            <div class="ai-card">
+              <div class="ai-card-header">
+                <span class="ai-icon deepgram-icon">D</span>
+                <div>
+                  <h3>Deepgram speech recognition</h3>
+                  <span class="module-path">DeepgramListenClient</span>
+                </div>
+              </div>
+              <p>Sends WAV audio bytes to Deepgram <code>POST /v1/listen</code> with
+              Nova-3 English model for pre-recorded STT. The client handles three API key
+              resolution paths: bundled <code>.env</code> asset, compile-time <code>--dart-define</code>,
+              and dotenv fallback. A BOM stripping step handles encoding edge cases in keys.
+              Approximate STT token usage is logged to <code>record_ai_token_usage</code>.</p>
+              <div class="proof-tags">
+                <span class="proof-tag">Multi-path secret resolution</span>
+                <span class="proof-tag">WAV audio handling</span>
+                <span class="proof-tag">Usage logging</span>
+              </div>
+            </div>
+
+            <div class="ai-card">
+              <div class="ai-card-header">
+                <span class="ai-icon gemini-icon">G</span>
+                <div>
+                  <h3>Content generation</h3>
+                  <span class="module-path">scripts/content_ingestion/gemini_generate.py</span>
+                </div>
+              </div>
+              <p>Uses <code>gemini-3.1-flash-lite-preview</code> (overridable via <code>GEMINI_MODEL</code>
+              env) to generate JSONL practice content for all 12 task types. Each task type has a
+              schema derived from Pydantic models — Gemini is prompted to produce JSON Lines
+              matching that schema. After generation, the ingestion pipeline validates and loads
+              the rows.</p>
+              <div class="proof-tags">
+                <span class="proof-tag">Structured output prompting</span>
+                <span class="proof-tag">Schema-driven generation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── CONTENT PIPELINE ──────────────────────────────────────────── -->
+      <section id="pipeline" class="section">
+        <div class="container">
+          <p class="eyebrow">Content pipeline</p>
+          <h2 class="section-title">Practice content as structured data</h2>
+          <p class="section-sub">
+            Content is never written by hand into SQL. It flows through a validated pipeline
+            from generation to database to audio storage — repeatable, diff-friendly, and safe to re-run.
+          </p>
+
+          <div class="pipeline-flow">
+            <div class="pf-step">
+              <div class="pf-icon pf-icon-gemini">G</div>
+              <h4>Generate</h4>
+              <p><code>gemini_generate.py</code> calls Gemini and writes JSONL files to <code>scripts/content_ingestion/data/</code></p>
+            </div>
+            <div class="pf-arrow" aria-hidden="true">→</div>
+            <div class="pf-step">
+              <div class="pf-icon pf-icon-validate">✓</div>
+              <h4>Validate</h4>
+              <p>Pydantic models in <code>models.py</code> validate each JSONL line against DB schema rules and CHECK constraints</p>
+            </div>
+            <div class="pf-arrow" aria-hidden="true">→</div>
+            <div class="pf-step">
+              <div class="pf-icon pf-icon-db">DB</div>
+              <h4>Upsert</h4>
+              <p>Batched Postgres upserts on stable <code>slug</code> IDs via PostgREST — idempotent reruns won't duplicate rows</p>
+            </div>
+            <div class="pf-arrow" aria-hidden="true">→</div>
+            <div class="pf-step">
+              <div class="pf-icon pf-icon-tts">TTS</div>
+              <h4>Generate audio</h4>
+              <p>Inworld TTS scripts read rows from Postgres and generate MP3s for Listening and Speaking content</p>
+            </div>
+            <div class="pf-arrow" aria-hidden="true">→</div>
+            <div class="pf-step">
+              <div class="pf-icon pf-icon-storage">S3</div>
+              <h4>Upload</h4>
+              <p>Upload scripts push MP3s to Supabase Storage buckets (<code>listening</code>, <code>speaking</code>); DB paths stay bucket-relative</p>
+            </div>
+            <div class="pf-arrow" aria-hidden="true">→</div>
+            <div class="pf-step">
+              <div class="pf-icon pf-icon-app">App</div>
+              <h4>Serve</h4>
+              <p>Flutter calls <code>getPublicUrl(path)</code> at runtime — no hardcoded URLs in app code</p>
+            </div>
+          </div>
+
+          <h3 class="subsection-title">12 task types supported</h3>
+          <div class="task-type-grid">
+            <div class="task-section">
+              <span class="ts-label ts-reading">Reading</span>
+              <div class="ts-items">
+                <span class="ts-item">Word completion</span>
+                <span class="ts-item">Daily life (email + document)</span>
+                <span class="ts-item">Academic passage</span>
+              </div>
+            </div>
+            <div class="task-section">
+              <span class="ts-label ts-listening">Listening</span>
+              <div class="ts-items">
+                <span class="ts-item">Choose a response</span>
+                <span class="ts-item">Conversation (2 MCQs)</span>
+                <span class="ts-item">Announcement</span>
+                <span class="ts-item">Academic talk (5 MCQs)</span>
+              </div>
+            </div>
+            <div class="task-section">
+              <span class="ts-label ts-speaking">Speaking</span>
+              <div class="ts-items">
+                <span class="ts-item">Listen &amp; repeat (sets + items)</span>
+                <span class="ts-item">Take an interview (sets + 4 Qs)</span>
+              </div>
+            </div>
+            <div class="task-section">
+              <span class="ts-label ts-writing">Writing</span>
+              <div class="ts-items">
+                <span class="ts-item">Build a sentence (cloze)</span>
+                <span class="ts-item">Write an email</span>
+                <span class="ts-item">Academic discussion</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── END-TO-END FLOWS ──────────────────────────────────────────── -->
+      <section id="flows" class="section alt-section">
+        <div class="container">
+          <p class="eyebrow">End-to-end flows</p>
+          <h2 class="section-title">From tap to database — traced in full</h2>
+
+          <div class="flow-cards">
+
+            <div class="flow-card">
+              <h3>Auth flow (Google, iOS native example)</h3>
+              <div class="flow-steps">
+                <div class="fs-item"><span class="fs-num">1</span><span>User taps "Sign in with Google"</span></div>
+                <div class="fs-item"><span class="fs-num">2</span><span><code>SocialAuthService.signInWithGoogle()</code> — platform check: iOS → native Google Sign-In SDK</span></div>
+                <div class="fs-item"><span class="fs-num">3</span><span>Google returns <code>GoogleSignInAccount</code> with an ID token and raw nonce</span></div>
+                <div class="fs-item"><span class="fs-num">4</span><span><code>supabase.auth.signInWithIdToken()</code> with hashed nonce — Supabase validates with Google</span></div>
+                <div class="fs-item"><span class="fs-num">5</span><span>Supabase creates / updates <code>auth.users</code> row; returns session</span></div>
+                <div class="fs-item"><span class="fs-num">6</span><span><code>AppSessionGate</code> resolves; router navigates to onboarding or home</span></div>
+                <div class="fs-item"><span class="fs-num">7</span><span>If first sign-in: <code>NicknameFlow</code> prompts for display name → writes to <code>user_profiles</code></span></div>
+              </div>
+            </div>
+
+            <div class="flow-card">
+              <h3>AI scoring flow (Writing email)</h3>
+              <div class="flow-steps">
+                <div class="fs-item"><span class="fs-num">1</span><span>User finishes writing and taps "Submit for scoring"</span></div>
+                <div class="fs-item"><span class="fs-num">2</span><span><code>WritingEmailAssessor</code> checks subscription plan via <code>PlanLimits</code> — gates if no quota</span></div>
+                <div class="fs-item"><span class="fs-num">3</span><span>1 AI scoring credit deducted from <code>user_profiles.ai_scoring_credits</code> before calling API</span></div>
+                <div class="fs-item"><span class="fs-num">4</span><span>Input truncated to ≤1000 tokens; model selected based on subscription tier</span></div>
+                <div class="fs-item"><span class="fs-num">5</span><span>Gemini <code>generateContent</code> called — up to 10 retries with 4s backoff on failure</span></div>
+                <div class="fs-item"><span class="fs-num">6</span><span>JSON response parsed into <code>WritingEmailAssessment</code> model</span></div>
+                <div class="fs-item"><span class="fs-num">7</span><span>Score + model answer saved to practice history in Postgres</span></div>
+                <div class="fs-item"><span class="fs-num">8</span><span>Result card shown with score, feedback, and band-6 model answer</span></div>
+              </div>
+            </div>
+
+            <div class="flow-card">
+              <h3>Subscription billing flow (Google Play)</h3>
+              <div class="flow-steps">
+                <div class="fs-item"><span class="fs-num">1</span><span>User taps "Subscribe — Pro" in <code>StorePage</code></span></div>
+                <div class="fs-item"><span class="fs-num">2</span><span><code>GooglePlaySubscriptionBilling</code> requests a nonce from <code>lemon_squeezy_billing_nonces</code> via Edge Function</span></div>
+                <div class="fs-item"><span class="fs-num">3</span><span>Google Play billing UI shown; user completes payment</span></div>
+                <div class="fs-item"><span class="fs-num">4</span><span>Purchase token + nonce sent to <code>verify-google-play-subscription</code> Edge Function</span></div>
+                <div class="fs-item"><span class="fs-num">5</span><span>Edge Function authenticates with Google Play API via service account, fetches <code>subscriptionsv2</code></span></div>
+                <div class="fs-item"><span class="fs-num">6</span><span>Nonce validated and deleted — replay protection</span></div>
+                <div class="fs-item"><span class="fs-num">7</span><span><code>user_profiles</code> updated: plan = "pro", usage period started, renewal date stored</span></div>
+                <div class="fs-item"><span class="fs-num">8</span><span>Flutter refreshes subscription state; Pro features unlock immediately</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── WHAT IT PROVES ────────────────────────────────────────────── -->
+      <section class="section proof-section">
+        <div class="container">
+          <p class="eyebrow">What this proves</p>
+          <h2 class="section-title">End-to-end ownership across every layer</h2>
+          <div class="proves-grid">
+            <div class="proves-item">
+              <span class="proves-icon">📱</span>
+              <div>
+                <strong>Production mobile engineering</strong>
+                <p>Not a tutorial app. A real product with auth, onboarding, adaptive learning, mock exams, bookmarks, and account management shipped to both stores.</p>
+              </div>
+            </div>
+            <div class="proves-item">
+              <span class="proves-icon">⚡</span>
+              <div>
+                <strong>Backend and serverless design</strong>
+                <p>9 edge functions, each with a clear responsibility: purchase verification, checkout generation, exchange rates. No monolithic backend.</p>
+              </div>
+            </div>
+            <div class="proves-item">
+              <span class="proves-icon">🤖</span>
+              <div>
+                <strong>Practical AI integration</strong>
+                <p>Not just calling an API. Token budget management, retry logic, tier-aware model routing, credit deduction before call, and usage cost logging.</p>
+              </div>
+            </div>
+            <div class="proves-item">
+              <span class="proves-icon">💳</span>
+              <div>
+                <strong>Production billing systems</strong>
+                <p>Three payment providers, subscription state sync, idempotent webhooks, nonce-based replay protection, and a credit wallet with multiple credit types.</p>
+              </div>
+            </div>
+            <div class="proves-item">
+              <span class="proves-icon">🔁</span>
+              <div>
+                <strong>Automated content operations</strong>
+                <p>Content is data, not code. Validated JSONL → Postgres upserts → TTS generation → Storage upload → runtime URL resolution. Re-runnable and diff-friendly.</p>
+              </div>
+            </div>
+            <div class="proves-item">
+              <span class="proves-icon">🏗️</span>
+              <div>
+                <strong>Scalable architecture decisions</strong>
+                <p>Monorepo with shared packages supports 4 exam apps (TOEFL, SAT, IELTS, GRE) from the same billing, networking, and design system base.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── CTA ───────────────────────────────────────────────────────── -->
+      <section class="pitch-section">
+        <div class="container pitch-inner">
+          <div class="pitch-text">
+            <p class="eyebrow light">Interested in working together?</p>
+            <h2>This is the level of engineering I bring to a team.</h2>
+            <p>Full-stack mobile, AI integration, backend serverless, and product ownership. Korea-based or remote.</p>
+          </div>
+          <div class="cta-group">
+            <a class="button-big" href="mailto:ahyunsoo3@gmail.com">Get in touch
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a class="button-outline" href="index.html">Back to portfolio</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>&copy; 2026 Hyunsoo Lee</span>
+        <span><a href="https://missroot.com" target="_blank" rel="noopener noreferrer">missroot.com</a> · <a href="index.html">Portfolio</a></span>
+      </div>
+    </footer>
+
+    <script src="project-lang.js"></script>
+  </body>
+</html>

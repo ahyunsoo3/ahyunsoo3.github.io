@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hyunsoo Lee — Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:      #0d1117;
+      --sub:      #4b5563;
+      --light:    #6b7280;
+      --accent:   #2563eb;
+      --rule:     #e5e7eb;
+      --page-w:   210mm;
+      --page-h:   297mm;
+      --pad-x:    14mm;
+      --pad-y:    12mm;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.55;
+      color: var(--ink);
+      background: #f3f4f6;
+    }
+
+    .page {
+      width: var(--page-w);
+      min-height: var(--page-h);
+      margin: 24px auto;
+      background: #fff;
+      padding: var(--pad-y) var(--pad-x);
+      box-shadow: 0 4px 32px rgba(0,0,0,.12);
+    }
+
+    /* ── Header ── */
+    .hd { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--ink); }
+    .hd-left h1 { font-size: 22pt; font-weight: 700; letter-spacing: -.5px; line-height: 1.1; }
+    .hd-left .title { font-size: 10.5pt; font-weight: 500; color: var(--accent); margin-top: 3px; }
+    .hd-right { text-align: right; font-size: 9pt; color: var(--sub); line-height: 1.7; }
+    .hd-right a { color: var(--sub); text-decoration: none; }
+    .hd-right a:hover { text-decoration: underline; }
+
+    /* ── Section ── */
+    section { margin-top: 14px; }
+    .sec-title {
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--light);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 3px;
+      margin-bottom: 10px;
+    }
+
+    /* ── Summary ── */
+    .summary p { font-size: 10pt; color: var(--sub); line-height: 1.6; }
+
+    /* ── Experience / Education rows ── */
+    .entry { display: flex; gap: 14px; margin-bottom: 12px; }
+    .entry:last-child { margin-bottom: 0; }
+    .entry-date { min-width: 74px; font-size: 9pt; color: var(--light); padding-top: 1px; text-align: right; flex-shrink: 0; }
+    .entry-body { flex: 1; }
+    .entry-body h3 { font-size: 10.5pt; font-weight: 600; color: var(--ink); line-height: 1.3; }
+    .entry-body .org { font-size: 9.5pt; font-weight: 500; color: var(--accent); margin-bottom: 2px; }
+    .entry-body p { font-size: 9.5pt; color: var(--sub); margin-top: 2px; line-height: 1.5; }
+    .entry-body ul { margin-top: 4px; padding-left: 16px; }
+    .entry-body ul li { font-size: 9.5pt; color: var(--sub); margin-bottom: 2px; line-height: 1.45; }
+
+    /* ── Featured entry ── */
+    .entry.featured .entry-body h3 { color: var(--accent); }
+
+    /* ── Skills grid ── */
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+    .skill-group { min-width: 120px; }
+    .skill-group-label { font-size: 8.5pt; font-weight: 600; color: var(--ink); margin-bottom: 3px; display: block; }
+    .chips { display: flex; flex-wrap: wrap; gap: 4px; }
+    .chip {
+      font-size: 8.5pt;
+      font-weight: 500;
+      padding: 2px 7px;
+      border-radius: 4px;
+      line-height: 1.5;
+    }
+    .chip-blue   { background: #eff6ff; color: #1d4ed8; }
+    .chip-sky    { background: #f0f9ff; color: #0369a1; }
+    .chip-green  { background: #f0fdf4; color: #166534; }
+    .chip-amber  { background: #fffbeb; color: #92400e; }
+    .chip-purple { background: #faf5ff; color: #7e22ce; }
+
+    /* ── Achievements ── */
+    .ach-row { display: flex; gap: 14px; margin-bottom: 8px; }
+    .ach-row:last-child { margin-bottom: 0; }
+    .ach-year { min-width: 44px; font-size: 9pt; color: var(--light); text-align: right; flex-shrink: 0; }
+    .ach-body h4 { font-size: 10pt; font-weight: 600; }
+    .ach-body p  { font-size: 9.5pt; color: var(--sub); }
+
+    /* ── Two-column layout for lower sections ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
+
+    /* ── Print ── */
+    @media print {
+      body { background: #fff; }
+      .page { margin: 0; box-shadow: none; width: 100%; min-height: auto; }
+      @page { size: A4; margin: 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── HEADER ── -->
+  <header class="hd">
+    <div class="hd-left">
+      <h1>Hyunsoo Lee</h1>
+      <div class="title">AI Product Engineer &amp; Solo Founder</div>
+    </div>
+    <div class="hd-right">
+      <div><a href="mailto:ahyunsoo3@gmail.com">ahyunsoo3@gmail.com</a></div>
+      <div><a href="https://github.com/ahyunsoo3" target="_blank">github.com/ahyunsoo3</a></div>
+      <div><a href="https://missroot.com" target="_blank">missroot.com</a></div>
+      <div>Korea · Open to Remote</div>
+    </div>
+  </header>
+
+  <!-- ── SUMMARY ── -->
+  <section class="summary">
+    <div class="sec-title">Summary</div>
+    <p>
+      Full-stack AI product engineer and solo founder with a proven record of shipping production software end-to-end.
+      Built <strong>Missroot TOEFL</strong> — a Flutter × Supabase AI exam-prep platform live on both the App Store and Google Play —
+      single-handedly: mobile, backend, AI scoring, billing, and content pipelines.
+      Background spans AI research, Kaggle competition results (Top 2.8%), game development, and computer science.
+      Seeking a senior role in mobile engineering, AI product integration, or full-stack ownership in Korea or remotely.
+    </p>
+  </section>
+
+  <!-- ── EXPERIENCE ── -->
+  <section>
+    <div class="sec-title">Experience</div>
+
+    <div class="entry featured">
+      <div class="entry-date">2025 – 2026</div>
+      <div class="entry-body">
+        <div class="org">Missroot</div>
+        <h3>Sole Developer, Designer &amp; Product Owner — Missroot TOEFL</h3>
+        <p>Designed, built, and launched a cross-platform AI English exam-prep app from scratch. Owns the entire product lifecycle with zero other engineers.</p>
+        <ul>
+          <li>Flutter client with 14 feature modules: Reading, Listening, Speaking, Writing, onboarding, adaptive difficulty, score analytics, mock exam, AI tutor, and more.</li>
+          <li>Supabase backend: PostgreSQL + 9 Deno TypeScript Edge Functions for auth, billing, AI scoring, content, and user-profile management.</li>
+          <li>AI integration: Gemini AI for Writing/Speaking scoring and content generation; Deepgram STT for Speaking; automated TTS pipeline (Inworld) for all Listening audio.</li>
+          <li>Three payment providers: Google Play, Apple App Store, Lemon Squeezy — idempotent webhook nonce system; Free / Plus / Pro / Hyper subscription tiers + credit packs.</li>
+          <li>Python content pipeline: Gemini-generated JSONL validated with Pydantic → upserted to Postgres → audio generated and uploaded to Supabase Storage.</li>
+          <li>Monorepo architecture supporting four exam apps (TOEFL, SAT, IELTS, GRE) with three shared Flutter packages.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date">2024 – 2025</div>
+      <div class="entry-body">
+        <div class="org">Toben Studio — USA (Remote Contract)</div>
+        <h3>Game Developer &amp; Systems Engineer</h3>
+        <p>Contract freelance game development and systems engineering for a US-based studio.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date">2021</div>
+      <div class="entry-body">
+        <div class="org">Lululab Inc., Seoul</div>
+        <h3>AI Researcher — Department of Artificial Intelligence</h3>
+        <p>Conducted skin AI research; developed and evaluated computer-vision models for skin-condition detection and analysis.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section>
+    <div class="sec-title">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <span class="skill-group-label">Mobile</span>
+        <div class="chips">
+          <span class="chip chip-blue">Flutter</span>
+          <span class="chip chip-blue">Dart</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <span class="skill-group-label">Backend</span>
+        <div class="chips">
+          <span class="chip chip-sky">Supabase</span>
+          <span class="chip chip-sky">PostgreSQL</span>
+          <span class="chip chip-sky">TypeScript</span>
+          <span class="chip chip-sky">Deno</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <span class="skill-group-label">AI &amp; Data</span>
+        <div class="chips">
+          <span class="chip chip-green">Gemini AI</span>
+          <span class="chip chip-green">Deepgram</span>
+          <span class="chip chip-green">Python</span>
+          <span class="chip chip-green">Pydantic</span>
+          <span class="chip chip-green">Inworld TTS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <span class="skill-group-label">Payments</span>
+        <div class="chips">
+          <span class="chip chip-amber">Google Play</span>
+          <span class="chip chip-amber">App Store</span>
+          <span class="chip chip-amber">Lemon Squeezy</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <span class="skill-group-label">Cloud / Infra</span>
+        <div class="chips">
+          <span class="chip chip-purple">Google Cloud</span>
+          <span class="chip chip-purple">Kubernetes</span>
+          <span class="chip chip-purple">Supabase Edge</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="two-col">
+    <!-- ── EDUCATION ── -->
+    <section>
+      <div class="sec-title">Education</div>
+
+      <div class="entry">
+        <div class="entry-date">2012 – 2020</div>
+        <div class="entry-body">
+          <h3>B.S. Computer Science</h3>
+          <div class="org">Sun Moon University</div>
+          <p>Major GPA 4.3 / 4.5</p>
+          <p>Exchange Student, Purdue University — College of Information Technology (IITP-sponsored, 2019)</p>
+          <p>Google Cloud &amp; Kubernetes certifications via Coursera</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ACHIEVEMENTS ── -->
+    <section>
+      <div class="sec-title">Competitions &amp; Awards</div>
+
+      <div class="ach-row">
+        <div class="ach-year">2024</div>
+        <div class="ach-body">
+          <h4>Kaggle — PII Data Detection &nbsp;<span style="color:#2563eb">Top 2.8%</span></h4>
+          <p>Personal Identifiable Information detection in text (NLP)</p>
+        </div>
+      </div>
+      <div class="ach-row">
+        <div class="ach-year">2023</div>
+        <div class="ach-body">
+          <h4>Kaggle — AI Text Detection &nbsp;<span style="color:#2563eb">Top 7.4%</span></h4>
+          <p>LLM-generated text classification</p>
+        </div>
+      </div>
+      <div class="ach-row">
+        <div class="ach-year">2023</div>
+        <div class="ach-body">
+          <h4>Kaggle — IceCube Neutrinos &nbsp;<span style="color:#2563eb">Top 9.5%</span></h4>
+          <p>Scientific ML (neutrino direction reconstruction)</p>
+        </div>
+      </div>
+      <div class="ach-row">
+        <div class="ach-year">2019</div>
+        <div class="ach-body">
+          <h4>AI World Cup — <span style="color:#2563eb">Grand Prize</span></h4>
+          <p>AI sports commentator model · KAIST-sponsored</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ── LINKS ── -->
+  <section>
+    <div class="sec-title">Live Product &amp; Links</div>
+    <div style="display:flex; gap:28px; flex-wrap:wrap; font-size:9.5pt; color:var(--sub);">
+      <span>App Store: <a href="https://apps.apple.com/us/app/missroot-toefl/id6764210591" style="color:var(--accent)">Missroot TOEFL</a></span>
+      <span>Google Play: <a href="https://play.google.com/store/apps/details?id=com.missroot.toefl" style="color:var(--accent)">Missroot TOEFL</a></span>
+      <span>Portfolio: <a href="https://ahyunsoo3.github.io" style="color:var(--accent)">ahyunsoo3.github.io</a></span>
+      <span>GitHub: <a href="https://github.com/ahyunsoo3" style="color:var(--accent)">github.com/ahyunsoo3</a></span>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

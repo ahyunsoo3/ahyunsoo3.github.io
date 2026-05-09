@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>이현수 — 이력서</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:    #0d1117;
+      --sub:    #4b5563;
+      --light:  #6b7280;
+      --accent: #2563eb;
+      --rule:   #e5e7eb;
+      --page-w: 210mm;
+      --page-h: 297mm;
+      --pad-x:  14mm;
+      --pad-y:  12mm;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.6;
+      color: var(--ink);
+      background: #f3f4f6;
+      word-break: keep-all;
+    }
+
+    .page {
+      width: var(--page-w);
+      min-height: var(--page-h);
+      margin: 24px auto;
+      background: #fff;
+      padding: var(--pad-y) var(--pad-x);
+      box-shadow: 0 4px 32px rgba(0,0,0,.12);
+    }
+
+    /* ── Header ── */
+    .hd { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--ink); }
+    .hd-left h1 { font-size: 22pt; font-weight: 700; letter-spacing: -.5px; line-height: 1.15; }
+    .hd-left .name-en { font-size: 11pt; font-weight: 400; color: var(--sub); margin-top: 1px; }
+    .hd-left .title { font-size: 10.5pt; font-weight: 600; color: var(--accent); margin-top: 4px; }
+    .hd-right { text-align: right; font-size: 9pt; color: var(--sub); line-height: 1.8; }
+    .hd-right a { color: var(--sub); text-decoration: none; }
+    .hd-right a:hover { text-decoration: underline; }
+
+    /* ── Section ── */
+    section { margin-top: 14px; }
+    .sec-title {
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--light);
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 3px;
+      margin-bottom: 10px;
+    }
+
+    /* ── Summary ── */
+    .summary p { font-size: 10pt; color: var(--sub); line-height: 1.65; }
+
+    /* ── Entry rows ── */
+    .entry { display: flex; gap: 14px; margin-bottom: 12px; }
+    .entry:last-child { margin-bottom: 0; }
+    .entry-date { min-width: 78px; font-size: 9pt; color: var(--light); padding-top: 1px; text-align: right; flex-shrink: 0; }
+    .entry-body { flex: 1; }
+    .entry-body h3 { font-size: 10.5pt; font-weight: 700; color: var(--ink); line-height: 1.35; }
+    .entry-body .org { font-size: 9.5pt; font-weight: 600; color: var(--accent); margin-bottom: 2px; }
+    .entry-body p { font-size: 9.5pt; color: var(--sub); margin-top: 2px; line-height: 1.55; }
+    .entry-body ul { margin-top: 5px; padding-left: 16px; }
+    .entry-body ul li { font-size: 9.5pt; color: var(--sub); margin-bottom: 2px; line-height: 1.5; }
+
+    .entry.featured .entry-body h3 { color: var(--accent); }
+
+    /* ── Skills ── */
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+    .skill-group { min-width: 110px; }
+    .skill-group-label { font-size: 8.5pt; font-weight: 700; color: var(--ink); margin-bottom: 3px; display: block; }
+    .chips { display: flex; flex-wrap: wrap; gap: 4px; }
+    .chip {
+      font-size: 8.5pt;
+      font-weight: 500;
+      padding: 2px 7px;
+      border-radius: 4px;
+      line-height: 1.5;
+    }
+    .chip-blue   { background: #eff6ff; color: #1d4ed8; }
+    .chip-sky    { background: #f0f9ff; color: #0369a1; }
+    .chip-green  { background: #f0fdf4; color: #166534; }
+    .chip-amber  { background: #fffbeb; color: #92400e; }
+    .chip-purple { background: #faf5ff; color: #7e22ce; }
+
+    /* ── Achievements ── */
+    .ach-row { display: flex; gap: 14px; margin-bottom: 8px; }
+    .ach-row:last-child { margin-bottom: 0; }
+    .ach-year { min-width: 44px; font-size: 9pt; color: var(--light); text-align: right; flex-shrink: 0; }
+    .ach-body h4 { font-size: 10pt; font-weight: 700; }
+    .ach-body p  { font-size: 9.5pt; color: var(--sub); }
+
+    /* ── Two-column ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
+
+    /* ── Print ── */
+    @media print {
+      body { background: #fff; }
+      .page { margin: 0; box-shadow: none; width: 100%; min-height: auto; }
+      @page { size: A4; margin: 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── HEADER ── -->
+  <header class="hd">
+    <div class="hd-left">
+      <h1>이현수</h1>
+      <div class="name-en">Hyunsoo Lee</div>
+      <div class="title">AI 제품 엔지니어 &amp; 1인 창업자</div>
+    </div>
+    <div class="hd-right">
+      <div><a href="mailto:ahyunsoo3@gmail.com">ahyunsoo3@gmail.com</a></div>
+      <div><a href="https://github.com/ahyunsoo3" target="_blank">github.com/ahyunsoo3</a></div>
+      <div><a href="https://missroot.com" target="_blank">missroot.com</a></div>
+      <div>국내 근무 · 원격 가능</div>
+    </div>
+  </header>
+
+  <!-- ── SUMMARY ── -->
+  <section class="summary">
+    <div class="sec-title">자기소개</div>
+    <p>
+      제품 기획부터 배포, 운영까지 전 과정을 주도하는 <strong>풀스택 AI 제품 엔지니어</strong>입니다. 
+      AI 기반 영어 시험 대비 플랫폼인 <strong>Missroot TOEFL</strong>(Flutter × Supabase)을 단독으로 설계 및 개발하여 양대 스토어에 성공적으로 출시했습니다. 
+      모바일 클라이언트뿐만 아니라 백엔드 아키텍처, AI 채점 엔진, 결제 시스템, 자동화된 콘텐츠 파이프라인까지 제품의 전 계층을 직접 구축한 경험을 보유하고 있습니다. 
+      룰루랩 AI 연구원 경력과 캐글 상위 2.8%, KAIST 주관 AI 대회 대상 등 검증된 기술력을 바탕으로, 모바일 엔지니어링 및 AI 제품 통합 분야에서 기술적 임팩트를 낼 수 있는 시니어 역할을 찾고 있습니다.
+    </p>
+  </section>
+
+  <!-- ── EXPERIENCE ── -->
+  <section>
+    <div class="sec-title">경력</div>
+
+    <div class="entry featured">
+      <div class="entry-date">2025 – 2026</div>
+      <div class="entry-body">
+        <div class="org">Missroot</div>
+        <h3>단독 개발자·디자이너·제품 책임자 — Missroot TOEFL</h3>
+        <p>AI 기반 TOEFL 시험 준비 크로스 플랫폼 앱을 처음부터 혼자 설계·개발·출시. 엔지니어 없이 전체 제품 생애주기를 총괄.</p>
+        <ul>
+          <li>Flutter 클라이언트: Reading·Listening·Speaking·Writing·온보딩·적응형 난이도·점수 분석·모의고사·AI 튜터 등 14개 기능 모듈.</li>
+          <li>Supabase 백엔드: PostgreSQL + Deno TypeScript Edge Function 9개 — 인증·결제·AI 채점·콘텐츠·유저 프로필 관리.</li>
+          <li>AI 통합: Writing·Speaking 자동 채점 및 콘텐츠 생성에 Gemini AI, Speaking 음성 전사에 Deepgram STT, Listening 음원 생성에 Inworld TTS 파이프라인 자동화.</li>
+          <li>결제 시스템: Google Play·Apple App Store·Lemon Squeezy 3개 제공자 통합, 웹훅 Nonce 멱등성 보장, Free·Plus·Pro·Hyper 구독 티어 + 크레딧 팩 운영.</li>
+          <li>Python 콘텐츠 파이프라인: Gemini 생성 JSONL → Pydantic 검증 → Postgres 적재 → TTS 음원 생성 → Supabase Storage 업로드.</li>
+          <li>모노레포 아키텍처: TOEFL·SAT·IELTS·GRE 4개 앱을 공유 Flutter 패키지 3개로 지원하도록 설계.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date">2024 – 2025</div>
+      <div class="entry-body">
+        <div class="org">Toben Studio — 미국 (원격 계약)</div>
+        <h3>게임 개발자 &amp; 시스템 엔지니어</h3>
+        <p>미국 게임 스튜디오의 계약직 프리랜서로 게임 개발 및 시스템 엔지니어링 수행.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-date">2021</div>
+      <div class="entry-body">
+        <div class="org">룰루랩(Lululab Inc.), 서울</div>
+        <h3>AI 연구원 — 인공지능 연구소</h3>
+        <p>피부 AI 연구 담당. 피부 상태 탐지·분석을 위한 컴퓨터 비전 모델 개발 및 평가.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section>
+    <div class="sec-title">기술 스택</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <span class="skill-group-label">모바일</span>
+        <div class="chips">
+          <span class="chip chip-blue">Flutter</span>
+          <span class="chip chip-blue">Dart</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <span class="skill-group-label">백엔드</span>
+        <div class="chips">
+          <span class="chip chip-sky">Supabase</span>
+          <span class="chip chip-sky">PostgreSQL</span>
+          <span class="chip chip-sky">TypeScript</span>
+          <span class="chip chip-sky">Deno</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <span class="skill-group-label">AI &amp; 데이터</span>
+        <div class="chips">
+          <span class="chip chip-green">Gemini AI</span>
+          <span class="chip chip-green">Deepgram</span>
+          <span class="chip chip-green">Python</span>
+          <span class="chip chip-green">Pydantic</span>
+          <span class="chip chip-green">Inworld TTS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <span class="skill-group-label">결제</span>
+        <div class="chips">
+          <span class="chip chip-amber">Google Play</span>
+          <span class="chip chip-amber">App Store</span>
+          <span class="chip chip-amber">Lemon Squeezy</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <span class="skill-group-label">클라우드 / 인프라</span>
+        <div class="chips">
+          <span class="chip chip-purple">Google Cloud</span>
+          <span class="chip chip-purple">Kubernetes</span>
+          <span class="chip chip-purple">Supabase Edge</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="two-col">
+    <!-- ── EDUCATION ── -->
+    <section>
+      <div class="sec-title">학력</div>
+
+      <div class="entry">
+        <div class="entry-date">2012 – 2020</div>
+        <div class="entry-body">
+          <h3>컴퓨터공학 학사 (B.S.)</h3>
+          <div class="org">선문대학교</div>
+          <p>전공 GPA 4.3 / 4.5</p>
+          <p>Purdue University 교환학생 — College of Information Technology (IITP 후원, 2019)</p>
+          <p>Google Cloud &amp; Kubernetes 자격증 (Coursera)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ACHIEVEMENTS ── -->
+    <section>
+      <div class="sec-title">수상 &amp; 대회 실적</div>
+
+      <div class="ach-row">
+        <div class="ach-year">2024</div>
+        <div class="ach-body">
+          <h4>Kaggle — PII Data Detection &nbsp;<span style="color:#2563eb">상위 2.8%</span></h4>
+          <p>텍스트 내 개인 식별 정보 탐지 (NLP)</p>
+        </div>
+      </div>
+      <div class="ach-row">
+        <div class="ach-year">2023</div>
+        <div class="ach-body">
+          <h4>Kaggle — AI Text Detection &nbsp;<span style="color:#2563eb">상위 7.4%</span></h4>
+          <p>LLM 생성 텍스트 분류</p>
+        </div>
+      </div>
+      <div class="ach-row">
+        <div class="ach-year">2023</div>
+        <div class="ach-body">
+          <h4>Kaggle — IceCube Neutrinos &nbsp;<span style="color:#2563eb">상위 9.5%</span></h4>
+          <p>과학적 ML (중성미자 방향 재구성)</p>
+        </div>
+      </div>
+      <div class="ach-row">
+        <div class="ach-year">2019</div>
+        <div class="ach-body">
+          <h4>AI World Cup — <span style="color:#2563eb">대상</span></h4>
+          <p>AI 스포츠 해설자 모델 · KAIST 후원</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ── LINKS ── -->
+  <section>
+    <div class="sec-title">제품 링크</div>
+    <div style="display:flex; gap:28px; flex-wrap:wrap; font-size:9.5pt; color:var(--sub);">
+      <span>App Store: <a href="https://apps.apple.com/us/app/missroot-toefl/id6764210591" style="color:var(--accent)">Missroot TOEFL</a></span>
+      <span>Google Play: <a href="https://play.google.com/store/apps/details?id=com.missroot.toefl" style="color:var(--accent)">Missroot TOEFL</a></span>
+      <span>포트폴리오: <a href="https://ahyunsoo3.github.io" style="color:var(--accent)">ahyunsoo3.github.io</a></span>
+      <span>GitHub: <a href="https://github.com/ahyunsoo3" style="color:var(--accent)">github.com/ahyunsoo3</a></span>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
