@@ -607,12 +607,45 @@ h1 { margin-bottom: 1.6rem; }
 
 .stack-groups {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
   margin-top: 2.5rem;
 }
 
-.stack-group { display: flex; flex-direction: column; gap: 0.85rem; }
+.stack-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  background: var(--white);
+  border: 1px solid var(--soft);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.4rem 1.4rem;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s;
+}
+.stack-group:hover { box-shadow: var(--shadow-md); }
+
+.stack-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.stack-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  flex-shrink: 0;
+}
+.icon-indigo  { background: #eef2ff; color: #4f46e5; }
+.icon-sky     { background: #f0f9ff; color: #0284c7; }
+.icon-emerald { background: #f0fdf4; color: #059669; }
+.icon-amber   { background: #fffbeb; color: #b45309; }
+.icon-violet  { background: #f5f3ff; color: #7c3aed; }
+.icon-rose    { background: #fff1f2; color: #e11d48; }
 
 .stack-group-label {
   font-size: 0.7rem;
@@ -621,14 +654,20 @@ h1 { margin-bottom: 1.6rem; }
   text-transform: uppercase;
   color: var(--muted);
 }
+.label-indigo  { color: #4f46e5; }
+.label-sky     { color: #0284c7; }
+.label-emerald { color: #059669; }
+.label-amber   { color: #b45309; }
+.label-violet  { color: #7c3aed; }
+.label-rose    { color: #e11d48; }
 
-.stack-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.stack-chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
 
 .chip {
-  padding: 0.4rem 0.85rem;
+  padding: 0.35rem 0.8rem;
   border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 700;
+  font-size: 0.78rem;
+  font-weight: 600;
   border: 1px solid transparent;
 }
 
@@ -636,6 +675,8 @@ h1 { margin-bottom: 1.6rem; }
 .chip-sky     { background: #f0f9ff; color: #0284c7; border-color: #bae6fd; }
 .chip-emerald { background: #f0fdf4; color: #059669; border-color: #bbf7d0; }
 .chip-amber   { background: #fffbeb; color: #b45309; border-color: #fde68a; }
+.chip-violet  { background: #f5f3ff; color: #7c3aed; border-color: #ddd6fe; }
+.chip-rose    { background: #fff1f2; color: #e11d48; border-color: #fecdd3; }
 
 /* ─── Workflow ──────────────────────────────────────────────────────────── */
 .wf-steps {
@@ -929,26 +970,30 @@ h1 { margin-bottom: 1.6rem; }
 
 /* ─── Flagship deep-link bar ────────────────────────────────────────────── */
 .flagship-cta-bar {
-  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  padding-top: 3.5rem;
 }
 
 .flagship-deep-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.75rem 1.25rem;
-  background: var(--accent-soft);
-  border: 1px solid var(--accent-mid);
-  border-radius: 0.75rem;
-  color: var(--accent-dark);
-  font-size: 0.85rem;
-  font-weight: 700;
-  transition: background 150ms, border-color 150ms;
+  gap: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  background: transparent;
+  border: 1.5px solid var(--accent-mid);
+  border-radius: 2rem;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: background 150ms, border-color 150ms, color 150ms;
 }
 
 .flagship-deep-link:hover {
-  background: var(--accent-mid);
+  background: var(--accent-soft);
   border-color: var(--accent);
+  color: var(--accent-dark);
 }
 
 /* ─── Responsive 900px ──────────────────────────────────────────────────── */

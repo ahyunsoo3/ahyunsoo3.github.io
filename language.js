@@ -11,8 +11,8 @@
     "Live on iOS & Android":  "iOS & Android 출시 중",
     "I ship AI products":     "저는 실제 사용자에게",
     "to real users.":         "AI 제품을 출시합니다.",
-    "Solo founder of Missroot TOEFL — a Flutter × Supabase AI exam prep platform, live on Google Play and App Store.":
-      "Missroot TOEFL의 1인 창업자 — Flutter × Supabase AI 영어 시험 준비 플랫폼으로 Google Play와 App Store에 출시되어 있습니다.",
+    "Technical PM & solo founder of Missroot TOEFL — a Flutter × Supabase AI exam prep platform, live on Google Play and App Store.":
+      "Missroot TOEFL의 테크니컬 PM이자 1인 창업자 — Flutter × Supabase AI 영어 시험 준비 플랫폼으로 Google Play와 App Store에 출시되어 있습니다.",
     "App Store":     "App Store",
     "Google Play":   "Google Play",
     "missroot.com ↗": "missroot.com ↗",
@@ -29,8 +29,6 @@
 
     // Flagship section
     "What I built": "제가 만든 것",
-    "Missroot TOEFL — a production AI product":
-      "Missroot TOEFL — 프로덕션 AI 제품",
     "A real app used by real students to prepare for one of the world's most competitive English exams.":
       "세계에서 가장 경쟁이 치열한 영어 시험을 준비하는 실제 학생들이 사용하는 앱입니다.",
     "View full technical deep-dive — architecture, all 14 modules, billing flows, AI scoring, content pipeline":
@@ -74,7 +72,9 @@
     "Full-stack and cross-platform": "풀스택, 크로스 플랫폼",
     "Mobile": "모바일",
     "Backend": "백엔드",
-    "AI & Data": "AI & 데이터",
+    "AI & Data": "인공지능 & 데이터",
+    "ML & Research": "머신러닝 & 연구",
+    "DevOps & Cloud": "데브옵스 & 클라우드",
     "Payments": "결제",
 
     // Workflow
@@ -145,14 +145,14 @@
 
   const META = {
     en: {
-      title:         "Hyunsoo Lee · AI Product Engineer",
-      description:   "Hyunsoo Lee — solo founder and full-stack AI product engineer. Built Missroot TOEFL: live on Google Play and App Store.",
-      ogDescription: "Built Missroot TOEFL — a Flutter × Supabase AI exam prep platform, live on both app stores."
+      title:         "Hyunsoo Lee · Technical PM & Solo Founder",
+      description:   "From planning through backend design, AI engine build, and live operations for the AI English learning platform 'Missroot TOEFL', I personally led the full lifecycle and drove the product from inception through growth. Working hands-on across the mobile client, backend, and AI pipelines sharpened my instinct for turning technical feasibility into real business value. I excel at pairing complex stacks with user-friendly UI/UX; through data-informed decisions and product-architecture strategy, I aim to drive qualitative service growth in mobile engineering and AI product integration.",
+      ogDescription: "From planning through backend design, AI engine build, and live operations for the AI English learning platform 'Missroot TOEFL', I personally led the full lifecycle and drove the product from inception through growth. Working hands-on across the mobile client, backend, and AI pipelines sharpened my instinct for turning technical feasibility into real business value. I excel at pairing complex stacks with user-friendly UI/UX; through data-informed decisions and product-architecture strategy, I aim to drive qualitative service growth in mobile engineering and AI product integration."
     },
     ko: {
-      title:         "이현수 · AI 제품 엔지니어",
-      description:   "이현수 — 1인 창업자이자 풀스택 AI 제품 엔지니어. Missroot TOEFL을 Google Play와 App Store에 출시했습니다.",
-      ogDescription: "Missroot TOEFL 개발 — Flutter × Supabase AI 영어 시험 준비 플랫폼, 양 스토어 출시."
+      title:         "이현수 · 테크니컬 PM & 1인 창업자",
+      description:   "AI 영어 학습 플랫폼 'Missroot TOEFL'의 기획부터 백엔드 설계, AI 엔진 구축, 서비스 운영에 이르는 전 생애주기를 직접 주도하며 제품의 탄생과 성장을 이끌었습니다. 이 과정에서 모바일 클라이언트와 백엔드, AI 파이프라인 전 계층을 직접 다루며 기술적 실현 가능성을 실제 비즈니스 가치로 전환하는 감각을 기를 수 있었습니다. 복잡한 기술 스택을 사용자 친화적인 UI/UX와 결합하는 데 강점이 있으며, 데이터 기반의 합리적인 의사결정과 제품 아키텍처 전략을 통해 모바일 엔지니어링 및 AI 제품 통합 분야에서 서비스의 질적 성장을 견인하고자 합니다.",
+      ogDescription: "AI 영어 학습 플랫폼 'Missroot TOEFL'의 기획부터 백엔드 설계, AI 엔진 구축, 서비스 운영에 이르는 전 생애주기를 직접 주도하며 제품의 탄생과 성장을 이끌었습니다. 이 과정에서 모바일 클라이언트와 백엔드, AI 파이프라인 전 계층을 직접 다루며 기술적 실현 가능성을 실제 비즈니스 가치로 전환하는 감각을 기를 수 있었습니다. 복잡한 기술 스택을 사용자 친화적인 UI/UX와 결합하는 데 강점이 있으며, 데이터 기반의 합리적인 의사결정과 제품 아키텍처 전략을 통해 모바일 엔지니어링 및 AI 제품 통합 분야에서 서비스의 질적 성장을 견인하고자 합니다."
     }
   };
 
