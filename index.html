@@ -12,29 +12,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="main.css" />
   </head>
-  <body>
-
-    <!-- ─── HEADER ─────────────────────────────────────────────────────── -->
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="Hyunsoo Lee home">
-        <span class="brand-mark">HL</span>
-        <span class="brand-name">Hyunsoo Lee</span>
-      </a>
-      <nav class="page-tabs" aria-label="Primary navigation">
-        <a class="page-tab active" href="index.html">About</a>
-        <a class="page-tab" href="project.html">Build</a>
-        <a class="page-tab" href="ai.html">AI Engine</a>
-        <a class="page-tab" href="growth.html">Marketing</a>
-        <a class="page-tab" href="spec.html">Blueprint</a>
-        <a class="page-tab" href="index.html#contact">Contact</a>
-      </nav>
-      <div class="language-tabs" role="group" aria-label="Language selector">
-        <button class="language-tab" type="button" data-lang-button="en">EN</button>
-        <button class="language-tab" type="button" data-lang-button="ko">KR</button>
-      </div>
-    </header>
+  <body data-page="index">
+    <script src="components.js"></script>
 
     <main id="top">
 
@@ -78,19 +59,19 @@
                   <div class="ps-grid">
                     <div class="ps-tile tile-reading">
                       <span class="tile-label">Reading</span>
-                      <span class="tile-bar" style="width:78%"></span>
+                      <span class="tile-bar tile-bar-78"></span>
                     </div>
                     <div class="ps-tile tile-listening">
                       <span class="tile-label">Listening</span>
-                      <span class="tile-bar" style="width:64%"></span>
+                      <span class="tile-bar tile-bar-64"></span>
                     </div>
                     <div class="ps-tile tile-speaking">
                       <span class="tile-label">Speaking</span>
-                      <span class="tile-bar" style="width:55%"></span>
+                      <span class="tile-bar tile-bar-55"></span>
                     </div>
                     <div class="ps-tile tile-writing">
                       <span class="tile-label">Writing</span>
-                      <span class="tile-bar" style="width:70%"></span>
+                      <span class="tile-bar tile-bar-70"></span>
                     </div>
                   </div>
                   <div class="ps-score-card">
@@ -551,6 +532,6 @@
       </div>
     </footer>
 
-    <script src="language.js"></script>
+    <script src="i18n.js"></script>
   </body>
 </html>
