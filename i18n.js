@@ -16,7 +16,7 @@
 
     /* ─ Index · Hero ─ */
     "Live on iOS & Android":  "iOS & Android 출시 중",
-    "Ship AI products":       "AI 제품을 출시합니다",
+    "Ship AI products":       "Missroot TOEFL",
     "Production AI TOEFL prep platform.":
       "프로덕션 AI 영어 시험 준비 플랫폼.",
     "App Store":      "App Store",
@@ -74,7 +74,7 @@
 
     /* ─ Index · Stack ─ */
     "Technologies": "기술 스택",
-    "Expert across the full product stack": "전체 제품 스택 전문가",
+    "Expert across the full product stack": "제품 기획부터 기술 구현까지 아우르는 전문가",
     "Every layer shipped to production — mobile client, backend, AI pipeline, billing, and cloud infra.":
       "모바일, 백엔드, AI 파이프라인, 결제, 클라우드 인프라까지 모든 레이어를 프로덕션에 출시했습니다.",
     "Mobile": "모바일",
