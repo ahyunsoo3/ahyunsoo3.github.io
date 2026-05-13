@@ -263,7 +263,7 @@
       "Growth & marketing": "성장 및 마케팅 전략",
       "I own distribution.": "배포와 성장까지 직접 리드합니다.",
       "Building the product is only half the job. I plan and run paid acquisition myself — targeting the right Reddit communities, measuring CAC, and iterating on creative. A solo founder who understands the full funnel is rare. This page shows the numbers.":
-        "개발은 시작일 뿐입니다. Reddit 커뮤니티 타겟팅, CAC 측정 및 광고 크리에이티브 개선 등 전체 퍼널을 이해하는 1인 창업자로서 지표 기반 성장을 이끌어냈습니다.",
+        "제품을 만드는 데서 멈추지 않고, Reddit 커뮤니티 타겟팅부터 CAC 측정, 광고 크리에이티브 실험까지 직접 운영하며 고객 획득 과정을 지표로 개선해 왔습니다.",
       "Amount spent": "집행 광고비",
       "Impressions": "노출수",
       "Clicks": "클릭수",
