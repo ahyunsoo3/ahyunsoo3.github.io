@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="How Hyunsoo Lee reviews production code — security, billing idempotency, AI cost control, and schema validation on a 98k+ LOC Flutter × Supabase app." />
+    <title>Code Review · Hyunsoo Lee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../main.css" />
+  </head>
+  <body data-page="code-review">
+    <script src="../components.js"></script>
+
+    <main>
+
+      <!-- ─── HERO ──────────────────────────────────────────────────────── -->
+      <section class="ai-hero cr-hero">
+        <div class="container ai-hero-inner">
+          <div>
+            <p class="eyebrow light">Code review</p>
+            <h1 class="ai-h1">I review like money is on the line.</h1>
+            <p class="ai-hero-sub">
+              Solo-founder scale means every merge can break billing, burn AI credits, or leak user data.
+              I treat review as a production gate — not a style pass. These are real patterns from
+              Missroot TOEFL: what I look for, what I block, and what I ship.
+            </p>
+            <div class="ai-model-chips">
+              <span class="ai-chip chip-cr-security">Security</span>
+              <span class="ai-chip chip-cr-billing">Billing</span>
+              <span class="ai-chip chip-cr-ai">AI cost</span>
+              <span class="ai-chip chip-cr-data">Data integrity</span>
+            </div>
+          </div>
+          <div class="cr-hero-stats" aria-label="Codebase review scope">
+            <div class="cr-stat">
+              <span class="cr-stat-val">98k+</span>
+              <span class="cr-stat-label">Lines reviewed in monorepo</span>
+            </div>
+            <div class="cr-stat">
+              <span class="cr-stat-val">9</span>
+              <span class="cr-stat-label">Edge functions with auth gates</span>
+            </div>
+            <div class="cr-stat">
+              <span class="cr-stat-val">83</span>
+              <span class="cr-stat-label">Tables with RLS policies</span>
+            </div>
+            <div class="cr-stat">
+              <span class="cr-stat-val">0</span>
+              <span class="cr-stat-label">Tolerance for double-grant bugs</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── PRINCIPLES ─────────────────────────────────────────────────── -->
+      <section class="ai-summary-strip">
+        <div class="container ai-summary-inner">
+          <div class="ai-summary-item">
+            <span class="as-val">$</span>
+            <span class="as-label">Every AI call has a budget</span>
+          </div>
+          <div class="as-div"></div>
+          <div class="ai-summary-item">
+            <span class="as-val">🔒</span>
+            <span class="as-label">Secrets never in client commits</span>
+          </div>
+          <div class="as-div"></div>
+          <div class="ai-summary-item">
+            <span class="as-val">↺</span>
+            <span class="as-label">Webhooks must be idempotent</span>
+          </div>
+          <div class="as-div"></div>
+          <div class="ai-summary-item">
+            <span class="as-val">✓</span>
+            <span class="as-label">Schema before DB write</span>
+          </div>
+          <div class="as-div"></div>
+          <div class="ai-summary-item">
+            <span class="as-val">→</span>
+            <span class="as-label">Smallest fix that closes the loop</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── REVIEW STANDARDS ───────────────────────────────────────────── -->
+      <section id="standards" class="section">
+        <div class="container">
+          <p class="eyebrow">Review standards</p>
+          <h2 class="section-title">What I check before merge</h2>
+          <p class="section-sub">
+            A checklist I run on every critical path — client, Edge Function, and ingestion script.
+            If any item fails, the change does not ship until the failure mode is named and handled.
+          </p>
+          <div class="cr-checklist-grid">
+            <div class="cr-check-card">
+              <h3>Security &amp; auth</h3>
+              <ul>
+                <li>JWT verified on every Edge Function entry</li>
+                <li>RLS policies match the query shape — no broad <code>SELECT *</code> without filter</li>
+                <li>Service-role keys only in Deno env, never in Flutter assets</li>
+                <li>User ID from token, never from request body alone</li>
+              </ul>
+            </div>
+            <div class="cr-check-card">
+              <h3>Billing &amp; webhooks</h3>
+              <ul>
+                <li>Nonce issued before purchase, deleted after successful verify</li>
+                <li>Store API called server-side — client token is evidence, not truth</li>
+                <li>Webhook handlers keyed by event ID for idempotency</li>
+                <li>Subscription period reset logic tested for edge dates</li>
+              </ul>
+            </div>
+            <div class="cr-check-card">
+              <h3>AI &amp; cost</h3>
+              <ul>
+                <li>Credits deducted <em>before</em> the API call, not after</li>
+                <li>Input/output token caps enforced per tier</li>
+                <li>Retry loop has max attempts and visible user progress</li>
+                <li>Every provider call logs to <code>record_ai_token_usage</code></li>
+              </ul>
+            </div>
+            <div class="cr-check-card">
+              <h3>Data &amp; content</h3>
+              <ul>
+                <li>Pydantic validates JSONL before Postgres upsert</li>
+                <li>Stable <code>slug</code> keys — re-ingestion updates, not duplicates</li>
+                <li>Migrations backward-compatible with live app versions</li>
+                <li>Force-update gate when schema contract breaks</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── ANNOTATED REVIEWS ──────────────────────────────────────────── -->
+      <section id="examples" class="section alt-section">
+        <div class="container">
+          <p class="eyebrow">Annotated reviews</p>
+          <h2 class="section-title">Real comments on production code</h2>
+          <p class="section-sub">
+            PR-style review threads from paths that handle money, AI spend, and user data.
+            Each block shows the code, the concern, and the resolution.
+          </p>
+
+          <div class="cr-review-list">
+
+            <article class="cr-review-card">
+              <header class="cr-review-header">
+                <span class="cr-file">supabase/functions/verify_google_play_purchase/index.ts</span>
+                <span class="cr-verdict cr-verdict-block">Blocked until fixed</span>
+              </header>
+              <div class="cr-diff">
+                <pre class="cr-code"><code><span class="cr-line cr-line-ctx">const { purchaseToken, nonceId } = await req.json();</span>
+<span class="cr-line cr-line-add">+ const nonce = await getNonce(nonceId, userId);</span>
+<span class="cr-line cr-line-add">+ if (!nonce || nonce.expires_at &lt; new Date()) throw 400;</span>
+<span class="cr-line cr-line-ctx">const receipt = await googlePlay.verify(purchaseToken);</span>
+<span class="cr-line cr-line-add">+ await deleteNonce(nonceId);</span>
+<span class="cr-line cr-line-ctx">await updateUserProfile(userId, receipt);</span></code></pre>
+              </div>
+              <div class="cr-thread">
+                <div class="cr-comment cr-comment-issue">
+                  <span class="cr-comment-meta">Review · billing</span>
+                  <p><strong>Without nonce deletion before profile update,</strong> a retried webhook or replayed client request can grant credits twice. The nonce must be consumed atomically with verification success.</p>
+                </div>
+                <div class="cr-comment cr-comment-resolve">
+                  <span class="cr-comment-meta">Resolution · shipped</span>
+                  <p>Nonce deleted immediately after validation, before store API call completes profile write. Purpose field scopes nonce to <code>google_play_plan</code> vs pack types.</p>
+                </div>
+              </div>
+              <div class="proof-tags">
+                <span class="proof-tag">Replay protection</span>
+                <span class="proof-tag">Server-side verification</span>
+              </div>
+            </article>
+
+            <article class="cr-review-card">
+              <header class="cr-review-header">
+                <span class="cr-file">lib/features/practice/gemini_practice_assessment_client.dart</span>
+                <span class="cr-verdict cr-verdict-warn">Comment — cost risk</span>
+              </header>
+              <div class="cr-diff">
+                <pre class="cr-code"><code><span class="cr-line cr-line-ctx">Future&lt;WritingEmailAssessment&gt; scoreEmail(...) async {</span>
+<span class="cr-line cr-line-add">+ await _deductScoringCredit(userId);</span>
+<span class="cr-line cr-line-ctx">  final input = _trimToTokenBudget(userText, maxTokens: 1000);</span>
+<span class="cr-line cr-line-ctx">  final model = tier == PlanTier.hyper ? proModel : flashModel;</span>
+<span class="cr-line cr-line-add">+ for (var attempt = 1; attempt &lt;= 10; attempt++) {</span>
+<span class="cr-line cr-line-ctx">    try { return await _callGemini(input, model); }</span>
+<span class="cr-line cr-line-ctx">    catch (e) { await Future.delayed(Duration(seconds: 4)); }</span>
+<span class="cr-line cr-line-ctx">  }</span>
+<span class="cr-line cr-line-ctx">}</span></code></pre>
+              </div>
+              <div class="cr-thread">
+                <div class="cr-comment cr-comment-issue">
+                  <span class="cr-comment-meta">Review · AI cost</span>
+                  <p><strong>Deducting credit after a successful response</strong> invites free retries on transient failures — users get 10 API calls for one credit. Pre-deduction is intentional: one credit, one scoring session.</p>
+                </div>
+                <div class="cr-comment cr-comment-resolve">
+                  <span class="cr-comment-meta">Resolution · shipped</span>
+                  <p>Credit deducted before first <code>generateContent</code>. Retry loop only covers API flakiness; UI driven by <code>ScoringRetryProgressCallback</code>. Token usage logged async after success.</p>
+                </div>
+              </div>
+              <div class="proof-tags">
+                <span class="proof-tag">Pre-call credit gate</span>
+                <span class="proof-tag">Tier-aware model routing</span>
+              </div>
+            </article>
+
+            <article class="cr-review-card">
+              <header class="cr-review-header">
+                <span class="cr-file">scripts/content_ingestion/gemini_generate.py</span>
+                <span class="cr-verdict cr-verdict-ok">Approved with tests</span>
+              </header>
+              <div class="cr-diff">
+                <pre class="cr-code"><code><span class="cr-line cr-line-ctx">for line in response.text.splitlines():</span>
+<span class="cr-line cr-line-add">+   record = TaskSchema.model_validate_json(line)</span>
+<span class="cr-line cr-line-ctx">    upsert_content(record.slug, record.model_dump())</span></code></pre>
+              </div>
+              <div class="cr-thread">
+                <div class="cr-comment cr-comment-issue">
+                  <span class="cr-comment-meta">Review · data integrity</span>
+                  <p><strong>Trusting raw Gemini JSONL</strong> without validation will eventually write a malformed row — missing answer keys break the Flutter session gate mid-practice.</p>
+                </div>
+                <div class="cr-comment cr-comment-resolve">
+                  <span class="cr-comment-meta">Resolution · shipped</span>
+                  <p>Each of 12 task types has a Pydantic model; invalid lines fail the ingestion run with a line number. Upsert keyed on <code>slug</code> keeps re-runs idempotent.</p>
+                </div>
+              </div>
+              <div class="proof-tags">
+                <span class="proof-tag">Schema-first pipeline</span>
+                <span class="proof-tag">Idempotent upsert</span>
+              </div>
+            </article>
+
+            <article class="cr-review-card">
+              <header class="cr-review-header">
+                <span class="cr-file">supabase/functions/ai_score_writing/index.ts</span>
+                <span class="cr-verdict cr-verdict-block">Blocked until fixed</span>
+              </header>
+              <div class="cr-diff">
+                <pre class="cr-code"><code><span class="cr-line cr-line-del">- const userId = body.user_id;</span>
+<span class="cr-line cr-line-add">+ const userId = jwt.sub;</span>
+<span class="cr-line cr-line-ctx">if (userId !== profile.owner_id) return 403;</span></code></pre>
+              </div>
+              <div class="cr-thread">
+                <div class="cr-comment cr-comment-issue">
+                  <span class="cr-comment-meta">Review · security</span>
+                  <p><strong>Accepting <code>user_id</code> from the request body</strong> lets any authenticated user trigger scoring on another account's quota. Identity must come from the verified JWT only.</p>
+                </div>
+                <div class="cr-comment cr-comment-resolve">
+                  <span class="cr-comment-meta">Resolution · shipped</span>
+                  <p>All Edge Functions extract <code>sub</code> from Supabase JWT. RLS on <code>user_profiles</code> is the second layer; the function never trusts client-supplied IDs for writes.</p>
+                </div>
+              </div>
+              <div class="proof-tags">
+                <span class="proof-tag">JWT-first identity</span>
+                <span class="proof-tag">Defense in depth</span>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── SOLO REVIEW LOOP ───────────────────────────────────────────── -->
+      <section id="process" class="section">
+        <div class="container two-col">
+          <div>
+            <p class="eyebrow">Solo review loop</p>
+            <h2 class="section-title">No second reviewer — stricter first pass</h2>
+            <p class="section-sub">
+              When you are the only engineer, review is how you simulate a senior teammate.
+              I write the spec, implement, then re-read the diff as if I did not write it.
+            </p>
+          </div>
+          <div class="cr-process-steps">
+            <div class="cr-process-step">
+              <span class="cr-process-num">1</span>
+              <div>
+                <strong>Diff against the failure mode</strong>
+                <p>What breaks if this runs twice, if the API times out, or if the user is on Free tier?</p>
+              </div>
+            </div>
+            <div class="cr-process-step">
+              <span class="cr-process-num">2</span>
+              <div>
+                <strong>Trace end-to-end</strong>
+                <p>Flutter state → Edge Function → Postgres row → webhook echo. One broken hop means a support email.</p>
+              </div>
+            </div>
+            <div class="cr-process-step">
+              <span class="cr-process-num">3</span>
+              <div>
+                <strong>Ship the smallest fix</strong>
+                <p>Patch the root cause, verify on device + Supabase logs, then release. No drive-by refactors in hot paths.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── CTA ─────────────────────────────────────────────────────────── -->
+      <section class="pitch-section">
+        <div class="container pitch-inner">
+          <div class="pitch-text">
+            <p class="eyebrow light">What this proves</p>
+            <h2>I ship fast — and I do not ship careless.</h2>
+            <p>
+              Production code review is how a solo founder keeps 98k lines trustworthy.
+              Billing, AI spend, and user data get the same scrutiny a team would give in design review.
+            </p>
+          </div>
+          <div class="cta-group">
+            <a class="button-big" href="mailto:ahyunsoo3@gmail.com">
+              Get in touch
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a class="button-outline" href="../project.html">See full tech deep-dive</a>
+            <a class="button-outline" href="../spec.html">Read Blueprint spec</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>&copy; 2026 Hyunsoo Lee</span>
+        <span><a href="https://missroot.com" target="_blank" rel="noopener noreferrer">missroot.com</a> · <a href="../index.html">Portfolio</a></span>
+      </div>
+    </footer>
+
+    <script src="../i18n.js"></script>
+  </body>
+</html>
