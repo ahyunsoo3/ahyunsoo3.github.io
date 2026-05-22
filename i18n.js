@@ -353,6 +353,47 @@
     "Full-stack engineering + product thinking + growth execution.":
       "풀스택 엔지니어링, 제품적 사고, 그리고 성장을 위한 실행력까지.",
     "All in one person. Korea-based or remote.": "이 모든 역량을 갖춘 엔지니어와 함께하세요. (국내/원격 가능)",
+
+    /* ─ Code Review page ─ */
+    "Code review": "코드 리뷰",
+    "I review like money is on the line.":
+      "돈이 걸린 것처럼 코드를 리뷰합니다.",
+    "Solo-founder scale means every merge can break billing, burn AI credits, or leak user data. I treat review as a production gate — not a style pass. These are real patterns from Missroot TOEFL: what I look for, what I block, and what I ship.":
+      "1인 창업 규모에서는 모든 머지가 결제를 깨뜨리거나, AI 크레딧을 태우거나, 사용자 데이터를 유출할 수 있습니다. 리뷰는 스타일 검사가 아니라 프로덕션 게이트입니다. Missroot TOEFL에서 실제로 적용한 패턴 — 무엇을 보고, 무엇을 막고, 무엇을 출시하는지.",
+    "Security": "보안",
+    "Billing": "결제",
+    "AI cost": "AI 비용",
+    "Data integrity": "데이터 무결성",
+    "Lines reviewed in monorepo": "모노레포 리뷰 라인 수",
+    "Edge functions with auth gates": "인증 게이트가 있는 엣지 함수",
+    "Tables with RLS policies": "RLS 정책이 있는 테이블",
+    "Tolerance for double-grant bugs": "이중 지급 버그 허용",
+    "Every AI call has a budget": "모든 AI 호출에 예산",
+    "Secrets never in client commits": "클라이언트 커밋에 시크릿 없음",
+    "Webhooks must be idempotent": "웹훅은 멱등해야 함",
+    "Schema before DB write": "DB 쓰기 전 스키마",
+    "Smallest fix that closes the loop": "루프를 닫는 최소 수정",
+    "Review standards": "리뷰 기준",
+    "What I check before merge": "머지 전 확인 항목",
+    "A checklist I run on every critical path — client, Edge Function, and ingestion script. If any item fails, the change does not ship until the failure mode is named and handled.":
+      "클라이언트, Edge Function, 수집 스크립트의 모든 크리티컬 패스에 적용하는 체크리스트. 항목이 실패하면 실패 모드를 명명하고 처리할 때까지 출시하지 않습니다.",
+    "Security & auth": "보안 및 인증",
+    "Billing & webhooks": "결제 및 웹훅",
+    "AI & cost": "AI 및 비용",
+    "Data & content": "데이터 및 콘텐츠",
+    "Annotated reviews": "주석 리뷰",
+    "Real comments on production code": "프로덕션 코드에 대한 실제 코멘트",
+    "PR-style review threads from paths that handle money, AI spend, and user data. Each block shows the code, the concern, and the resolution.":
+      "돈, AI 지출, 사용자 데이터를 다루는 경로의 PR 스타일 리뷰 스레드. 코드, 우려, 해결책을 각각 보여줍니다.",
+    "Solo review loop": "솔로 리뷰 루프",
+    "No second reviewer — stricter first pass": "두 번째 리뷰어 없음 — 더 엄격한 1차 검토",
+    "When you are the only engineer, review is how you simulate a senior teammate. I write the spec, implement, then re-read the diff as if I did not write it.":
+      "유일한 엔지니어일 때 리뷰는 시니어 동료를 시뮬레이션하는 방법입니다. 스펙을 쓰고, 구현하고, 직접 쓰지 않은 것처럼 diff를 다시 읽습니다.",
+    "I ship fast — and I do not ship careless.":
+      "빠르게 출시하지만, 부주의하게 출시하지는 않습니다.",
+    "Production code review is how a solo founder keeps 98k lines trustworthy. Billing, AI spend, and user data get the same scrutiny a team would give in design review.":
+      "프로덕션 코드 리뷰는 1인 창업자가 98k 라인을 신뢰할 수 있게 유지하는 방법입니다. 결제, AI 지출, 사용자 데이터는 팀이 설계 리뷰에서 주는 것과 같은 수준의 검토를 받습니다.",
+    "Read Blueprint spec": "Blueprint 스펙 읽기",
   };
 
   /* ── Per-page meta (title + description) ──────────────────────────────── */
