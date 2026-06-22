@@ -42,6 +42,11 @@
 
   --radius:     20px;
   --radius-sm:  12px;
+
+  /* Blog / prose aliases */
+  --text:    var(--ink);
+  --surface: var(--white);
+  --border:  var(--soft);
 }
 
 /* ─── Reset & base ──────────────────────────────────────────────────────── */
@@ -4441,7 +4446,7 @@ h1 { margin-bottom: 1.6rem; }
 }
 
 .blog-post-wrap {
-  max-width: 42rem;
+  max-width: 44rem;
 }
 
 .blog-back-link {
@@ -4483,74 +4488,233 @@ h1 { margin-bottom: 1.6rem; }
 }
 
 .blog-prose {
-  font-size: 1.02rem;
-  line-height: 1.75;
+  font-size: 1.0625rem;
+  line-height: 1.8;
   color: var(--text);
+  letter-spacing: -0.01em;
 }
 
 .blog-prose > *:first-child { margin-top: 0; }
 .blog-prose > *:last-child { margin-bottom: 0; }
 
 .blog-prose h2 {
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  margin: 2rem 0 0.75rem;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  margin: 2.5rem 0 0.85rem;
+  padding-top: 0.5rem;
 }
 
 .blog-prose h3 {
-  font-size: 1.12rem;
+  font-size: 1.125rem;
   font-weight: 650;
-  margin: 1.5rem 0 0.5rem;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  margin: 1.75rem 0 0.6rem;
+}
+
+.blog-prose h4 {
+  font-size: 1rem;
+  font-weight: 650;
+  margin: 1.25rem 0 0.45rem;
 }
 
 .blog-prose p {
-  margin: 0 0 1.1rem;
+  margin: 0 0 1.15rem;
+}
+
+.blog-prose > p:first-of-type {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--ink) 88%, var(--muted));
+}
+
+.blog-prose strong {
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.blog-prose em {
+  font-style: italic;
 }
 
 .blog-prose a {
   color: var(--accent);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.blog-prose a:hover {
+  color: var(--accent-dark);
+}
+
+.blog-prose hr {
+  border: none;
+  height: 1px;
+  margin: 2.25rem 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border) 15%,
+    var(--border) 85%,
+    transparent
+  );
 }
 
 .blog-prose ul,
 .blog-prose ol {
-  margin: 0 0 1.1rem;
-  padding-left: 1.4rem;
+  margin: 0 0 1.15rem;
+  padding-left: 1.5rem;
 }
 
+.blog-prose ul { list-style: disc; }
+.blog-prose ol { list-style: decimal; }
+
 .blog-prose li {
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.4rem;
+  padding-left: 0.15rem;
+}
+
+.blog-prose li > ul,
+.blog-prose li > ol {
+  margin: 0.35rem 0 0.25rem;
+}
+
+.blog-prose li::marker {
+  color: var(--accent);
 }
 
 .blog-prose code {
   font-family: "JetBrains Mono", ui-monospace, monospace;
-  font-size: 0.88em;
-  background: color-mix(in srgb, var(--border) 40%, transparent);
-  padding: 0.12em 0.35em;
-  border-radius: 0.3em;
+  font-size: 0.86em;
+  background: color-mix(in srgb, var(--border) 45%, transparent);
+  padding: 0.14em 0.4em;
+  border-radius: 0.35em;
 }
 
 .blog-prose pre {
   overflow-x: auto;
-  padding: 1rem 1.15rem;
-  border-radius: 0.6rem;
-  background: var(--surface);
+  padding: 1rem 1.2rem;
+  border-radius: 0.65rem;
+  background: var(--bg);
   border: 1px solid var(--border);
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.35rem;
 }
 
 .blog-prose pre code {
   background: none;
   padding: 0;
-  font-size: 0.85rem;
+  font-size: 0.84rem;
+  line-height: 1.6;
 }
 
 .blog-prose blockquote {
-  margin: 0 0 1.1rem;
-  padding-left: 1rem;
+  margin: 0 0 1.25rem;
+  padding: 0.85rem 1rem 0.85rem 1.15rem;
   border-left: 3px solid var(--accent);
+  border-radius: 0 0.5rem 0.5rem 0;
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+.blog-prose blockquote p {
+  margin: 0;
+}
+
+.blog-prose blockquote p + p {
+  margin-top: 0.65rem;
+}
+
+.blog-prose .blog-result {
+  display: block;
+  margin: 1rem 0 1.25rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.55rem;
+  background: color-mix(in srgb, var(--accent-soft) 80%, var(--white));
+  border: 1px solid var(--accent-mid);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+}
+
+.blog-prose .blog-table-wrap {
+  overflow-x: auto;
+  margin: 0 0 1.35rem;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.blog-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.blog-prose th,
+.blog-prose td {
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.blog-prose th {
+  font-weight: 650;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--muted);
+  background: var(--bg);
+}
+
+.blog-prose tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.blog-prose tbody tr:hover td {
+  background: color-mix(in srgb, var(--accent-soft) 35%, transparent);
+}
+
+/* Verdict / conclusion lines (→ Label.) */
+.blog-prose .blog-verdict {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  margin: 0.75rem 0 1.35rem;
+  padding: 0.6rem 0.95rem;
+  border-radius: 0.55rem;
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent-soft) 70%, var(--white));
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+}
+
+.blog-prose .blog-verdict-arrow {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.blog-prose .blog-verdict-label {
+  font-weight: 650;
+}
+
+/* Tighten example label → code block flow */
+.blog-prose p:has(+ pre) {
+  margin-bottom: 0.55rem;
+}
+
+.blog-prose p:has(+ pre) + pre {
+  margin-top: 0;
+}
+
+/* Terminal-style $ prompt in bash blocks */
+.blog-prose pre code.language-bash {
+  white-space: pre-wrap;
 }
 

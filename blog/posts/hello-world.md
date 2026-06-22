@@ -1,5 +1,3 @@
-# Hello World
-
 This is the first essay on my portfolio blog.
 
 I built [Missroot TOEFL](https://missroot.com) as a solo founder — mobile client, Supabase backend, AI scoring, and billing all in one stack. This blog is where I'll share longer-form writing: product decisions, technical trade-offs, and lessons from shipping.

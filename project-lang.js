@@ -13,8 +13,8 @@
   
       /* Hero */
       "Technical deep-dive":   "기술 상세 분석",
-      "End-to-end architecture of a production Flutter × Supabase AI exam prep platform. Every function explained — from the Flutter session gate to billing nonces, Gemini scoring retries, and the automated content pipeline.":
-        "프로덕션 환경의 Flutter × Supabase AI 플랫폼 아키텍처를 상세히 설명합니다. 세션 관리부터 결제 안정성 확보, AI 채점 로직 및 콘텐츠 자동화 파이프라인까지 모든 핵심 기능을 담았습니다.",
+      "End-to-end architecture of a production Flutter × Supabase AI exam prep platform. Architecture overview — from the Flutter session gate to billing nonces, Gemini scoring retries, and the content pipeline.":
+        "프로덕션 Flutter × Supabase AI 시험 준비 플랫폼의 엔드투엔드 아키텍처. Flutter 세션 게이트부터 billing nonce, Gemini 채점 재시도, 콘텐츠 파이프라인까지 개요를 다룹니다.",
   
       "Flutter feature modules": "Flutter 기능 모듈",
       "Supabase edge functions": "Supabase 에지 함수",
@@ -25,8 +25,8 @@
   
       /* Repo map */
       "Repository structure":      "저장소 구조",
-      "Monorepo designed for scale":
-        "확장성을 고려한 모노레포 설계",
+      "Monorepo structure":
+        "모노레포 구조",
       "One repository hosts four exam apps, three shared packages, nine backend functions, and a Python content pipeline. Shared packages keep a single source of truth for billing logic, networking, and the design system across all apps.":
         "하나의 저장소에서 4개의 앱과 3개의 공유 패키지, 9개의 백엔드 함수를 관리합니다. 결제 로직, 네트워킹, 디자인 시스템을 공유 패키지로 묶어 모든 앱에서 일관된 기준으로 사용합니다.",
       "Monorepo architecture": "모노레포 아키텍처",
@@ -34,8 +34,8 @@
       "Multi-product thinking": "멀티 제품 확장성",
   
       /* Flutter app section */
-      "14 feature modules, 1 coherent product":
-        "14개의 독립 모듈, 하나의 완결된 제품",
+      "14 feature modules in one app":
+        "14개 기능 모듈, 하나의 앱",
       "Each module has its own data layer, business logic, and UI — but shares auth, theme, routing, and billing through cross-cutting services and shared packages.":
         "각 모듈은 독립적인 데이터 및 UI 계층을 가지며, 공통 서비스와 패키지를 통해 인증, 테마, 결제 시스템을 공유합니다.",
   
@@ -143,9 +143,13 @@
       "AI scoring flow (Writing email)": "AI 채점 프로세스",
       "Subscription billing flow (Google Play)": "구독 결제 프로세스",
   
-      /* What it proves */
-      "What this proves": "역량 증명",
-      "End-to-end ownership across every layer": "전 계층에 걸친 엔드-투-엔드 리드 역량",
+      /* What it covers */
+      "What this covers": "다루는 범위",
+      "Full-stack scope": "풀스택 범위",
+      "Production app with auth, onboarding, adaptive learning, mock exams, bookmarks, and account management on both stores.":
+        "인증, 온보딩, 적응형 학습, 모의고사, 북마크, 계정 관리를 갖춘 프로덕션 앱 — iOS·Android 양 스토어 출시.",
+      "Token budget management, retry logic, tier-aware model routing, credit deduction before call, and usage cost logging.":
+        "토큰 예산 관리, 재시도 로직, 티어별 모델 라우팅, 호출 전 크레딧 차감, 사용 비용 로깅.",
       "Production mobile engineering": "프로덕션 수준의 모바일 엔지니어링",
       "Backend and serverless design": "백엔드 및 서버리스 설계 역량",
       "Practical AI integration": "실무 중심의 AI 기술 통합",
@@ -155,16 +159,16 @@
   
       /* CTA */
       "Interested in working together?": "협업에 관심이 있으신가요?",
-      "This is the level of engineering I bring to a team.": "제가 팀에 기여할 수 있는 기술적 수준입니다.",
-      "I bring hands-on full-stack mobile engineering, practical AI integration, serverless backend architecture, and end-to-end product ownership from planning to launch and iteration. Available for Korea-based and remote teams.":
-        "풀스택 모바일 엔지니어링을 중심으로 실무형 AI 통합, Serverless Backend Architecture, 기획부터 출시와 개선까지 이어지는 End-to-End Product Ownership 역량을 갖추고 있습니다. 국내 팀은 물론 Remote 기반 협업도 가능합니다.",
+      "Interested in this kind of work?": "이런 작업에 관심이 있으신가요?",
+      "Full-stack mobile engineering, AI integration, serverless backend architecture, and product ownership from planning through launch and iteration. Available for Korea-based and remote teams.":
+        "풀스택 모바일 엔지니어링, AI 통합, 서버리스 백엔드 아키텍처, 기획부터 출시·개선까지의 제품 오너십. 국내 근무 및 원격 협업 가능.",
       "Get in touch": "연락하기",
       "Back to portfolio": "포트폴리오로 돌아가기",
   
       /* AI page essentials */
-      "AI-native products": "AI 기반 제품 설계",
-      "Gemini scores user writing and speaking. Deepgram transcribes speech in real time. Inworld TTS voices every listening exercise. ChatGPT powers the tap dictionary for instant, in-context definitions. A credit wallet controls cost at every layer. This is what AI looks like when it's the product, not a feature.":
-        "AI를 단순한 기능이 아닌 제품의 핵심으로 활용합니다. Gemini 채점, Deepgram 음성 인식, Inworld TTS 청취 음원, 탭 사전을 통한 ChatGPT 기반 문맥 속 즉시 정의, 그리고 모든 계층에서 비용을 관리하는 크레딧 지갑까지 하나의 제품으로 묶었습니다.",
+      "AI in production": "프로덕션 AI",
+      "Gemini scores user writing and speaking. Deepgram transcribes speech in real time. Inworld TTS voices every listening exercise. ChatGPT powers the tap dictionary for instant, in-context definitions. A credit wallet controls cost at every layer.":
+        "Gemini 채점, Deepgram 음성 인식, Inworld TTS 청취 음원, ChatGPT 탭 사전, 그리고 모든 계층에서 비용을 관리하는 크레딧 지갑.",
       "Tap dictionary": "탭 사전",
       "AI providers integrated": "통합된 AI 제공업체",
       "AI-powered task types": "AI 기반 학습 유형",
@@ -172,8 +176,8 @@
       "Gemini model tiers": "Gemini 모델 티어 관리",
       "Credit pack types": "크레딧 팩 구성",
       "Writing and speaking, graded by Gemini": "Gemini 기반 Writing/Speaking 자동 채점",
-      "Not just \"call the API and show the result.\" The scoring system has token budgets, per-tier model routing, retry loops, pre-call credit deduction, and async cost logging.":
-        "단순 API 호출을 넘어 토큰 예산 관리, 모델 라우팅, 재시도 루프, 크레딧 차감 및 비용 로깅을 아우르는 정교한 채점 시스템을 구축했습니다.",
+      "The scoring system has token budgets, per-tier model routing, retry loops, pre-call credit deduction, and async cost logging.":
+        "토큰 예산, 티어별 모델 라우팅, 재시도 루프, 호출 전 크레딧 차감, 비동기 비용 로깅을 갖춘 채점 시스템입니다.",
       "Gemini content generation": "Gemini 기반 콘텐츠 생성",
       "All 12 task types generated by AI": "12가지 유형의 문제 자동 생성",
       "Practice content isn't written by hand. A Python pipeline prompts Gemini to output structured JSONL, validates each line with Pydantic, then loads it into Postgres.":
@@ -188,10 +192,9 @@
       "AI usage without cost surprises": "예측 가능한 AI 운영 비용 관리",
       "Three independent credit types, each deducted before its AI call. Users can buy more via App Store, Google Play, or Lemon Squeezy. Quotas are enforced in the Flutter client before any network request is made.":
         "세 가지 크레딧 타입을 독립적으로 운영하며, 클라이언트 단에서 네트워크 요청 전 쿼터를 우선 확인하여 비용 낭비를 방지합니다.",
-      "AI is the product. I know how to make it work in production.":
-        "AI가 곧 제품입니다. 프로덕션 환경에서 AI를 성공적으로 작동시키는 방법을 압니다.",
-      "Token budgets. Retry logic. Multi-tier model routing. Credit wallets. Cost logging. This is what responsible AI integration looks like when real users and real money are involved.":
-        "토큰 예산, 재시도 로직, 모델 라우팅, 결제 지갑 연동 등 실제 유저와 비용이 발생하는 환경에서 책임감 있는 AI 통합의 표준을 제시합니다.",
+      "Production AI integration": "프로덕션 AI 통합",
+      "Token budgets, retry logic, multi-tier routing, credit wallets, and cost logging — built for real users and paid usage.":
+        "토큰 예산, 재시도 로직, 멀티티어 라우팅, 크레딧 지갑, 비용 로깅 — 실제 사용자와 유료 사용 환경을 기준으로 구현했습니다.",
       "See full tech deep-dive": "기술 상세 분석 전체 보기",
 
       /* AI page – Tap dictionary cache section */
@@ -260,10 +263,12 @@
       "Token usage logged": "토큰 사용량 로깅",
   
       /* Growth page essentials */
-      "Growth & marketing": "성장 및 마케팅 전략",
-      "I own distribution.": "배포와 성장까지 직접 리드합니다.",
-      "Building the product is only half the job. I plan and run paid acquisition myself — targeting the right Reddit communities, measuring CAC, and iterating on creative. A solo founder who understands the full funnel is rare. This page shows the numbers.":
-        "제품을 만드는 데서 멈추지 않고, Reddit 커뮤니티 타겟팅부터 CAC 측정, 광고 크리에이티브 실험까지 직접 운영하며 고객 획득 과정을 지표로 개선해 왔습니다.",
+      "Growth & marketing": "성장 및 마케팅",
+      "Growth and distribution": "성장 및 배포",
+      "I plan and run paid acquisition — Reddit targeting, CAC measurement, and creative iteration. This page shows the numbers.":
+        "Reddit 타겟팅, CAC 측정, 크리에이티브 실험까지 유료 고객 획득을 직접 운영합니다. 이 페이지에 수치를 정리했습니다.",
+      "✓ Benchmark": "✓ 벤치마크",
+      "$0.20 CPC vs. industry benchmarks": "업계 벤치마크 대비 $0.20 CPC",
       "Amount spent": "집행 광고비",
       "Impressions": "노출수",
       "Clicks": "클릭수",
@@ -283,12 +288,20 @@
       "Beyond paid ads": "유료 광고를 넘어서",
       "Paid acquisition is one input. Organic channels compound over time with zero marginal cost.":
         "유료 광고는 성장의 한 축일 뿐입니다. 추가 비용 없이 시간이 지날수록 누적되는 오가닉 채널의 가치를 극대화하고 있습니다.",
-      "The strategy behind the product": "제품 배후의 성장 전략",
-      "Building for leverage, not pressure": "압박이 아닌 레버리지를 위한 구축",
-      "Looking for someone who ships and grows?": "제품 개발부터 성장까지 함께할 동료를 찾으시나요?",
-      "Full-stack engineering + product thinking + growth execution.":
-        "풀스택 엔지니어링, 제품적 사고, 그리고 성장을 위한 실행력까지.",
-      "All in one person. Korea-based or remote.": "이 모든 역량을 갖춘 엔지니어와 함께하세요. (국내/원격 가능)",
+      "The strategy behind the product": "제품 배후의 전략",
+      "Funding growth experiments": "성장 실험 자금 조달",
+      "Why salary funds the ads": "급여가 광고비를 충당하는 이유",
+      "Waiting for the app to replace full-time income puts financial pressure on product decisions. A stable salary covers server costs, Gemini API bills, and Reddit ad budgets without forcing short-term revenue trade-offs.":
+        "앱 수익만으로 생계를 맞추려 하면 제품 결정에 재정적 압박이 생깁니다. 안정적인 급여는 서버 비용, Gemini API, Reddit 광고 예산을 단기 매출 압박 없이 충당할 수 있게 합니다.",
+      "Why a $3 ad spend is a milestone": "$3 광고비가 의미 있는 이유",
+      "The first paid campaign isn't about scale — it's about establishing baseline metrics. $0.20 CPC and 0.445% CTR are now the benchmark. Every future A/B test is measured against this data. Scaling begins only after creative and targeting are validated. A $3 experiment de-risks a $300 budget later.":
+        "첫 유료 캠페인은 규모 확대가 아니라 기준 지표를 확보하는 단계입니다. $0.20 CPC와 0.445% CTR을 벤치마크로 잡고, 이후 A/B 테스트와 확장 여부를 이 데이터 기준으로 판단합니다. $3 실험은 이후 $300 예산의 리스크를 줄입니다.",
+      "What this shows": "이 페이지가 보여주는 것",
+      "This campaign covers targeting, CAC measurement, and creative iteration — the same funnel and unit-economics questions I'd track on a growth team.":
+        "타겟팅, CAC 측정, 크리에이티브 실험을 다루며 — 성장 팀에서 추적하는 퍼널과 단위 경제성 질문과 같습니다.",
+      "Open to roles that combine product and growth": "제품과 성장을 함께하는 역할에 관심 있습니다",
+      "Full-stack engineering, product thinking, and early growth work.": "풀스택 엔지니어링, 제품적 사고, 초기 성장 실행.",
+      "Korea-based or remote.": "국내 근무 또는 원격 가능.",
   
       /* Footer */
       "Built for GitHub Pages": "GitHub Pages 기반 정적 사이트",

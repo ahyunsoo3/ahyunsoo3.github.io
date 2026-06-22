@@ -49,6 +49,46 @@
     }
   }
 
+  function escapeRegex(str) {
+    return String(str).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function normalizeMarkdown(md, title) {
+    var text = String(md || "").replace(/^\uFEFF/, "").trim();
+
+    if (title) {
+      text = text.replace(
+        new RegExp("^#\\s+" + escapeRegex(title) + "\\s*\\n+", "i"),
+        ""
+      );
+    }
+
+    return text.replace(/^#\s+.+\n+/, function (match, offset) {
+      return offset === 0 ? "" : match;
+    });
+  }
+
+  function enhanceProseHtml(html) {
+    return String(html || "")
+      .replace(/<table>/g, '<div class="blog-table-wrap"><table>')
+      .replace(/<\/table>/g, "</table></div>")
+      .replace(
+        /<p>→\s*([^<]+)\.<\/p>/g,
+        function (_, label) {
+          return (
+            '<p class="blog-verdict">' +
+              '<span class="blog-verdict-arrow" aria-hidden="true">→</span> ' +
+              '<span class="blog-verdict-label">' + label.trim() + "</span>" +
+            "</p>"
+          );
+        }
+      )
+      .replace(
+        /<p><strong>Result:\s*([^<]+)<\/strong>\.<\/p>/gi,
+        '<p class="blog-result">Result: $1</p>'
+      );
+  }
+
   function renderList(container, posts) {
     if (!posts.length) {
       container.innerHTML =
@@ -107,7 +147,12 @@
               return;
             }
 
-            var html = marked.parse(md, { gfm: true, breaks: false });
+            var html = enhanceProseHtml(
+              marked.parse(normalizeMarkdown(md, post.title), {
+                gfm: true,
+                breaks: false,
+              })
+            );
             document.title = post.title + " · Hyunsoo Lee";
             document.querySelector('meta[name="description"]')
               ?.setAttribute("content", post.excerpt || post.title);

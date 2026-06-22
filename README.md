@@ -39,3 +39,14 @@ Essays are static Markdown files managed in the repo (no CMS or build step).
 4. Commit and push to deploy on GitHub Pages.
 
 The blog index is at `blog.html`; each essay opens at `blog-post.html?slug={slug}`.
+
+### Essay formatting
+
+Essays render as Markdown (GFM) inside `.blog-prose`. Conventions for readable, consistent posts:
+
+- **No `#` H1 in the markdown file** — the title comes from `posts.json` and renders as the page heading.
+- **Verdict lines** — end a section with `→ Label.` (e.g. `→ Functional.`) for auto-styled conclusion badges.
+- **Code examples** — combine command and output in one fenced block; prefix shell commands with `$`.
+- **Paper claims** — use `>` blockquotes for quoted claims from the paper.
+- **Comparisons** — use GFM tables; they pick up bordered styling automatically.
+- **Section breaks** — use `---` for horizontal rules between major subsections.
