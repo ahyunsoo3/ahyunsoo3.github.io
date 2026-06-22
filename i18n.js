@@ -11,6 +11,7 @@
     "Build":      "Build",
     "AI Engine":  "AI Engine",
     "Marketing":  "Marketing",
+    "Blog":       "Blog",
     "Blueprint":  "Blueprint",
     "Contact":    "Contact",
 
@@ -353,6 +354,20 @@
     "Full-stack engineering + product thinking + growth execution.":
       "풀스택 엔지니어링, 제품적 사고, 그리고 성장을 위한 실행력까지.",
     "All in one person. Korea-based or remote.": "이 모든 역량을 갖춘 엔지니어와 함께하세요. (국내/원격 가능)",
+
+    /* ─ Blog ─ */
+    "Essays & writing.": "에세이 & 글.",
+    "Longer-form notes on building products, shipping solo, and the technical decisions behind Missroot TOEFL.":
+      "제품을 만들고, 혼자서 출시하고, Missroot TOEFL의 기술적 결정에 대한 긴 글들입니다.",
+    "Loading essays…": "에세이 불러오는 중…",
+    "Loading essay…": "에세이 불러오는 중…",
+    "Back to blog": "블로그로 돌아가기",
+    "No essays yet. Check back soon.": "아직 에세이가 없습니다. 곧 다시 확인해 주세요.",
+    "Could not load essays.": "에세이를 불러올 수 없습니다.",
+    "Essay not found.": "에세이를 찾을 수 없습니다.",
+    "Could not load this essay.": "이 에세이를 불러올 수 없습니다.",
+    "Could not load essay renderer.": "에세이 렌더러를 불러올 수 없습니다.",
+    "Read essay →": "에세이 읽기 →",
   };
 
   /* ── Per-page meta (title + description) ──────────────────────────────── */
@@ -401,6 +416,16 @@
         description: "Missroot TOEFL의 Reddit 광고 데이터, 타겟팅 전략, 성장 퍼널, 배포 전략.",
       },
     },
+    blog: {
+      en: {
+        title: "Blog · Hyunsoo Lee",
+        description: "Essays and writing by Hyunsoo Lee — product, engineering, and building Missroot TOEFL.",
+      },
+      ko: {
+        title: "블로그 · 이현수",
+        description: "이현수의 에세이 — 제품, 엔지니어링, Missroot TOEFL을 만든 이야기.",
+      },
+    },
   };
 
   /* ── Core i18n logic ───────────────────────────────────────────────────── */
@@ -438,6 +463,7 @@
   function currentPageKey() {
     const file = location.pathname.split("/").pop()?.replace(".html", "") || "index";
     if (file === "" || file === "index") return "index";
+    if (file === "blog-post") return "blog";
     if (META[file]) return file;
     return "project"; // fallback for spec pages and others
   }
@@ -485,4 +511,11 @@
     btn.addEventListener("click", () => apply(btn.dataset.langButton || "en"));
   });
   apply(preferredLang(), false);
+
+  window.portfolioRefreshI18n = function () {
+    nodes.length = 0;
+    collectNodes();
+    const saved = localStorage.getItem("portfolio-lang") || localStorage.getItem("hl_lang");
+    apply(saved === "ko" ? "ko" : "en", false);
+  };
 })();

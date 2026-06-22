@@ -3,7 +3,7 @@
  * header appears before any page content is rendered (no layout flash).
  *
  * Each page sets  data-page="<key>"  on <body> to control the active nav tab.
- * Valid keys: index | project | ai | growth | spec
+ * Valid keys: index | project | ai | growth | blog | spec
  */
 (function () {
   var page = document.body.getAttribute('data-page') || '';
@@ -28,6 +28,7 @@
         tab('project.html',        'Build',     'project') +
         tab('ai.html',             'AI Engine', 'ai')      +
         tab('growth.html',         'Marketing', 'growth')  +
+        tab('blog.html',           'Blog',      'blog')    +
         tab('spec.html',           'Blueprint', 'spec')    +
         tab('index.html#contact',  'Contact',   'contact') +
       '</nav>' +

@@ -1,0 +1,16 @@
+[
+  {
+    "slug": "functional-vs-reproduced-badges",
+    "title": "Functional vs Reproduced: What Artifact Badges Actually Mean",
+    "date": "2026-06-22",
+    "excerpt": "Functional tests whether the artifact works; Reproduced tests whether the paper's claims hold — and one does not imply the other.",
+    "published": true
+  },
+  {
+    "slug": "hello-world",
+    "title": "Hello World",
+    "date": "2026-06-22",
+    "excerpt": "First essay on the blog — notes on building in public and shipping solo.",
+    "published": true
+  }
+]
